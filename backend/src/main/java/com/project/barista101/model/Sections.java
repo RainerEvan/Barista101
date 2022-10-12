@@ -5,6 +5,8 @@ import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,6 +16,8 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.project.barista101.data.SectionType;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,7 +26,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Modules {
+public class Sections {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
@@ -30,9 +34,12 @@ public class Modules {
     
     @ManyToOne
     @JoinColumn(name = "course_id")
-    private Courses course;
+    private Modules module;
     private String title;
     
+    @Enumerated(EnumType.STRING)
+    private SectionType sectionType;
+    
     @OneToMany(mappedBy = "module",cascade = CascadeType.PERSIST,orphanRemoval = true,fetch = FetchType.LAZY)
-    private List<Sections> sections;
+    private List<Contents> contents;
 }

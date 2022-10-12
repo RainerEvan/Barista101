@@ -30,8 +30,8 @@ public class Contents {
     private UUID id;
 
     @ManyToOne
-    @JoinColumn(name = "module_id")
-    private Modules module;
+    @JoinColumn(name = "section_id")
+    private Sections section;
     private String title;
 
     @Enumerated(EnumType.STRING)

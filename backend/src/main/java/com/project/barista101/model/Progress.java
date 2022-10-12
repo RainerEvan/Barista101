@@ -33,5 +33,5 @@ public class Progress {
 
     @ManyToOne
     @JoinColumn(name = "last_content_id")
-    private Contents lastContent;
+    private Sections lastSection;
 }

@@ -6,10 +6,10 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.project.barista101.model.Contents;
+import com.project.barista101.model.Modules;
 import com.project.barista101.model.Sections;
 
 @Repository
-public interface ContentRepository extends JpaRepository<Contents,UUID>{
-    List<Contents> findAllBySection(Sections section);
+public interface SectionRepository extends JpaRepository<Sections, UUID> {
+    List<Sections> findAllByModule(Modules module);
 }
