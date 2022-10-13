@@ -1,6 +1,6 @@
 package com.project.barista101.data;
 
-public enum ContentType {
+public enum EContentType {
     TEXT,
     VIDEO,
     IMAGE

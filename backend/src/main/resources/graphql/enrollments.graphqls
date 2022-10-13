@@ -1,0 +1,7 @@
+type Enrollments{
+    id:ID!
+    account:Accounts
+    module:Modules
+    startDate:DateTime
+    endDate:DateTime
+}

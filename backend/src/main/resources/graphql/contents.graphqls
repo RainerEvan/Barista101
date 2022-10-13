@@ -1,0 +1,7 @@
+type Contents{
+    id:ID!
+    section:Sections
+    title:String
+    contentType:ContentType
+    content:String
+}

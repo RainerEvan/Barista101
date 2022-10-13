@@ -1,0 +1,31 @@
+scalar DateTime
+
+schema {
+    query:Query
+}
+
+type Query{
+
+}
+
+type ContentType{
+    id:ID!
+    name:EContentType
+}
+
+enum EContentType{
+    TEXT
+    VIDEO
+    IMAGE
+}
+
+type SectionType{
+    id:ID!
+    name:ESectionType
+}
+
+enum ESectionType{
+    THEORY
+    PRACTICE
+    QUIZ
+}

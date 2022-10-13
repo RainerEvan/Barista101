@@ -30,8 +30,8 @@ public class Enrollments {
     private Accounts account;
 
     @ManyToOne
-    @JoinColumn(name = "course_id")
-    private Courses course;
+    @JoinColumn(name = "module_id")
+    private Modules module;
 
     private OffsetDateTime startDate;
     private OffsetDateTime endDate;

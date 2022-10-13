@@ -1,0 +1,6 @@
+type Courses{
+    id:ID!
+    title:String
+    description:String
+    modules:[Modules]
+}

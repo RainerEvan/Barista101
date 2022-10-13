@@ -1,6 +1,6 @@
 package com.project.barista101.data;
 
-public enum SectionType {
+public enum ESectionType {
     THEORY,
     PRACTICE,
     QUIZ

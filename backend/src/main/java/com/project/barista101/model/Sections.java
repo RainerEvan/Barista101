@@ -5,8 +5,6 @@ import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,8 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.GenericGenerator;
-
-import com.project.barista101.data.SectionType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,7 +33,8 @@ public class Sections {
     private Modules module;
     private String title;
     
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @JoinColumn(name = "section_type_id")
     private SectionType sectionType;
     
     @OneToMany(mappedBy = "module",cascade = CascadeType.PERSIST,orphanRemoval = true,fetch = FetchType.LAZY)
