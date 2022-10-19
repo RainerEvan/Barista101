@@ -9,5 +9,7 @@ import com.project.barista101.model.Accounts;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Accounts,UUID>{
+
+    boolean existsByEmail(String email);
     
 }
