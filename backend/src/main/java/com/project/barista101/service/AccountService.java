@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.barista101.model.Accounts;
+import com.project.barista101.model.account.Accounts;
 import com.project.barista101.payload.request.AccountRequest;
 import com.project.barista101.repository.AccountRepository;
 import com.project.barista101.utils.ProfileImageUtils;

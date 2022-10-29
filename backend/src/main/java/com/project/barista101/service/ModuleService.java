@@ -8,8 +8,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.barista101.model.Courses;
-import com.project.barista101.model.Modules;
+import com.project.barista101.model.course.Courses;
+import com.project.barista101.model.course.Modules;
 import com.project.barista101.repository.CourseRepository;
 import com.project.barista101.repository.ModuleRepository;
 

@@ -6,8 +6,8 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.project.barista101.model.Courses;
-import com.project.barista101.model.Modules;
+import com.project.barista101.model.course.Courses;
+import com.project.barista101.model.course.Modules;
 
 @Repository
 public interface ModuleRepository extends JpaRepository<Modules,UUID> {

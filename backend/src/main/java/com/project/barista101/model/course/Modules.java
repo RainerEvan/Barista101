@@ -1,4 +1,4 @@
-package com.project.barista101.model;
+package com.project.barista101.model.course;
 
 import java.util.List;
 import java.util.UUID;

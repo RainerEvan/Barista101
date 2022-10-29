@@ -1,4 +1,4 @@
-package com.project.barista101.model;
+package com.project.barista101.model.account;
 
 import java.util.HashSet;
 import java.util.Set;

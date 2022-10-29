@@ -1,18 +1,18 @@
-package com.project.barista101.model;
+package com.project.barista101.model.forum;
 
-import java.util.List;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.GenericGenerator;
+
+import com.project.barista101.model.account.Accounts;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,21 +22,22 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "courses")
-public class Courses {
+public class Forums {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
 
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Accounts author;
+
     private String title;
-
-    private String description;
-
+    
     @Lob
-    private String backgroundImg;
+    private String body;
 
-    @OneToMany(mappedBy = "course",cascade = CascadeType.PERSIST,orphanRemoval = true,fetch = FetchType.LAZY)
-    private List<Modules> modules;
+    private OffsetDateTime createdAt;
 
+    private OffsetDateTime updatedAt;
 }

@@ -1,5 +1,6 @@
-package com.project.barista101.model;
+package com.project.barista101.model.course;
 
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 import javax.persistence.Entity;
@@ -12,6 +13,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.project.barista101.model.account.Accounts;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,20 +23,28 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "contents")
-public class Contents {
+@Table(name = "enrollments")
+public class Enrollments {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
 
     @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Accounts account;
+
+    @ManyToOne
     @JoinColumn(name = "module_id")
     private Modules module;
 
-    private String title;
+    private OffsetDateTime startDate;
+
+    private OffsetDateTime endDate;
+
+    private Boolean isCompleted;
 
     @Lob
-    private String body;
+    private String progress;
 
 }

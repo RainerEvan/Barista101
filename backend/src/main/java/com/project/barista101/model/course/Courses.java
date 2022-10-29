@@ -1,13 +1,15 @@
-package com.project.barista101.model;
+package com.project.barista101.model.course;
 
+import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -20,25 +22,21 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "accounts")
-public class Accounts {
+@Table(name = "courses")
+public class Courses {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
 
-    private String email;
+    private String title;
 
-    private String password;
-
-    private String fullname;
+    private String description;
 
     @Lob
-    private String profileImg;
+    private String backgroundImg;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Roles role;
+    @OneToMany(mappedBy = "course",cascade = CascadeType.PERSIST,orphanRemoval = true,fetch = FetchType.LAZY)
+    private List<Modules> modules;
 
 }
-
