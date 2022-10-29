@@ -1,16 +1,17 @@
 package com.project.barista101.model;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -22,21 +23,18 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Sections {
+@Table(name = "roles")
+public class Roles {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
-    
-    @ManyToOne
-    @JoinColumn(name = "course_id")
-    private Modules module;
-    private String title;
-    
-    @ManyToOne
-    @JoinColumn(name = "section_type_id")
-    private SectionType sectionType;
-    
-    @OneToMany(mappedBy = "module",cascade = CascadeType.PERSIST,orphanRemoval = true,fetch = FetchType.LAZY)
-    private List<Contents> contents;
+
+    private String name;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable( name = "role_has_access",
+                joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"),
+                inverseJoinColumns = @JoinColumn(name = "role_access_id", referencedColumnName = "id"))
+    private Set<RoleAccess> roleAccesses = new HashSet<>();
 }

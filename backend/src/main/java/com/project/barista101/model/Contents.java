@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -19,6 +20,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "contents")
 public class Contents {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -26,15 +28,12 @@ public class Contents {
     private UUID id;
 
     @ManyToOne
-    @JoinColumn(name = "section_id")
-    private Sections section;
+    @JoinColumn(name = "module_id")
+    private Modules module;
+
     private String title;
 
-    @ManyToOne
-    @JoinColumn(name = "content_type_id")
-    private ContentType contentType;
-
     @Lob
-    private String content;
+    private String body;
 
 }

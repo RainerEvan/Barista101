@@ -8,24 +8,13 @@ type Query{
 
 }
 
-type ContentType{
+type Roles{
     id:ID!
-    name:EContentType
+    name:String
+    roleAccesses:[RoleAccess]
 }
 
-enum EContentType{
-    TEXT
-    VIDEO
-    IMAGE
-}
-
-type SectionType{
+type RoleAccess{
     id:ID!
-    name:ESectionType
-}
-
-enum ESectionType{
-    THEORY
-    PRACTICE
-    QUIZ
+    name:String
 }

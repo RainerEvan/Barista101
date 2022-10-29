@@ -1,7 +1,0 @@
-type Progress{
-    id:ID!
-    percentage:Float
-    isCompleted:Boolean
-    enrollment:Enrollments
-    lastSection:Sections
-}

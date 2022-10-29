@@ -1,7 +1,7 @@
 type Contents{
     id:ID!
-    section:Sections
+    order:Int
+    module:Modules
     title:String
-    contentType:ContentType
-    content:String
+    body:String
 }

@@ -4,4 +4,6 @@ type Enrollments{
     module:Modules
     startDate:DateTime
     endDate:DateTime
+    isCompleted:Boolean
+    progress:String
 }

@@ -3,4 +3,5 @@ type Accounts{
     email:String
     fullname:String
     profileImg:String
+    role:Roles
 }

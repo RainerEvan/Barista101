@@ -7,9 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.project.barista101.model.Contents;
-import com.project.barista101.model.Sections;
+import com.project.barista101.model.Modules;
 
 @Repository
 public interface ContentRepository extends JpaRepository<Contents,UUID>{
-    List<Contents> findAllBySection(Sections section);
+    List<Contents> findAllByModule(Modules Module);
 }

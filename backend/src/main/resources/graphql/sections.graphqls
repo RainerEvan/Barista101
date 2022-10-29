@@ -1,7 +1,0 @@
-type Sections{
-    id:ID!
-    module:Modules
-    title:String
-    sectionType:SectionType
-    contents:[Contents]
-}
