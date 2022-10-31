@@ -1,8 +1,8 @@
-package com.project.barista101.model.account;
+package com.project.barista101.model.notification;
 
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,6 +13,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.project.barista101.model.account.Accounts;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,29 +23,30 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "accounts")
-public class Accounts {
+@Table(name = "notifications")
+public class Notifications {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
 
-    @Column(unique = true)
-    private String username;
-
-    @Column(unique = true)
-    private String email;
-
-    private String password;
-
-    private String fullname;
-
-    @Lob
-    private String profileImg;
+    @ManyToOne
+    @JoinColumn(name="receiver_id")
+    private Accounts receiver;
 
     @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Roles role;
+    @JoinColumn(name = "notification_category_id")
+    private NotificationCategories category;
 
+    private OffsetDateTime createdAt;
+
+    private String title;
+
+    @Lob
+    private String body;
+
+    @Lob
+    private String data;
+
+    private Boolean read;
 }
-

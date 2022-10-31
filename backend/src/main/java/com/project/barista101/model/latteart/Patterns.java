@@ -1,14 +1,11 @@
-package com.project.barista101.model.account;
+package com.project.barista101.model.latteart;
 
 import java.util.UUID;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -21,29 +18,15 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "accounts")
-public class Accounts {
+@Table(name = "patterns")
+public class Patterns {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
 
-    @Column(unique = true)
-    private String username;
-
-    @Column(unique = true)
-    private String email;
-
-    private String password;
-
-    private String fullname;
+    private String name;
 
     @Lob
-    private String profileImg;
-
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Roles role;
-
+    private String patternImg;
 }
-

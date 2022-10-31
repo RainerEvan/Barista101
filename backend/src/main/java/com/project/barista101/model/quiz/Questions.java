@@ -1,14 +1,17 @@
-package com.project.barista101.model.account;
+package com.project.barista101.model.quiz;
 
+import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -21,29 +24,22 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "accounts")
-public class Accounts {
+@Table(name = "questions")
+public class Questions {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
-
-    @Column(unique = true)
-    private String username;
-
-    @Column(unique = true)
-    private String email;
-
-    private String password;
-
-    private String fullname;
-
-    @Lob
-    private String profileImg;
-
+    
     @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Roles role;
+    @JoinColumn(name = "quiz_id")
+    private Quiz quiz;
 
+    @Column(name = "q_order")
+    private Integer order;
+
+    @OneToMany(mappedBy = "question",cascade = CascadeType.PERSIST,orphanRemoval = true,fetch = FetchType.LAZY)
+    private List<Answers> answers;
+
+    private Answers correctAnswer;
 }
-

@@ -1,8 +1,8 @@
-package com.project.barista101.model.account;
+package com.project.barista101.model.recipe;
 
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,6 +13,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.project.barista101.model.account.Accounts;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,29 +23,27 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "accounts")
-public class Accounts {
+@Table(name = "recipe_comments")
+public class RecipeComments {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
 
-    @Column(unique = true)
-    private String username;
-
-    @Column(unique = true)
-    private String email;
-
-    private String password;
-
-    private String fullname;
-
-    @Lob
-    private String profileImg;
+    @ManyToOne
+    @JoinColumn(name = "recipe_id")
+    private Recipes recipe;
 
     @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Roles role;
+    @JoinColumn(name = "account_id")
+    private Accounts author;
 
+    private String title;
+    
+    @Lob
+    private String body;
+
+    private OffsetDateTime createdAt;
+
+    private OffsetDateTime updatedAt;
 }
-
