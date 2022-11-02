@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -30,6 +31,8 @@ public class Answers {
     @JoinColumn(name = "question_id")
     private Questions question;
 
-    private String label;
+    @Lob
+    private String content;
 
+    private Boolean isCorrect;
 }

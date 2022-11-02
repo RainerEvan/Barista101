@@ -29,7 +29,7 @@ public class RecipeRatings {
     private UUID id;
 
     @ManyToOne
-    @JoinColumn(name = "recipe_likes_id")
+    @JoinColumn(name = "recipe_id")
     private Recipes recipe;
 
     @ManyToOne

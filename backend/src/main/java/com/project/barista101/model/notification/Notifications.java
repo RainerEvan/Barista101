@@ -31,7 +31,7 @@ public class Notifications {
     private UUID id;
 
     @ManyToOne
-    @JoinColumn(name="receiver_id")
+    @JoinColumn(name="account_id")
     private Accounts receiver;
 
     @ManyToOne
@@ -48,5 +48,5 @@ public class Notifications {
     @Lob
     private String data;
 
-    private Boolean read;
+    private Boolean isRead;
 }

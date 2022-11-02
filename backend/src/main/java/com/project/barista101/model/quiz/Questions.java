@@ -38,8 +38,8 @@ public class Questions {
     @Column(name = "q_order")
     private Integer order;
 
+    private String content;
+
     @OneToMany(mappedBy = "question",cascade = CascadeType.PERSIST,orphanRemoval = true,fetch = FetchType.LAZY)
     private List<Answers> answers;
-
-    private Answers correctAnswer;
 }
