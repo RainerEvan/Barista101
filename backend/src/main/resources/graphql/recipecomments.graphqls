@@ -1,0 +1,9 @@
+type RecipeComments{
+    id:ID!
+    recipe:Recipes
+    author:Accounts
+    title:String
+    body:String
+    createdAt:DateTime
+    updatedAt:DateTime
+}

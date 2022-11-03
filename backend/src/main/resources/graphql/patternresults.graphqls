@@ -1,0 +1,7 @@
+type PatternResults{
+    id:ID!
+    account:Accounts
+    pattern:Patterns
+    score:Int
+    result:String
+}

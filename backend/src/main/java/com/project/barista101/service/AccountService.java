@@ -11,9 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.project.barista101.data.ERoles;
 import com.project.barista101.model.account.Accounts;
+import com.project.barista101.model.account.Roles;
 import com.project.barista101.payload.request.AccountRequest;
 import com.project.barista101.repository.AccountRepository;
+import com.project.barista101.repository.RoleRepository;
 import com.project.barista101.utils.ProfileImageUtils;
 
 import lombok.AllArgsConstructor;
@@ -24,32 +27,43 @@ public class AccountService {
     
     @Autowired
     private final AccountRepository accountRepository;
+    @Autowired
+    private final RoleRepository roleRepository;
 
     public List<Accounts> getAllAccounts(){
         return accountRepository.findAll();
     }
 
+    public Accounts getAccount(UUID accountId){
+        return accountRepository.findById(accountId)
+            .orElseThrow(() -> new IllegalStateException("Account with current id cannot be found"));
+    }
+
     public Accounts addAccount(MultipartFile file, AccountRequest accountRequest) {
 
+        String username = accountRequest.getUsername();
         String email = accountRequest.getEmail();
         
+        if(accountRepository.existsByUsername(username)){
+            throw new IllegalStateException("Account with current username already exists: "+username);
+        }
+
         if(accountRepository.existsByEmail(email)){
             throw new IllegalStateException("Account with current email already exists: "+email);
         }
 
+        Roles role = roleRepository.findByName(ERoles.ROLE_USER)
+            .orElseThrow(() -> new IllegalStateException("Role with current name cannot be found"+ERoles.ROLE_USER));
+
         Accounts account = new Accounts();
+        account.setUsername(username);
         account.setEmail(email);
         account.setPassword(accountRequest.getPassword());
         account.setFullname(accountRequest.getFullname());
+        account.setRole(role);
         account.setProfileImg(addImage(file));
 
         return accountRepository.save(account);
-    }
-
-
-    public Accounts getAccount(UUID accountId){
-        return accountRepository.findById(accountId)
-            .orElseThrow(() -> new IllegalStateException("Account with current id cannot be found"));
     }
 
     public String addImage(MultipartFile file){

@@ -1,0 +1,6 @@
+type Answers{
+    id:ID!
+    question:Questions
+    content:String
+    isCorrect:Boolean
+}

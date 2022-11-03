@@ -1,0 +1,6 @@
+type RecipeRatings{
+    id:ID!
+    recipe:Recipes
+    account:Accounts
+    rating:Int
+}

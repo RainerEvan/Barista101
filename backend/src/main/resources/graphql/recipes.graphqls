@@ -1,0 +1,14 @@
+type Recipes{
+    id:ID!
+    category:RecipeCategories
+    author:Accounts
+    title:String
+    body:String
+    createdAt:DateTime
+    updatedAt:DateTime
+}
+
+type RecipeCategories{
+    id:ID!
+    name:String
+}

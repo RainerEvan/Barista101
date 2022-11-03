@@ -1,5 +1,6 @@
 type Accounts{
     id:ID!
+    username:String
     email:String
     fullname:String
     profileImg:String

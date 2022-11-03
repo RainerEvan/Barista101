@@ -1,0 +1,8 @@
+type Forums{
+    id:ID!
+    author:Accounts
+    title:String
+    body:String
+    createdAt:DateTime
+    updatedAt:DateTime
+}

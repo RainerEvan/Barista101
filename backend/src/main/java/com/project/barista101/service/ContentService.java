@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.barista101.model.course.Contents;
 import com.project.barista101.model.course.Modules;
+import com.project.barista101.payload.request.ContentRequest;
 import com.project.barista101.repository.ContentRepository;
 import com.project.barista101.repository.ModuleRepository;
 
@@ -39,10 +40,23 @@ public class ContentService {
     }
 
     @Transactional
-    public Contents addContent(){
+    public Contents addContent(ContentRequest contentRequest){
+        Modules module = moduleRepository.findById(contentRequest.getModuleId())
+            .orElseThrow(() -> new IllegalStateException("Module with current id cannot be found"));
 
         Contents content = new Contents();
+        content.setModule(module);
+        content.setTitle(contentRequest.getTitle());
+        content.setBody(contentRequest.getBody());
 
-        return content;
+        return contentRepository.save(content);
+    }
+
+    @Transactional
+    public void deleteContent(UUID contentId){
+        Contents content = contentRepository.findById(contentId)
+            .orElseThrow(() -> new IllegalStateException("Content with current id cannot be found"));
+
+        contentRepository.delete(content);
     }
 }

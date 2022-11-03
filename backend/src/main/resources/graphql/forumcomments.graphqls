@@ -1,0 +1,9 @@
+type ForumComments{
+    id:ID!
+    forum:Forums
+    author:Accounts
+    title:String
+    body:String
+    createdAt:DateTime
+    updatedAt:DateTime
+}

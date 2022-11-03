@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.barista101.model.course.Courses;
 import com.project.barista101.model.course.Modules;
+import com.project.barista101.payload.request.ModuleRequest;
 import com.project.barista101.repository.CourseRepository;
 import com.project.barista101.repository.ModuleRepository;
 
@@ -39,10 +40,22 @@ public class ModuleService {
     }
 
     @Transactional
-    public Modules addModule(){
+    public Modules addModule(ModuleRequest moduleRequest){
+        Courses course = courseRepository.findById(moduleRequest.getCourseId())
+            .orElseThrow(() -> new IllegalStateException("Course with current id cannot be found"));
 
         Modules module = new Modules();
+        module.setCourse(course);
+        module.setTitle(moduleRequest.getTitle());
 
-        return module;
+        return moduleRepository.save(module);
+    }
+
+    @Transactional
+    public void deleteModule(UUID moduleId){
+        Modules module = moduleRepository.findById(moduleId)
+            .orElseThrow(() -> new IllegalStateException("Module with current id cannot be found"));
+
+        moduleRepository.delete(module);
     }
 }

@@ -1,0 +1,7 @@
+type Questions{
+    id:ID!
+    quiz:quiz
+    order:Int
+    content:String
+    answers:[Answers]
+}

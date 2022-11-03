@@ -1,6 +1,5 @@
 type Contents{
     id:ID!
-    order:Int
     module:Modules
     title:String
     body:String

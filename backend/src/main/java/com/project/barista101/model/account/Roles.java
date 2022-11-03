@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.project.barista101.data.ERoles;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,7 +32,7 @@ public class Roles {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
 
-    private String name;
+    private ERoles name;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable( name = "role_has_access",

@@ -7,7 +7,8 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class EnrollmentRequest {
+public class ForumRequest {
     private UUID accountId;
-    private UUID courseId;
+    private String title;
+    private String body;
 }

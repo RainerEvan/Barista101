@@ -38,8 +38,6 @@ public class ForumComments {
     @JoinColumn(name = "account_id")
     private Accounts author;
 
-    private String title;
-    
     @Lob
     private String body;
 

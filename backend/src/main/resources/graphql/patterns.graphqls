@@ -1,0 +1,5 @@
+type Patterns{
+    id:ID!
+    name:String
+    patternImg:String
+}
