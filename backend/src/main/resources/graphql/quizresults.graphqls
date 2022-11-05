@@ -1,7 +1,0 @@
-type QuizResults{
-    id:ID!
-    account:Accounts
-    quiz:Quiz
-    score:Int
-    result:String
-}

@@ -34,10 +34,6 @@ public class Notifications {
     @JoinColumn(name="account_id")
     private Accounts receiver;
 
-    @ManyToOne
-    @JoinColumn(name = "notification_category_id")
-    private NotificationCategories category;
-
     private OffsetDateTime createdAt;
 
     private String title;

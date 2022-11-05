@@ -1,15 +1,9 @@
 type Notifications{
     id:ID!
     receiver:Accounts
-    category:NotificationCategories
     createdAt:DateTime
     title:String
     body:String
     data:String
     isRead:Boolean
-}
-
-type NotificationCategories{
-    id:ID!
-    name:String
 }

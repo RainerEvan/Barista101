@@ -42,7 +42,7 @@ public class ForumService {
         Accounts account = accountRepository.findById(accountId)
             .orElseThrow(() -> new IllegalStateException("Account with current id cannot be found"));
 
-        return forumRepository.findAllByAccount(account);
+        return forumRepository.findAllByAuthor(account);
     }
 
     @Transactional

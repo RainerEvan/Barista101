@@ -39,7 +39,7 @@ public class ForumCommentService {
     }
 
     @Transactional
-    public ForumComments addForum(ForumCommentRequest forumCommentRequest){
+    public ForumComments addForumComment(ForumCommentRequest forumCommentRequest){
         Forums forum = forumRepository.findById(forumCommentRequest.getForumId())
             .orElseThrow(() -> new IllegalStateException("Forum with current id cannot be found"));
 

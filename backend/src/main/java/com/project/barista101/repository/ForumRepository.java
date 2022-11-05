@@ -11,5 +11,5 @@ import com.project.barista101.model.forum.Forums;
 
 @Repository
 public interface ForumRepository extends JpaRepository<Forums,UUID>{
-    List<Forums> findAllByAccount(Accounts account);
+    List<Forums> findAllByAuthor(Accounts account);
 }

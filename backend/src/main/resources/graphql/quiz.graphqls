@@ -1,6 +1,0 @@
-type Quiz{
-    id:ID!
-    course:Courses
-    title:String
-    questions:[Questions]
-}
