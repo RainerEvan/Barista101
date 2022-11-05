@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
@@ -64,6 +65,56 @@ public class AccountService {
         account.setProfileImg(addImage(file));
 
         return accountRepository.save(account);
+    }
+
+    public Accounts editAccount(MultipartFile file, UUID accountId, AccountRequest accountRequest) {
+        
+        Accounts account = getAccount(accountId);
+
+        String username = accountRequest.getUsername();
+        String fullname = accountRequest.getFullname();
+        String email = accountRequest.getEmail();
+
+        if(accountRepository.existsByUsername(username)){
+            throw new IllegalStateException("Account with current username already exists: "+username);
+        }
+
+        if(username != null && username.length() > 0 && !Objects.equals(account.getUsername(), username)){
+            account.setUsername(username);
+        }
+
+        if(fullname != null && fullname.length() > 0 && !Objects.equals(account.getFullname(), fullname)){
+            account.setFullname(fullname);
+        }
+
+        if(accountRepository.existsByEmail(email)){
+            throw new IllegalStateException("Account with current email already exists: "+email);
+        }
+
+        if(email != null && email.length() > 0 && !Objects.equals(account.getEmail(), email)){
+            account.setEmail(email);
+        }
+
+        if(file != null){
+            account.setProfileImg(addImage(file));
+        }
+
+        return accountRepository.save(account);
+    }
+
+    public void changePassword(String currentPassword, String newPassword){
+        
+        // Accounts account = authService.getCurrentAccount();
+
+        // if(!passwordEncoder.matches(currentPassword, account.getPassword())){
+        //     throw new IllegalStateException("The current password is not correct");
+        // }
+
+        // if(newPassword != null && newPassword.length() > 0){
+        //     account.setPassword(passwordEncoder.encode(newPassword));
+        // }
+
+        // accountRepository.save(account);
     }
 
     public String addImage(MultipartFile file){
