@@ -7,6 +7,7 @@ import java.util.UUID;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.project.barista101.model.account.Accounts;
 import com.project.barista101.model.recipe.RecipeComments;
@@ -17,9 +18,8 @@ import com.project.barista101.repository.RecipeCommentRepository;
 import com.project.barista101.repository.RecipeRepository;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 
-@Data
+@Service
 @AllArgsConstructor
 public class RecipeCommentService {
     

@@ -4,3 +4,9 @@ type Contents{
     title:String
     body:String
 }
+
+
+extend type Query{
+    getAllContentsForModule(moduleId:ID!):[Contents]
+    getContent(contentId:ID!):Contents
+}

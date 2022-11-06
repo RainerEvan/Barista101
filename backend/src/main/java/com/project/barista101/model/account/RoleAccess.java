@@ -1,10 +1,13 @@
 package com.project.barista101.model.account;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -25,4 +28,7 @@ public class RoleAccess {
     private UUID id;
 
     private String name;
+
+    @ManyToMany(mappedBy = "roleAccesses")
+    private Set<Roles> roles = new HashSet<>();
 }

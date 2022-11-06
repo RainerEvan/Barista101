@@ -9,11 +9,12 @@ import org.springframework.stereotype.Component;
 import com.project.barista101.model.course.Courses;
 import com.project.barista101.service.CourseService;
 
+import graphql.kickstart.tools.GraphQLQueryResolver;
 import lombok.AllArgsConstructor;
 
 @Component
 @AllArgsConstructor
-public class CourseQueryResolver {
+public class CourseQueryResolver implements GraphQLQueryResolver{
     
     @Autowired
     private final CourseService courseService;

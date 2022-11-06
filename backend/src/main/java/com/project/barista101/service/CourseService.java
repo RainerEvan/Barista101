@@ -40,7 +40,7 @@ public class CourseService {
         Courses course = new Courses();
         course.setTitle(courseRequest.getTitle());
         course.setDescription(courseRequest.getDescription());
-        course.setBackgroundImg(addImage(file));
+        course.setThumbnail(addImage(file));
 
         return courseRepository.save(course);
     }

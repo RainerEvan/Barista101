@@ -9,13 +9,14 @@ import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.barista101.data.ERoles;
 import com.project.barista101.model.account.Accounts;
 import com.project.barista101.model.account.Roles;
-import com.project.barista101.payload.request.AccountRequest;
+import com.project.barista101.payload.request.SignupRequest;
 import com.project.barista101.repository.AccountRepository;
 import com.project.barista101.repository.RoleRepository;
 import com.project.barista101.utils.ProfileImageUtils;
@@ -30,6 +31,10 @@ public class AccountService {
     private final AccountRepository accountRepository;
     @Autowired
     private final RoleRepository roleRepository;
+    @Autowired
+    private final AuthService authService;
+    @Autowired
+    private final PasswordEncoder passwordEncoder;
 
     public List<Accounts> getAllAccounts(){
         return accountRepository.findAll();
@@ -40,7 +45,7 @@ public class AccountService {
             .orElseThrow(() -> new IllegalStateException("Account with current id cannot be found"));
     }
 
-    public Accounts addAccount(MultipartFile file, AccountRequest accountRequest) {
+    public Accounts addAccount(SignupRequest accountRequest) {
 
         String username = accountRequest.getUsername();
         String email = accountRequest.getEmail();
@@ -53,21 +58,21 @@ public class AccountService {
             throw new IllegalStateException("Account with current email already exists: "+email);
         }
 
-        Roles role = roleRepository.findByName(ERoles.ROLE_USER)
-            .orElseThrow(() -> new IllegalStateException("Role with current name cannot be found"+ERoles.ROLE_USER));
+        Roles role = roleRepository.findByName(ERoles.USER)
+            .orElseThrow(() -> new IllegalStateException("Role with current name cannot be found: "+ERoles.USER));
 
         Accounts account = new Accounts();
         account.setUsername(username);
         account.setEmail(email);
-        account.setPassword(accountRequest.getPassword());
+        account.setPassword(passwordEncoder.encode(accountRequest.getPassword()));
         account.setFullname(accountRequest.getFullname());
         account.setRole(role);
-        account.setProfileImg(addImage(file));
+        account.setProfileImg(addImage(null));
 
         return accountRepository.save(account);
     }
 
-    public Accounts editAccount(MultipartFile file, UUID accountId, AccountRequest accountRequest) {
+    public Accounts editAccount(MultipartFile file, UUID accountId, SignupRequest accountRequest) {
         
         Accounts account = getAccount(accountId);
 
@@ -104,17 +109,17 @@ public class AccountService {
 
     public void changePassword(String currentPassword, String newPassword){
         
-        // Accounts account = authService.getCurrentAccount();
+        Accounts account = authService.getCurrentAccount();
 
-        // if(!passwordEncoder.matches(currentPassword, account.getPassword())){
-        //     throw new IllegalStateException("The current password is not correct");
-        // }
+        if(!passwordEncoder.matches(currentPassword, account.getPassword())){
+            throw new IllegalStateException("The current password is not correct");
+        }
 
-        // if(newPassword != null && newPassword.length() > 0){
-        //     account.setPassword(passwordEncoder.encode(newPassword));
-        // }
+        if(newPassword != null && newPassword.length() > 0){
+            account.setPassword(passwordEncoder.encode(newPassword));
+        }
 
-        // accountRepository.save(account);
+        accountRepository.save(account);
     }
 
     public String addImage(MultipartFile file){

@@ -4,3 +4,7 @@ type RecipeRatings{
     account:Accounts
     rating:Int
 }
+
+extend type Query{
+    getAllRatingsForRecipe(recipeId:ID!):[RecipeRatings]
+}

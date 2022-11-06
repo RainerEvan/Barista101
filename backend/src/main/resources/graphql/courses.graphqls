@@ -2,6 +2,11 @@ type Courses{
     id:ID!
     title:String
     description:String
-    backgroundImg:String
+    thumbnail:String
     modules:[Modules]
+}
+
+extend type Query{
+    getAllCourses:[Courses]
+    getCourse(courseId:ID!):Courses
 }

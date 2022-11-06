@@ -4,3 +4,8 @@ type Modules{
     title:String
     contents:[Contents]
 }
+
+extend type Query{
+    getAllModulesForCourse(courseId:ID!):[Modules]
+    getModule(moduleId:ID!):Modules
+}

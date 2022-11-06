@@ -23,7 +23,7 @@ public class ForumQueryResolver implements GraphQLQueryResolver{
         return forumService.getAllForums();
     }
 
-    public Forums getforum(UUID forumId){
+    public Forums getForum(UUID forumId){
         return forumService.getforum(forumId);
     }
     

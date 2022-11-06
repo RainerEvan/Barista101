@@ -43,6 +43,9 @@ public class Recipes {
     @Lob
     private String body;
 
+    @Lob
+    private String thumbnail;
+
     private OffsetDateTime createdAt;
 
     private OffsetDateTime updatedAt;

@@ -4,6 +4,7 @@ type Recipes{
     author:Accounts
     title:String
     body:String
+    thumbnail:String
     createdAt:DateTime
     updatedAt:DateTime
 }
@@ -11,4 +12,10 @@ type Recipes{
 type RecipeCategories{
     id:ID!
     name:String
+}
+
+extend type Query{
+    getAllRecipes:[Recipes]
+    getRecipe(recipeId:ID!):Recipes
+    getAllRecipesForAccount(accountId:ID!):[Recipes]
 }

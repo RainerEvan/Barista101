@@ -1,12 +1,16 @@
 package com.project.barista101.service;
 
+import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.barista101.model.account.Accounts;
 import com.project.barista101.model.recipe.RecipeCategories;
@@ -17,9 +21,8 @@ import com.project.barista101.repository.RecipeCategoryRepository;
 import com.project.barista101.repository.RecipeRepository;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 
-@Data
+@Service
 @AllArgsConstructor
 public class RecipeService {
     
@@ -50,7 +53,7 @@ public class RecipeService {
     }
 
     @Transactional
-    public Recipes addRecipe(RecipeRequest recipeRequest){
+    public Recipes addRecipe(MultipartFile file, RecipeRequest recipeRequest){
         RecipeCategories recipeCategory = recipeCategoryRepository.findById(recipeRequest.getCategoryId())
             .orElseThrow(() -> new IllegalStateException("Category with current id cannot be found"));
 
@@ -62,6 +65,7 @@ public class RecipeService {
         recipe.setAuthor(account);
         recipe.setTitle(recipeRequest.getTitle());
         recipe.setBody(recipeRequest.getBody());
+        recipe.setThumbnail(addImage(file));
         recipe.setCreatedAt(OffsetDateTime.now());
 
         return recipeRepository.save(recipe);
@@ -73,5 +77,16 @@ public class RecipeService {
             .orElseThrow(() -> new IllegalStateException("Recipe with current id cannot be found"));
 
         recipeRepository.delete(recipe);
+    }
+
+    public String addImage(MultipartFile file){
+        try{
+            String encodedString = Base64.getEncoder().encodeToString(file.getBytes());
+
+            return encodedString;
+            
+        } catch (IOException exception){
+            throw new IllegalStateException("Could not add the current file", exception);
+        }
     }
 }

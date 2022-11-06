@@ -3,3 +3,8 @@ type Patterns{
     name:String
     patternImg:String
 }
+
+extend type Query{
+    getAllPatterns:[Patterns]
+    getPattern(patternId:ID!):Patterns
+}

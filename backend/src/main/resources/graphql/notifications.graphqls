@@ -7,3 +7,8 @@ type Notifications{
     data:String
     isRead:Boolean
 }
+
+extend type Query{
+    getAllNotificationsForAccount(accountId:ID!):[Notifications]
+    getNotification(notificationId:ID!):Notifications
+}

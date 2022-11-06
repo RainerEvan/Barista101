@@ -7,3 +7,8 @@ type Enrollments{
     isCompleted:Boolean
     progress:String
 }
+
+extend type Query{
+    getAllEnrollmentsForAccount(accountId:ID!):[Enrollments]
+    getEnrollment(enrollmentId:ID!):Enrollments
+}

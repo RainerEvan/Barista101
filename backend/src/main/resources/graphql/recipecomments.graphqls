@@ -6,3 +6,7 @@ type RecipeComments{
     createdAt:DateTime
     updatedAt:DateTime
 }
+
+extend type Query{
+    getAllCommentsForRecipe(recipeId:ID!):[RecipeComments]
+}

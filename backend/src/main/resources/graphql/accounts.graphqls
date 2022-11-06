@@ -6,3 +6,8 @@ type Accounts{
     profileImg:String
     role:Roles
 }
+
+extend type Query{
+    getAllAccounts:[Accounts]
+    getAccount(accountId:ID!):Accounts
+}

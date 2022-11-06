@@ -34,7 +34,7 @@ public class Courses {
     private String description;
 
     @Lob
-    private String backgroundImg;
+    private String thumbnail;
 
     @OneToMany(mappedBy = "course",cascade = CascadeType.PERSIST,orphanRemoval = true,fetch = FetchType.LAZY)
     private List<Modules> modules;

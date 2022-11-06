@@ -6,3 +6,9 @@ type Forums{
     createdAt:DateTime
     updatedAt:DateTime
 }
+
+extend type Query{
+    getAllForums:[Forums]
+    getForum(forumId:ID!):Forums
+    getAllForumsForAccount(accountId:ID!):[Forums]
+}

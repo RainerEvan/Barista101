@@ -9,5 +9,4 @@ import com.project.barista101.model.account.RoleAccess;
 
 @Repository
 public interface RoleAccessRepository extends JpaRepository<RoleAccess,UUID>{
-    
 }

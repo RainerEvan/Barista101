@@ -6,3 +6,7 @@ type ForumComments{
     createdAt:DateTime
     updatedAt:DateTime
 }
+
+extend type Query{
+    getAllCommentsForForum(forumId:ID!):[ForumComments]
+}
