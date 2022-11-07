@@ -44,6 +44,9 @@ public class AuthController {
         try{
             Accounts account = accountService.addAccount(signupRequest);
 
+            SigninRequest signinRequest = new SigninRequest(account.getUsername(), account.getPassword());
+            signin(signinRequest);
+
             return ResponseHandler.generateResponse("Account has been created successfully!", HttpStatus.OK, account.getUsername());
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);

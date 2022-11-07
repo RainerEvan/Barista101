@@ -42,6 +42,4 @@ public class RecipeComments {
     private String body;
 
     private OffsetDateTime createdAt;
-
-    private OffsetDateTime updatedAt;
 }

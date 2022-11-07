@@ -52,25 +52,22 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.cors().and().csrf().disable()
             .httpBasic().disable();
-		// 	.exceptionHandling().authenticationEntryPoint(authEntryPoint).and()
-        //     .authorizeRequests()
-        //     .antMatchers("**/admin/**").hasRole("ADMIN")
-        //     .antMatchers("/api/auth/**").permitAll()
-        //     .antMatchers("/api/report/**").permitAll()
-        //     .antMatchers("/graphiql", "/vendor/**").permitAll()
-        //     .antMatchers("/graphql").permitAll()
-        //     .anyRequest().authenticated()
-        //     .and()
-        //     .httpBasic()
-        //     .and()
-        //     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        //     .and()
-        //     .addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class)
-        //     .logout()
-        //         .clearAuthentication(true)
-        //         .invalidateHttpSession(true)
-        //         .deleteCookies("JSESSIONID")
-        //         .permitAll();
+			// .exceptionHandling().authenticationEntryPoint(authEntryPoint).and()
+            // .authorizeRequests()
+            // .antMatchers("**/admin/**").hasAuthority("ADMIN")
+            // .antMatchers("/api/auth/**").permitAll()
+            // .anyRequest().authenticated()
+            // .and()
+            // .httpBasic()
+            // .and()
+            // .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            // .and()
+            // .addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class)
+            // .logout()
+            //     .clearAuthentication(true)
+            //     .invalidateHttpSession(true)
+            //     .deleteCookies("JSESSIONID")
+            //     .permitAll();
 
         return http.build();
     }
