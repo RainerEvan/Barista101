@@ -4,7 +4,6 @@ type RecipeComments{
     author:Accounts
     body:String
     createdAt:DateTime
-    updatedAt:DateTime
 }
 
 extend type Query{

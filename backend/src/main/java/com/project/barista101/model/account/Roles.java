@@ -1,16 +1,9 @@
 package com.project.barista101.model.account;
-
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -33,10 +26,4 @@ public class Roles {
     private UUID id;
 
     private ERoles name;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable( name = "role_has_access",
-                joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"),
-                inverseJoinColumns = @JoinColumn(name = "role_access_id", referencedColumnName = "id"))
-    private Set<RoleAccess> roleAccesses = new HashSet<>();
 }

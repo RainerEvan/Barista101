@@ -1,10 +1,4 @@
 type Roles{
     id:ID!
     name:String
-    roleAccesses:[RoleAccess]
-}
-
-type RoleAccess{
-    id:ID!
-    name:String
 }

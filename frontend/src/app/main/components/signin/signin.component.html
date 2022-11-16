@@ -1,0 +1,36 @@
+<div class="flex min-h-screen items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="w-full max-w-md space-y-16">
+        <div>
+            <img class="mx-auto h-16 w-auto" src="/assets/icons/barista101-logo.png" alt="Barista 101">
+            <h2 class="mt-4 text-center text-3xl font-bold tracking-tight">Sign In</h2>
+        </div>
+
+        <form class="mt-2 space-y-6">
+            <div class="space-y-4 rounded-md shadow-sm">
+                <div>
+                    <label for="email" class="sr-only">Email address</label>
+                    <input name="email" type="email" autocomplete="email" required
+                        class="relative block w-full appearance-none rounded-md border border-gray-400 px-3 py-2 placeholder-gray-500 focus:z-10 focus:border-gray-700 focus:outline-none focus:ring-gray-700 focus:shadow-sm sm:text-sm"
+                        placeholder="Email Address">
+                </div>
+                <div>
+                    <label for="password" class="sr-only">Password</label>
+                    <input name="password" type="password" autocomplete="current-password" required
+                        class="relative block w-full appearance-none rounded-md border border-gray-400 px-3 py-2 placeholder-gray-500 focus:z-10 focus:border-gray-700 focus:outline-none focus:ring-gray-700 focus:shadow-sm sm:text-sm"
+                        placeholder="Password">
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" class="flex w-full justify-center rounded-full border border-transparent bg-gray-800 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">Sign In</button>
+            </div>
+        </form>
+
+        <div class="flex items-center justify-center">
+            <div class="text-sm">
+                <span>Don't have an account? </span>
+                <a routerLink="/signup" class="font-medium hover:text-gray-700">Sign Up</a>
+            </div>
+        </div>
+    </div>
+</div>

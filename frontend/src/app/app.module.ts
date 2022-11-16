@@ -7,10 +7,16 @@ import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { SignupComponent } from './main/components/signup/signup.component';
+import { SigninComponent } from './main/components/signin/signin.component';
+import { NotFoundComponent } from './main/components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SignupComponent,
+    SigninComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
