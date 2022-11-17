@@ -10,6 +10,7 @@ import { environment } from '../environments/environment';
 import { SignupComponent } from './main/components/signup/signup.component';
 import { SigninComponent } from './main/components/signin/signin.component';
 import { NotFoundComponent } from './main/components/not-found/not-found.component';
+import { HeroIconModule } from 'ng-heroicon';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,13 @@ import { NotFoundComponent } from './main/components/not-found/not-found.compone
     AppRoutingModule,
     GraphQLModule,
     HttpClientModule,
+    HeroIconModule.forRoot(
+      {},
+      {
+        defaultHostDisplay:'block',
+        attachDefaultDimensionsIfNoneFound:true
+      },
+    ),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable

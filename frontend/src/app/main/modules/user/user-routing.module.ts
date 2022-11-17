@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CourseComponent } from './components/course/course.component';
 import { UserComponent } from './components/user/user.component';
 
 const routes: Routes = [
@@ -15,7 +14,11 @@ const routes: Routes = [
       },
       {
         path: 'course',
-        component: CourseComponent,
+        loadChildren: () => import('./modules/course/course.module').then((m) => m.CourseModule),
+      },
+      {
+        path: 'forum',
+        loadChildren: () => import('./modules/forum/forum.module').then((m) => m.ForumModule),
       },
     ]
   }

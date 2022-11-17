@@ -7,8 +7,11 @@ import { SignupComponent } from './main/components/signup/signup.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'user',
-    pathMatch: 'full'
+    loadChildren: () => import('./main/modules/user/user.module').then((m) => m.UserModule),
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./main/modules/admin/admin.module').then((m) => m.AdminModule),
   },
   {
     path: 'signin',
@@ -17,14 +20,6 @@ const routes: Routes = [
   {
     path: 'signup',
     component: SignupComponent,
-  },
-  {
-    path: 'user',
-    loadChildren: () => import('./main/modules/user/user.module').then((m) => m.UserModule),
-  },
-  {
-    path: 'admin',
-    loadChildren: () => import('./main/modules/admin/admin.module').then((m) => m.AdminModule),
   },
   {
     path: '**',

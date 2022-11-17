@@ -7,7 +7,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  menus:any;
+
+  constructor() { 
+    this.menus = [
+      {
+        label: 'Course',
+        link: './course',
+        icon: 'academic-cap'
+      },
+      {
+        label: 'Forum',
+        link: './forum',
+        icon: 'chat-alt-2'
+      },
+      {
+        label: 'Recipe',
+        link: './recipe',
+        icon: 'clipboard-list'
+      },
+      {
+        label: 'Simulation',
+        link: './simulation',
+        icon: 'puzzle'
+      },
+    ]
+  }
 
   ngOnInit(): void {
   }
