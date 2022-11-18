@@ -20,6 +20,14 @@ const routes: Routes = [
         path: 'forum',
         loadChildren: () => import('./modules/forum/forum.module').then((m) => m.ForumModule),
       },
+      {
+        path: 'recipe',
+        loadChildren: () => import('./modules/recipe/recipe.module').then((m) => m.RecipeModule),
+      },
+      {
+        path: 'simulation',
+        loadChildren: () => import('./modules/simulation/simulation.module').then((m) => m.SimulationModule),
+      },
     ]
   }
 ];

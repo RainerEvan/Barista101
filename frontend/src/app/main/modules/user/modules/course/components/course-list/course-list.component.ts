@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-course-list',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseListComponent implements OnInit {
 
-  constructor() { }
+  image:any;
+
+  constructor(private domSanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
+    this.image = 'https://www.pexels.com/photo/coffee-beans-1695052/';
   }
 
 }
