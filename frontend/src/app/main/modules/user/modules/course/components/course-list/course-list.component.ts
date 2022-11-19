@@ -8,12 +8,12 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class CourseListComponent implements OnInit {
 
-  image:any;
+  thumbnail:any;
 
   constructor(private domSanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
-    this.image = 'https://www.pexels.com/photo/coffee-beans-1695052/';
+    this.thumbnail = this.domSanitizer.bypassSecurityTrustResourceUrl('https://images.pexels.com/photos/1695052/pexels-photo-1695052.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
   }
 
 }

@@ -1,1 +1,51 @@
-<p>course-detail works!</p>
+<div class="container max-w-screen-md mx-auto">
+    <div class="relative w-full h-40 overflow-clip shadow-md">
+        <img [src]="thumbnail" alt="" class="absolute object-fill w-fit h-fit">
+        <div class="absolute w-full h-full bg-black/60"></div>
+        <div class="absolute w-full h-full flex px-6 py-7 text-white">
+            <div class="w-full flex flex-col justify-between">
+                <div class="w-full flex flex-row justify-between">
+                    <div>
+                        <h3 class="font-medium tracking-wide text-lg">Beans</h3>
+                        <div class="flex items-center space-x-1 tracking-wide text-sm">
+                            <hero-icon name="book-open" type="outline" class="w-5 h-5 text-inherit"></hero-icon>
+                            <span class="text-sm">8 Modules</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="p-1 bg-gray-700/50 rounded-full">
+                            <hero-icon name="information-circle" type="outline" class="w-6 h-6 text-inherit"></hero-icon>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full">
+                    <div class="bg-gray-400 rounded-full h-1">
+                        <div class="bg-white h-full rounded-full" style="width: 45%"></div>
+                    </div>
+                    <span class="font-medium text-xs">45% Completed</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-col space-y-2 p-4">
+        <div class="grid grid-cols-5 items-center shadow-sm bg-white hover:shadow-md hover:-translate-y-0.5 focus:scale-95">
+            <div class="col-span-1 p-2">
+                <div class="flex items-center justify-center bg-gray-900 rounded-xl p-2">
+                    <span class="font-medium text-white text-2xl">01</span>
+                </div>
+            </div>
+            <div class="col-span-3 p-2">
+                <div class="flex flex-col space-y-1">
+                    <span class="font-medium text-sm">Module 1</span>
+                    <span class="text-xs">Learn about it here</span>
+                </div>
+            </div>
+            <div class="col-span-1 p-2">
+                <div class="flex items-center justify-center">
+                    <hero-icon name="play" type="solid" class="w-8 h-8 text-inherit fill-gray-900"></hero-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
