@@ -41,14 +41,20 @@ public class Recipes {
     private String title;
     
     @Lob
-    private String body;
+    private String description;
+
+    @Lob
+    private String ingredients;
+
+    @Lob
+    private String instructions;
+
+    @Lob
+    private String notes;
 
     @Lob
     private String thumbnail;
 
     private OffsetDateTime createdAt;
-
-    private OffsetDateTime updatedAt;
-
 
 }

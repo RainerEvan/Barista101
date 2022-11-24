@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -35,6 +36,9 @@ public class Modules {
     private Courses course;
 
     private String title;
+
+    @Lob
+    private String thumbnail;
     
     @OneToMany(mappedBy = "module",cascade = CascadeType.PERSIST,orphanRemoval = true,fetch = FetchType.LAZY)
     private List<Contents> contents;

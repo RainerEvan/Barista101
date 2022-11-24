@@ -1,5 +1,7 @@
 package com.project.barista101.service;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
 
@@ -7,6 +9,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.barista101.model.course.Courses;
 import com.project.barista101.model.course.Modules;
@@ -40,13 +43,14 @@ public class ModuleService {
     }
 
     @Transactional
-    public Modules addModule(ModuleRequest moduleRequest){
+    public Modules addModule(MultipartFile file, ModuleRequest moduleRequest){
         Courses course = courseRepository.findById(moduleRequest.getCourseId())
             .orElseThrow(() -> new IllegalStateException("Course with current id cannot be found"));
 
         Modules module = new Modules();
         module.setCourse(course);
         module.setTitle(moduleRequest.getTitle());
+        module.setThumbnail(addImage(file));
 
         return moduleRepository.save(module);
     }
@@ -57,5 +61,16 @@ public class ModuleService {
             .orElseThrow(() -> new IllegalStateException("Module with current id cannot be found"));
 
         moduleRepository.delete(module);
+    }
+
+    public String addImage(MultipartFile file){
+        try{
+            String encodedString = Base64.getEncoder().encodeToString(file.getBytes());
+
+            return encodedString;
+            
+        } catch (IOException exception){
+            throw new IllegalStateException("Could not add the current file", exception);
+        }
     }
 }

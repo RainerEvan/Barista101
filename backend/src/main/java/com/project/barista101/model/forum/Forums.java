@@ -40,6 +40,4 @@ public class Forums {
     private String body;
 
     private OffsetDateTime createdAt;
-
-    private OffsetDateTime updatedAt;
 }

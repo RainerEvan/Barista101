@@ -64,7 +64,10 @@ public class RecipeService {
         recipe.setCategory(recipeCategory);
         recipe.setAuthor(account);
         recipe.setTitle(recipeRequest.getTitle());
-        recipe.setBody(recipeRequest.getBody());
+        recipe.setDescription(recipeRequest.getDescription());
+        recipe.setIngredients(recipeRequest.getIngredients());
+        recipe.setInstructions(recipeRequest.getInstructions());
+        recipe.setNotes(recipeRequest.getNotes());
         recipe.setThumbnail(addImage(file));
         recipe.setCreatedAt(OffsetDateTime.now());
 

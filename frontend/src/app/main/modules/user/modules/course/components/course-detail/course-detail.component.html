@@ -1,4 +1,4 @@
-<div class="container max-w-screen-md mx-auto">
+<div class="container">
     <div class="relative w-full h-40 overflow-clip shadow-md">
         <img [src]="thumbnail" alt="" class="absolute object-fill w-fit h-fit">
         <div class="absolute w-full h-full bg-black/60"></div>
@@ -28,24 +28,5 @@
         </div>
     </div>
 
-    <div class="flex flex-col space-y-2 p-4">
-        <div class="grid grid-cols-5 items-center shadow-sm bg-white hover:shadow-md hover:-translate-y-0.5 focus:scale-95">
-            <div class="col-span-1 p-2">
-                <div class="flex items-center justify-center bg-gray-900 rounded-xl p-2">
-                    <span class="font-medium text-white text-2xl">01</span>
-                </div>
-            </div>
-            <div class="col-span-3 p-2">
-                <div class="flex flex-col space-y-1">
-                    <span class="font-medium text-sm">Module 1</span>
-                    <span class="text-xs">Learn about it here</span>
-                </div>
-            </div>
-            <div class="col-span-1 p-2">
-                <div class="flex items-center justify-center">
-                    <hero-icon name="play" type="solid" class="w-8 h-8 text-inherit fill-gray-900"></hero-icon>
-                </div>
-            </div>
-        </div>
-    </div>
+    <app-module-list></app-module-list>
 </div>

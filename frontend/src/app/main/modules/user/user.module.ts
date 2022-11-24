@@ -5,7 +5,7 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './components/user/user.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { academicCap, bell, chatAlt2, chevronDown, clipboardList, HeroIconModule, logout, puzzle, userCircle } from 'ng-heroicon';
+import { academicCap, bell, chatAlt2, chevronDown, chevronLeft, clipboardList, HeroIconModule, logout, puzzle, userCircle } from 'ng-heroicon';
 
 
 @NgModule({
@@ -26,6 +26,7 @@ import { academicCap, bell, chatAlt2, chevronDown, clipboardList, HeroIconModule
         bell,
         userCircle,
         chevronDown,
+        chevronLeft,
         logout
       }
     )

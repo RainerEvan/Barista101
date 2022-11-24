@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.barista101.model.course.Modules;
 import com.project.barista101.payload.request.ModuleRequest;
@@ -28,9 +30,9 @@ public class ModuleController {
     private final ModuleService moduleService;
     
     @PostMapping(path = "/add")
-    public ResponseEntity<Object> addModule(@RequestBody ModuleRequest moduleRequest){
+    public ResponseEntity<Object> addModule(@RequestPart("image") MultipartFile image, @RequestBody ModuleRequest moduleRequest){
         try{
-            Modules module = moduleService.addModule(moduleRequest);
+            Modules module = moduleService.addModule(image, moduleRequest);
 
             return ResponseHandler.generateResponse("Module has been added successfully!", HttpStatus.OK, module);
 
