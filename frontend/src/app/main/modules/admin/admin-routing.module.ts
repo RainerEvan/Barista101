@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './components/admin/admin.component';
-import { CourseComponent } from './components/course/course.component';
 
 const routes: Routes = [
   {
@@ -9,9 +8,26 @@ const routes: Routes = [
     component: AdminComponent,
     children: [
       {
+        path: '',
+        redirectTo: 'course',
+        pathMatch: 'full'
+      },
+      {
         path: 'course',
-        component: CourseComponent,
-      }
+        loadChildren: () => import('./modules/course/course.module').then((m) => m.CourseModule),
+      },
+      {
+        path: 'forum',
+        loadChildren: () => import('./modules/forum/forum.module').then((m) => m.ForumModule),
+      },
+      {
+        path: 'recipe',
+        loadChildren: () => import('./modules/recipe/recipe.module').then((m) => m.RecipeModule),
+      },
+      {
+        path: 'brew',
+        loadChildren: () => import('./modules/brew/brew.module').then((m) => m.BrewModule),
+      },
     ]
   }
 ];

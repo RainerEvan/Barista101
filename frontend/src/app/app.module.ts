@@ -17,7 +17,7 @@ import { HeroIconModule } from 'ng-heroicon';
     AppComponent,
     SignupComponent,
     SigninComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

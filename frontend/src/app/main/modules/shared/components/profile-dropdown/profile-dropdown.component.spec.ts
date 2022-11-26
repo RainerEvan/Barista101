@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PatternListComponent } from './pattern-list.component';
+import { ProfileDropdownComponent } from './profile-dropdown.component';
 
-describe('PatternListComponent', () => {
-  let component: PatternListComponent;
-  let fixture: ComponentFixture<PatternListComponent>;
+describe('ProfileDropdownComponent', () => {
+  let component: ProfileDropdownComponent;
+  let fixture: ComponentFixture<ProfileDropdownComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PatternListComponent ]
+      declarations: [ ProfileDropdownComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PatternListComponent);
+    fixture = TestBed.createComponent(ProfileDropdownComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

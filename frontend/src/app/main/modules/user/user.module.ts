@@ -6,6 +6,7 @@ import { UserComponent } from './components/user/user.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { academicCap, bell, chatAlt2, chevronDown, chevronLeft, clipboardList, HeroIconModule, logout, puzzle, userCircle } from 'ng-heroicon';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { academicCap, bell, chatAlt2, chevronDown, chevronLeft, clipboardList, H
   imports: [
     CommonModule,
     UserRoutingModule,
+    SharedModule,
     HeroIconModule.withIcons(
       {
         academicCap,
@@ -24,10 +26,8 @@ import { academicCap, bell, chatAlt2, chevronDown, chevronLeft, clipboardList, H
         clipboardList,
         puzzle,
         bell,
-        userCircle,
         chevronDown,
         chevronLeft,
-        logout
       }
     )
   ]

@@ -1,0 +1,38 @@
+<div class="container p-4">
+    <div>
+        <h1 class="font-bold text-3xl">Course Details</h1>
+    </div>
+    <div class="w-full flex flex-row space-x-8 my-3">
+        <img [src]="thumbnail" alt="" class="w-72 objec rounded-lg">
+        <div class="flex flex-col justify-center space-y-4">
+            <div class="block">
+                <h3 class="text-lg font-semibold">Title</h3>
+                <span>Beans</span>
+            </div>
+            <div class="block">
+                <h3 class="text-lg font-semibold">Description</h3>
+                <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore ex atque excepturi, tempora quas, consequatur blanditiis magnam sit reiciendis soluta tenetur autem, ducimus adipisci officia totam minima corporis dolore eius.</p>
+            </div>
+        </div>
+    </div>
+    <div class="w-full my-8">
+        <div class="bg-gray-800 rounded-md text-white p-1">
+            <h1 class="font-semibold text-center">Modules</h1>
+        </div>
+        <div class="flex flex-col space-y-4 p-4">
+            <a routerLink="../module" class="w-full grid grid-cols-5 items-center shadow-md rounded-sm bg-white hover:shadow-lg hover:-translate-y-0.5 focus:scale-95">
+                <div class="col-span-1 p-2">
+                    <div class="flex items-center justify-center bg-gray-900 rounded-md p-2">
+                        <span class="font-medium text-white text-2xl">01</span>
+                    </div>
+                </div>
+                <div class="col-span-3 p-2">
+                    <div class="flex flex-col">
+                        <span class="font-medium">Module 1</span>
+                        <span class="text-sm">Learn about it here</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

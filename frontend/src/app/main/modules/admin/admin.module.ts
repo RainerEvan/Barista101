@@ -2,18 +2,26 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
-import { CourseComponent } from './components/course/course.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { chevronDown, HeroIconModule } from 'ng-heroicon';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
   declarations: [
     AdminComponent,
-    CourseComponent,
+    NavbarComponent,
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    SharedModule,
+    HeroIconModule.withIcons(
+      {
+        chevronDown,
+      }
+    )
   ]
 })
 export class AdminModule { }

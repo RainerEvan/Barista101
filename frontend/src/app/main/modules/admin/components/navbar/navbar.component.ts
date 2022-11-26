@@ -3,38 +3,52 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
+  host:{
+    "(window:click)":"onClick()"
+  }
 })
 export class NavbarComponent implements OnInit {
 
-  menus:any;
+  menus:any
 
-  constructor() { 
+  showDropdown:boolean = false;
+
+  constructor() {
     this.menus = [
       {
         label: 'Course',
         link: './course',
-        icon: 'academic-cap'
       },
       {
         label: 'Forum',
         link: './forum',
-        icon: 'chat-alt-2'
       },
       {
         label: 'Recipe',
         link: './recipe',
-        icon: 'clipboard-list'
       },
       {
         label: 'Brew',
         link: './brew',
-        icon: 'puzzle'
+      },
+      {
+        label: 'Account',
+        link: './account',
       },
     ]
   }
 
   ngOnInit(): void {
+  }
+
+  toggleDropdown(event:any){
+    event.stopPropagation();
+    this.showDropdown = !this.showDropdown;
+  }
+
+  onClick(){
+    this.showDropdown = false;
   }
 
 }

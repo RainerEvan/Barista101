@@ -25,8 +25,8 @@ const routes: Routes = [
         loadChildren: () => import('./modules/recipe/recipe.module').then((m) => m.RecipeModule),
       },
       {
-        path: 'simulation',
-        loadChildren: () => import('./modules/simulation/simulation.module').then((m) => m.SimulationModule),
+        path: 'brew',
+        loadChildren: () => import('./modules/brew/brew.module').then((m) => m.BrewModule),
       },
     ]
   }
