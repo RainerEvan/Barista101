@@ -1,5 +1,6 @@
 package com.project.barista101.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.Base64;
@@ -8,6 +9,7 @@ import java.util.UUID;
 
 import javax.transaction.Transactional;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -84,12 +86,30 @@ public class RecipeService {
 
     public String addImage(MultipartFile file){
         try{
-            String encodedString = Base64.getEncoder().encodeToString(file.getBytes());
+            byte[] image = new byte[0];
+            
+            if(file == null){
+                File defaultImg = new File("src/main/resources/image/recipe.jpg");
+                image = FileUtils.readFileToByteArray(defaultImg);
+            } else {
+                image = file.getBytes();
+            }
+
+            String encodedString = Base64.getEncoder().encodeToString(image);
 
             return encodedString;
             
         } catch (IOException exception){
             throw new IllegalStateException("Could not add the current file", exception);
         }
+    }
+
+    public byte[] getThumbnail(UUID recipeId){
+
+        Recipes recipe = getRecipe(recipeId);
+
+        byte[] decodedBytes = Base64.getDecoder().decode(recipe.getThumbnail());
+
+        return decodedBytes;
     }
 }

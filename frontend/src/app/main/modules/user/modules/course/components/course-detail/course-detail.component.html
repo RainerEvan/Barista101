@@ -1,15 +1,15 @@
 <div class="container">
-    <div class="relative w-full h-40 overflow-clip shadow-md">
-        <img [src]="thumbnail" alt="" class="absolute object-fill w-fit h-fit">
+    <div *ngIf="course" class="relative w-full h-40 overflow-clip shadow-md">
+        <img [src]="thumbnailUrl+course.id" alt="" class="absolute object-fill w-fit h-fit">
         <div class="absolute w-full h-full bg-black/60"></div>
         <div class="absolute w-full h-full flex px-6 py-7 text-white">
             <div class="w-full flex flex-col justify-between">
                 <div class="w-full flex flex-row justify-between">
                     <div>
-                        <h3 class="font-medium tracking-wide text-lg">Beans</h3>
+                        <h3 class="font-medium tracking-wide text-lg">{{course.title}}</h3>
                         <div class="flex items-center space-x-1 tracking-wide text-sm">
                             <hero-icon name="book-open" type="outline" class="w-5 h-5 text-inherit"></hero-icon>
-                            <span class="text-sm">8 Modules</span>
+                            <span class="text-sm">{{course.modules.length}} Modules</span>
                         </div>
                     </div>
                     <div>

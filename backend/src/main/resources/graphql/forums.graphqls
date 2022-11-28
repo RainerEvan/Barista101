@@ -4,7 +4,6 @@ type Forums{
     title:String
     body:String
     createdAt:DateTime
-    updatedAt:DateTime
 }
 
 extend type Query{

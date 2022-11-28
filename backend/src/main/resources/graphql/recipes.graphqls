@@ -3,10 +3,11 @@ type Recipes{
     category:RecipeCategories
     author:Accounts
     title:String
-    body:String
-    thumbnail:String
+    description:String
+    ingredients:String
+    instructions:String
+    notes:String
     createdAt:DateTime
-    updatedAt:DateTime
 }
 
 type RecipeCategories{

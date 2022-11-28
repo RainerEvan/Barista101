@@ -125,11 +125,11 @@ public class AccountService {
     public String addImage(MultipartFile file){
         try{
             byte[] image = new byte[0];
-
-            File defaultImg = new File("src/main/resources/image/profile.jpg");
-            image = FileUtils.readFileToByteArray(defaultImg);
             
-            if(file != null){
+            if(file == null){
+                File defaultImg = new File("src/main/resources/image/profile.jpg");
+                image = FileUtils.readFileToByteArray(defaultImg);
+            } else {
                 image = ProfileImageUtils.cropImageSquare(file);
             }
 

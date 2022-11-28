@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Courses } from 'src/app/main/models/courses';
+import { CourseService } from 'src/app/main/services/course/course.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-course-list',
@@ -8,12 +11,28 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class CourseListComponent implements OnInit {
 
-  thumbnail:any;
+  courses:Courses[] = [];
+  loading:boolean = true;
+  thumbnailUrl=environment.apiUrl+"/course/thumbnail/";
 
-  constructor(private domSanitizer: DomSanitizer) { }
+  constructor(private courseService:CourseService) { }
 
   ngOnInit(): void {
-    this.thumbnail = this.domSanitizer.bypassSecurityTrustResourceUrl('https://images.pexels.com/photos/1695052/pexels-photo-1695052.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    this.getAllCourses();
+  }
+
+  public getAllCourses(){
+    this.loading = true;
+    
+    this.courseService.getAllCourses().subscribe({
+      next:(response:Courses[])=>{
+        this.courses = response;
+        this.loading = false;
+      },
+      error:(error:any)=>{
+          console.log(error);
+      }
+    });
   }
 
 }

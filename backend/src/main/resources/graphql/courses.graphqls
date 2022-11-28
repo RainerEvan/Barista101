@@ -2,7 +2,6 @@ type Courses{
     id:ID!
     title:String
     description:String
-    thumbnail:String
     modules:[Modules]
 }
 
