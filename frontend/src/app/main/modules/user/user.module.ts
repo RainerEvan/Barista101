@@ -5,7 +5,7 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './components/user/user.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { academicCap, bell, chatAlt2, chevronDown, chevronLeft, clipboardList, HeroIconModule, logout, puzzle, userCircle } from 'ng-heroicon';
+import { academicCap, beaker, bell, chatAlt2, chevronDown, chevronLeft, clipboardList, HeroIconModule } from 'ng-heroicon';
 import { SharedModule } from '../shared/shared.module';
 
 
@@ -24,7 +24,7 @@ import { SharedModule } from '../shared/shared.module';
         academicCap,
         chatAlt2,
         clipboardList,
-        puzzle,
+        beaker,
         bell,
         chevronDown,
         chevronLeft,

@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 export class CourseListComponent implements OnInit {
 
   courses:Courses[] = [];
-  loading:boolean = true;
+  loading:boolean = false;
   thumbnailUrl=environment.apiUrl+"/course/thumbnail/";
 
   constructor(private courseService:CourseService) { }

@@ -1,21 +1,24 @@
 <div class="container p-4">
     <div class="flex flex-row justify-between">
         <h1 class="font-bold text-3xl">Course</h1>
-        <button class="flex flex-row items-center space-x-1 px-2 py-2 bg-gray-900 rounded-md hover:bg-gray-700 hover:scale-105">
+        <button class="button-primary flex items-center space-x-1">
             <hero-icon name="plus" type="solid" class="w-4 h-4 text-white fill-white"></hero-icon>
-            <span class="font-medium text-white text-sm">Add Course</span>
+            <span class="text-sm">Add Course</span>
         </button>
     </div>
     <div class="grid grid-flow-row gap-4 my-3 sm:grid-cols-2">
-        <a routerLink="./detail" class="relative w-full h-24 rounded-lg overflow-clip drop-shadow-sm hover:shadow-lg hover:-translate-y-0.5 focus:scale-95">
-            <img [src]="thumbnail" alt="" class="absolute object-fill w-fit h-fit rounded-lg">
+        <a *ngFor="let course of courses" routerLink="./{{course.id}}" class="relative w-full h-28 rounded-lg overflow-clip drop-shadow-sm hover:shadow-lg hover:-translate-y-0.5 focus:scale-95">
+            <img [src]="thumbnailUrl+course.id" alt="Course Thumbnail" class="absolute object-fill w-full rounded-lg">
             <div class="absolute w-full h-full bg-gradient-to-r from-black/60 to-transparent"></div>
-            <div class="absolute flex flex-col justify-center w-full h-full px-6 py-7 text-white">
-                <h3 class="font-medium tracking-wide text-lg">Beans</h3>
+            <div class="absolute flex flex-col justify-between w-full h-full px-6 py-7 text-white">
+                <h3 class="font-medium tracking-wide text-lg">{{course.title}}</h3>
                 <div class="flex items-center space-x-1 tracking-wide text-sm">
-                    <span class="text-sm">8 Modules</span>
+                    <span class="text-sm">{{course.modules.length}} Modules</span>
                 </div>
             </div>
         </a>
+        <div *ngFor="let i of [0,1,2,3,4,5]">
+            <div *ngIf="loading" class="w-full h-28 bg-gray-200 rounded-lg animate-pulse"></div>
+        </div>
     </div>
 </div>

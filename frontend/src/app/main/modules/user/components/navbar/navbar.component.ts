@@ -29,7 +29,7 @@ export class NavbarComponent implements OnInit {
       {
         label: 'Brew',
         link: './brew',
-        icon: 'puzzle'
+        icon: 'beaker'
       },
     ]
   }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Courses } from 'src/app/main/models/courses';
 import { CourseService } from 'src/app/main/services/course/course.service';
@@ -13,7 +12,7 @@ import { environment } from 'src/environments/environment';
 export class CourseDetailComponent implements OnInit {
 
   course?:Courses;
-  loading:boolean = true;
+  loading:boolean = false;
   thumbnailUrl=environment.apiUrl+"/course/thumbnail/";
 
   constructor(private route:ActivatedRoute,private courseService:CourseService) { }

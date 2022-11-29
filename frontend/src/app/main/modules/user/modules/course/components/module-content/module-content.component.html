@@ -1,32 +1,28 @@
 <div class="container p-2">
-    <div class="relative bg-orange-100 rounded-t-xl">
-        <div class="absolute flex items-center top-3 right-3 z-10 px-3 py-1.5 rounded-full shadow-md bg-gray-800">
-            <span class="text-xs text-white">1 of 6 Pages</span>
+    <div *ngIf="currentContent">
+        <div class="relative bg-orange-100 rounded-t-lg">
+            <div class="absolute flex items-center top-3 right-3 z-10 px-3 py-1.5 rounded-full shadow-md bg-gray-800">
+                <span class="text-xs text-white">{{currentPage+1}} of {{contents.length}} Pages</span>
+            </div>
+            <div class="block pt-14 px-6">
+                <h1 class="font-semibold text-xl">{{currentContent.title}}</h1>
+                <div class="text-justify py-3" [innerHTML]="currentContent.body"></div>
+            </div>
         </div>
-        <div class="block pt-14 px-6">
-            <h1 class="font-semibold text-lg">Choosing the right filter</h1>
-            <p class="text-sm text-justify py-3">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, commodi quasi nemo similique facilis error corporis blanditiis sit at voluptate porro tenetur aliquam necessitatibus magnam impedit dolorem qui eveniet molestias.
-            </p>
-            <p class="text-sm text-justify py-3">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, commodi quasi nemo similique facilis error corporis blanditiis sit at voluptate porro tenetur aliquam necessitatibus magnam impedit dolorem qui eveniet molestias.
-            </p>
-            <p class="text-sm text-justify py-3">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, commodi quasi nemo similique facilis error corporis blanditiis sit at voluptate porro tenetur aliquam necessitatibus magnam impedit dolorem qui eveniet molestias.
-            </p>
-            <p class="text-sm text-justify py-3">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, commodi quasi nemo similique facilis error corporis blanditiis sit at voluptate porro tenetur aliquam necessitatibus magnam impedit dolorem qui eveniet molestias.
-            </p>
-        </div>
-    </div>
-    <div class="bg-orange-100 rounded-b-xl">
-        <div class="flex flex-row items-center justify-evenly space-x-4 p-4">
-            <button class="w-full bg-gray-900 rounded-lg flex items-center justify-center p-2">
-                <hero-icon name="chevron-left" type="outline" class="w-6 h-6 text-white"></hero-icon>
-            </button>
-            <button class="w-full bg-gray-900 rounded-lg flex items-center justify-center p-2">
-                <hero-icon name="chevron-right" type="outline" class="w-6 h-6 text-white"></hero-icon>
-            </button>
+        <div class="bg-orange-100 rounded-b-lg">
+            <div class="flex flex-row items-center justify-evenly space-x-4 p-6">
+                <button [disabled]="currentPage == 0" (click)="previousPage()" class="button-primary w-full">
+                    <!-- <hero-icon name="chevron-left" type="outline" class="w-6 h-6 text-inherit"></hero-icon> -->
+                    <span>Back</span>
+                </button>
+                <button *ngIf="currentPage != (contents.length-1)" (click)="nextPage()" class="button-primary w-full">
+                    <!-- <hero-icon name="chevron-right" type="outline" class="w-6 h-6 text-inherit"></hero-icon> -->
+                    <span>Next</span>
+                </button>
+                <button *ngIf="currentPage == (contents.length-1)" (click)="finish()" class="button-primary w-full">
+                    <span>Finish</span>
+                </button>
+            </div>
         </div>
     </div>
 </div>

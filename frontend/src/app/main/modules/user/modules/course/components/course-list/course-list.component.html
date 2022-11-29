@@ -4,7 +4,7 @@
     </div>
     <div class="grid grid-flow-row gap-4 my-3 sm:grid-cols-2">
         <a *ngFor="let course of courses" routerLink="./{{course.id}}" class="relative w-full h-40 rounded-3xl overflow-clip drop-shadow-sm hover:shadow-lg hover:-translate-y-0.5 focus:scale-95">
-            <img [src]="thumbnailUrl+course.id" alt="" class="absolute object-fill w-full rounded-3xl">
+            <img [src]="thumbnailUrl+course.id" alt="Course Thumbnail" class="absolute object-fill w-full rounded-3xl">
             <div class="absolute w-full h-full bg-gradient-to-r from-black/60 to-transparent"></div>
             <div class="absolute w-full h-full flex flex-col justify-between px-6 py-7 text-white">
                 <div class="w-full">
@@ -22,7 +22,7 @@
                 </div>
             </div>
         </a>
-        <div *ngFor="let i of [0,1,2,3,4]">
+        <div *ngFor="let i of [0,1,2,3,4,5]">
             <div *ngIf="loading" class="w-full h-40 bg-gray-200 rounded-3xl animate-pulse"></div>
         </div>
     </div>

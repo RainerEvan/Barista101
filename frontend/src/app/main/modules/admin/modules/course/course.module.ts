@@ -6,13 +6,15 @@ import { CourseListComponent } from './components/course-list/course-list.compon
 import { CourseDetailComponent } from './components/course-detail/course-detail.component';
 import { ModuleListComponent } from './components/module-list/module-list.component';
 import { HeroIconModule, plus } from 'ng-heroicon';
+import { ModuleContentComponent } from './components/module-content/module-content.component';
 
 
 @NgModule({
   declarations: [
     CourseListComponent,
     CourseDetailComponent,
-    ModuleListComponent
+    ModuleListComponent,
+    ModuleContentComponent
   ],
   imports: [
     CommonModule,

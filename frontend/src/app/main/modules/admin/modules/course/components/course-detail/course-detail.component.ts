@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
+import { Courses } from 'src/app/main/models/courses';
+import { CourseService } from 'src/app/main/services/course/course.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-course-detail',
@@ -8,12 +11,32 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class CourseDetailComponent implements OnInit {
 
-  thumbnail:any;
+  course?:Courses;
+  loading:boolean = false;
+  thumbnailUrl=environment.apiUrl+"/course/thumbnail/";
 
-  constructor(private domSanitizer:DomSanitizer) { }
+  constructor(private route:ActivatedRoute,private courseService:CourseService) { }
 
   ngOnInit(): void {
-    this.thumbnail = this.domSanitizer.bypassSecurityTrustResourceUrl('https://images.pexels.com/photos/1695052/pexels-photo-1695052.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    this.getCourse();
+  }
+
+  public getCourse(){
+    const courseId = this.route.snapshot.paramMap.get('id');
+
+    this.loading = true;
+    
+    if(courseId){
+      this.courseService.getCourse(courseId).subscribe({
+        next:(response:Courses)=>{
+          this.course = response;
+          this.loading = false;
+        },
+        error:(error:any)=>{
+            console.log(error);
+        }
+      });
+    }
   }
 
 }
