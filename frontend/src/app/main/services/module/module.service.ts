@@ -17,6 +17,9 @@ export class ModuleService {
           getAllModulesForCourse(courseId: $courseId){
             id
             title
+            contents{
+              id
+            }
           }
         }
       `, 
@@ -25,5 +28,30 @@ export class ModuleService {
       },
     })
       .valueChanges.pipe(map((result)=>result.data.getAllModulesForCourse));
+  }
+
+  public getModule(moduleId: string): Observable<Modules>{
+    return this.apollo.watchQuery<any>({
+      query: gql`
+        query getModule($moduleId:ID!){
+          getModule(moduleId: $moduleId){
+            id
+            course{
+              id
+            }
+            title
+            contents{
+              id
+              title
+              body
+            }
+          }
+        }
+      `, 
+      variables: {
+        moduleId: moduleId,
+      },
+    })
+      .valueChanges.pipe(map((result)=>result.data.getModule));
   }
 }

@@ -39,4 +39,7 @@ export class ModuleListComponent implements OnInit {
     }
   }
 
+  delete(){
+    
+  }
 }

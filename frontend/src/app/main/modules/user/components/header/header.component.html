@@ -8,5 +8,7 @@
             <hero-icon name="chevron-down" type="outline" class="w-4 h-4 text-inherit"></hero-icon>
         </button>
     </header>
-    <app-profile-dropdown *ngIf="showDropdown"></app-profile-dropdown>
+    <ng-container *ngIf="showDropdown">
+        <app-profile-dropdown></app-profile-dropdown>
+    </ng-container>
 </div>

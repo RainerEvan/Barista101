@@ -13,6 +13,7 @@ export class CourseDetailComponent implements OnInit {
 
   course?:Courses;
   loading:boolean = false;
+  showDescription:boolean = false;
   thumbnailUrl=environment.apiUrl+"/course/thumbnail/";
 
   constructor(private route:ActivatedRoute,private courseService:CourseService) { }

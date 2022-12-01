@@ -22,8 +22,8 @@
                 </div>
             </div>
         </a>
-        <div *ngFor="let i of [0,1,2,3,4,5]">
+        <ng-container *ngFor="let i of [0,1,2,3,4,5]">
             <div *ngIf="loading" class="w-full h-40 bg-gray-200 rounded-3xl animate-pulse"></div>
-        </div>
+        </ng-container>
     </div>
 </div>

@@ -4,9 +4,10 @@ import { CommonModule } from '@angular/common';
 import { CourseRoutingModule } from './course-routing.module';
 import { CourseListComponent } from './components/course-list/course-list.component';
 import { CourseDetailComponent } from './components/course-detail/course-detail.component';
-import { bookOpen, chevronLeft, chevronRight, HeroIconModule, informationCircle, play } from 'ng-heroicon';
+import { bookOpen, star, HeroIconModule, informationCircle, play, x } from 'ng-heroicon';
 import { ModuleListComponent } from './components/module-list/module-list.component';
 import { ModuleContentComponent } from './components/module-content/module-content.component';
+import { ModuleCompletedComponent } from './components/module-completed/module-completed.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { ModuleContentComponent } from './components/module-content/module-conte
     CourseDetailComponent,
     ModuleListComponent,
     ModuleContentComponent,
+    ModuleCompletedComponent,
   ],
   imports: [
     CommonModule,
@@ -24,8 +26,8 @@ import { ModuleContentComponent } from './components/module-content/module-conte
         bookOpen,
         informationCircle,
         play,
-        chevronLeft,
-        chevronRight
+        star,
+        x
       }
     )
   ]

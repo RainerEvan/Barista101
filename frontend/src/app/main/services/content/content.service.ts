@@ -18,11 +18,6 @@ export class ContentService {
             id
             title
             body
-            module{
-              course{
-                id
-              }
-            }
           }
         }
       `, 

@@ -1,24 +1,28 @@
 <div class="container p-4">
-    <div class="flex flex-row justify-between">
+    <div class="flex flex-row items-center justify-between">
         <h1 class="font-bold text-3xl">Course</h1>
-        <button class="button-primary flex items-center space-x-1">
+        <button class="button-primary flex items-center space-x-1.5">
             <hero-icon name="plus" type="solid" class="w-4 h-4 text-white fill-white"></hero-icon>
             <span class="text-sm">Add Course</span>
         </button>
     </div>
-    <div class="grid grid-flow-row gap-4 my-3 sm:grid-cols-2">
-        <a *ngFor="let course of courses" routerLink="./{{course.id}}" class="relative w-full h-28 rounded-lg overflow-clip drop-shadow-sm hover:shadow-lg hover:-translate-y-0.5 focus:scale-95">
-            <img [src]="thumbnailUrl+course.id" alt="Course Thumbnail" class="absolute object-fill w-full rounded-lg">
-            <div class="absolute w-full h-full bg-gradient-to-r from-black/60 to-transparent"></div>
-            <div class="absolute flex flex-col justify-between w-full h-full px-6 py-7 text-white">
-                <h3 class="font-medium tracking-wide text-lg">{{course.title}}</h3>
-                <div class="flex items-center space-x-1 tracking-wide text-sm">
+    <ul class="container flex flex-col space-y-4 py-4">
+        <li *ngFor="let course of courses" class="grid grid-cols-8 border rounded-lg bg-white shadow-md hover:shadow-lg hover:-translate-y-0.5">
+            <a routerLink="./{{course.id}}" class="col-span-7 flex items-center">
+                <div class="p-4">
+                    <img src="{{thumbnailUrl+course.id}}" alt="Course Thumbnail" class="w-40">
+                </div>
+                <div class="p-2 flex flex-col justify-center">
+                    <span class="font-medium">{{course.title}}</span>
                     <span class="text-sm">{{course.modules.length}} Modules</span>
                 </div>
-            </div>
-        </a>
-        <div *ngFor="let i of [0,1,2,3,4,5]">
-            <div *ngIf="loading" class="w-full h-28 bg-gray-200 rounded-lg animate-pulse"></div>
-        </div>
-    </div>
+            </a>
+            <button (click)="delete()" class="z-10 col-span-1 rounded-r-lg bg-red-600 p-4 flex items-center justify-center hover:bg-red-500">
+                <span class="text-white">Delete</span>
+            </button>
+        </li>
+        <ng-container *ngFor="let i of [0,1,2,3,4,5]">
+            <div *ngIf="loading" class="w-full h-32 bg-gray-200 rounded-lg animate-pulse"></div>
+        </ng-container>
+    </ul>
 </div>

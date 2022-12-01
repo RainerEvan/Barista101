@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Contents } from 'src/app/main/models/contents';
-import { ContentService } from 'src/app/main/services/content/content.service';
+import { Modules } from 'src/app/main/models/modules';
+import { ModuleService } from 'src/app/main/services/module/module.service';
 
 @Component({
   selector: 'app-module-content',
@@ -10,32 +11,35 @@ import { ContentService } from 'src/app/main/services/content/content.service';
 })
 export class ModuleContentComponent implements OnInit {
 
+  module?:Modules;
   contents:Contents[] = [];
   currentContent?:Contents;
   currentPage:number = 0;
   loading:boolean = false;
+  isCompleted:boolean = false;
 
-  constructor(private route:ActivatedRoute, private router:Router, private contentService:ContentService) { }
+  constructor(private route:ActivatedRoute, private moduleService:ModuleService) { }
 
   ngOnInit(): void {
-    this.getAllContentsForModule();
+    this.getModule();
   }
 
-  public getAllContentsForModule(){
+  public getModule(){
     const moduleId = this.route.snapshot.paramMap.get('id');
 
     this.loading = true;
     
     if(moduleId){
-      this.contentService.getAllContentsForModule(moduleId).subscribe({
-        next:(response:Contents[])=>{
-          this.contents = response;
+      this.moduleService.getModule(moduleId).subscribe({
+        next:(response:Modules)=>{
+          this.module = response;
+          this.contents = this.module.contents;
           this.currentContent = this.contents[0];
           this.currentPage = 0;
           this.loading = false;
         },
         error:(error:any)=>{
-            console.log(error);
+          console.log(error);
         }
       });
     }
@@ -44,16 +48,24 @@ export class ModuleContentComponent implements OnInit {
   nextPage(){
     this.currentPage += 1;
     this.currentContent = this.contents[this.currentPage];
+    this.scrollToTop();
   }
 
   previousPage(){
     this.currentPage -= 1;
     this.currentContent = this.contents[this.currentPage];
+    this.scrollToTop();
   }
 
   finish(){
-    const courseId = this.currentContent?.module.course.id;
+    this.isCompleted = true;
+  }
 
-    this.router.navigate(["./course/"+courseId]);
+  scrollToTop(){
+    window.scroll({ 
+      top: 0, 
+      left: 0, 
+      behavior: 'smooth' 
+    });
   }
 }

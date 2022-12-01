@@ -4,5 +4,5 @@ export type Courses = {
     id:string;
     title:string;
     description:string;
-    modules:[Modules];
+    modules:Modules[];
 }

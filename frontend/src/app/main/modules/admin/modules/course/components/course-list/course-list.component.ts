@@ -35,4 +35,7 @@ export class CourseListComponent implements OnInit {
     });
   }
 
+  delete(){
+    console.log('delete');
+  }
 }
