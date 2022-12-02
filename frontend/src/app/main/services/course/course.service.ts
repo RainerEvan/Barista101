@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { map, Observable } from 'rxjs';
@@ -51,5 +51,10 @@ export class CourseService {
       },
     })
       .valueChanges.pipe(map((result)=>result.data.getCourse));
+  }
+
+  public deleteCourse(courseId: string): Observable<any>{
+    const params = new HttpParams().set('courseId',courseId);
+    return this.http.delete(API_URL+'/delete',{params:params});
   }
 }

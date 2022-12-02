@@ -1,7 +1,9 @@
+import { Dialog } from '@angular/cdk/dialog';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Contents } from 'src/app/main/models/contents';
 import { Modules } from 'src/app/main/models/modules';
+import { CompleteDialogComponent } from 'src/app/main/modules/shared/components/complete-dialog/complete-dialog.component';
 import { ModuleService } from 'src/app/main/services/module/module.service';
 
 @Component({
@@ -16,9 +18,8 @@ export class ModuleContentComponent implements OnInit {
   currentContent?:Contents;
   currentPage:number = 0;
   loading:boolean = false;
-  isCompleted:boolean = false;
 
-  constructor(private route:ActivatedRoute, private moduleService:ModuleService) { }
+  constructor(public dialog:Dialog, private route:ActivatedRoute, private moduleService:ModuleService) { }
 
   ngOnInit(): void {
     this.getModule();
@@ -28,7 +29,7 @@ export class ModuleContentComponent implements OnInit {
     const moduleId = this.route.snapshot.paramMap.get('id');
 
     this.loading = true;
-    
+
     if(moduleId){
       this.moduleService.getModule(moduleId).subscribe({
         next:(response:Modules)=>{
@@ -45,6 +46,15 @@ export class ModuleContentComponent implements OnInit {
     }
   }
 
+  finish(){
+    const dialogRef = this.dialog.open(CompleteDialogComponent,{
+      data:{
+        title:this.module?.title,
+        courseId:this.module?.course.id
+      }
+    });
+  }
+
   nextPage(){
     this.currentPage += 1;
     this.currentContent = this.contents[this.currentPage];
@@ -55,10 +65,6 @@ export class ModuleContentComponent implements OnInit {
     this.currentPage -= 1;
     this.currentContent = this.contents[this.currentPage];
     this.scrollToTop();
-  }
-
-  finish(){
-    this.isCompleted = true;
   }
 
   scrollToTop(){

@@ -1,6 +1,6 @@
 <div class="container">
     <div *ngIf="course" class="relative w-full h-40 overflow-clip shadow-md">
-        <img [src]="thumbnailUrl+course.id" [src]="thumbnailUrl+course.id" class="absolute object-fill w-fit h-fit">
+        <img [src]="thumbnailUrl+course.id" [src]="thumbnailUrl+course.id" class="absolute object-fill w-full">
         <div class="absolute w-full h-full bg-black/60"></div>
         <div class="absolute w-full h-full flex px-6 py-7 text-white">
             <div class="w-full flex flex-col justify-between">
@@ -13,7 +13,7 @@
                         </div>
                     </div>
                     <div>
-                        <button (click)="showDescription=true" class="p-1 bg-gray-700/50 rounded-full hover:scale-105 active:scale-95">
+                        <button (click)="openDescriptionDialog()" class="p-1 bg-gray-700/50 rounded-full hover:scale-105 active:scale-95">
                             <hero-icon name="information-circle" type="outline" class="w-6 h-6 text-inherit"></hero-icon>
                         </button>
                     </div>
@@ -31,19 +31,3 @@
 
     <app-module-list></app-module-list>
 </div>
-
-<ng-container *ngIf="showDescription">
-    <div class="fixed z-10 inset-0 p-6 bg-black/50 flex flex-col items-center justify-center">
-        <div class="relative w-full max-w-screen-sm bg-white rounded-lg p-6">
-            <div class="w-full flex items-center justify-between pb-3">
-                <h1 class="font-semibold text-xl">{{course?.title}}</h1>
-                <button (click)="showDescription=false" class="absolute top-5 right-4 rounded-full p-1 hover:bg-gray-200 active:scale-95">
-                    <hero-icon name="x" type="outline" class="w-6 h-6 text-inherit"></hero-icon>
-                </button>
-            </div>
-            <div>
-                <p class="text-justify">{{course?.description}}</p>
-            </div>
-        </div>
-    </div>
-</ng-container>

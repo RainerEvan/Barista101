@@ -17,7 +17,7 @@
                     <span class="text-sm">{{course.modules.length}} Modules</span>
                 </div>
             </a>
-            <button (click)="delete()" class="z-10 col-span-1 rounded-r-lg bg-red-600 p-4 flex items-center justify-center hover:bg-red-500">
+            <button (click)="openDeleteDialog(course.id)" class="z-10 col-span-1 rounded-r-lg bg-red-600 p-4 flex items-center justify-center hover:bg-red-500">
                 <span class="text-white">Delete</span>
             </button>
         </li>
