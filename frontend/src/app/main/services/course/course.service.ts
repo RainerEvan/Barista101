@@ -53,6 +53,10 @@ export class CourseService {
       .valueChanges.pipe(map((result)=>result.data.getCourse));
   }
 
+  public addCourse(formData: FormData): Observable<any>{
+    return this.http.post(API_URL+'/add',formData);
+  }
+
   public deleteCourse(courseId: string): Observable<any>{
     const params = new HttpParams().set('courseId',courseId);
     return this.http.delete(API_URL+'/delete',{params:params});

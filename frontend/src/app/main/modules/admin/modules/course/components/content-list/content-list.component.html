@@ -1,7 +1,7 @@
 <div class="w-full my-8">
     <div class="flex flex-row items-center justify-between">
         <h1 class="font-bold text-3xl">Content List</h1>
-        <button class="button-primary flex items-center space-x-1.5">
+        <button (click)="openAddDialog()" class="button-primary flex items-center space-x-1.5">
             <hero-icon name="plus" type="solid" class="w-4 h-4 text-white fill-white"></hero-icon>
             <span class="text-sm">Add Content</span>
         </button>
@@ -19,7 +19,7 @@
                     <span class="font-medium">{{content.title}}</span>
                 </div>
             </a>
-            <button (click)="delete()" class="z-10 col-span-1 rounded-r-lg bg-red-600 p-4 flex items-center justify-center hover:bg-red-500">
+            <button (click)="openDeleteDialog(content.id)" class="z-10 col-span-1 rounded-r-lg bg-red-600 p-4 flex items-center justify-center hover:bg-red-500">
                 <span class="text-white">Delete</span>
             </button>
         </li>

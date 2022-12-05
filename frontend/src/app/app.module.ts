@@ -12,6 +12,7 @@ import { SignupComponent } from './main/components/signup/signup.component';
 import { SigninComponent } from './main/components/signin/signin.component';
 import { NotFoundComponent } from './main/components/not-found/not-found.component';
 import { HeroIconModule } from 'ng-heroicon';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,8 @@ import { HeroIconModule } from 'ng-heroicon';
     AppRoutingModule,
     GraphQLModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     HeroIconModule.forRoot(
       {},
       {

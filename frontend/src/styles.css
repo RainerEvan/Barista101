@@ -10,7 +10,11 @@ body{
 }
 
 .input-text{
-    @apply relative block w-full appearance-none rounded-md border border-gray-400 px-3 py-2 placeholder-gray-500 focus:z-10 focus:border-gray-700 focus:outline-none focus:ring-gray-700 focus:shadow-sm sm:text-sm;
+    @apply relative block w-full rounded-md border border-gray-400 px-3 py-2 placeholder-gray-500 focus:z-10 focus:border-gray-700 focus:outline-none focus:shadow-sm sm:text-sm;
+}
+
+.input-image{
+    @apply relative rounded-md border border-gray-400 text-gray-500 focus:z-10 focus:border-gray-700 focus:outline-none focus:shadow-sm sm:text-sm;
 }
 
 .button-primary{

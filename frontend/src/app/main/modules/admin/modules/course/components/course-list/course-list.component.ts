@@ -4,6 +4,7 @@ import { Courses } from 'src/app/main/models/courses';
 import { ConfirmationDialogComponent } from 'src/app/main/modules/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { CourseService } from 'src/app/main/services/course/course.service';
 import { environment } from 'src/environments/environment';
+import { AddCourseComponent } from '../add-course/add-course.component';
 
 @Component({
   selector: 'app-course-list',
@@ -36,10 +37,24 @@ export class CourseListComponent implements OnInit {
     });
   }
 
+  openAddDialog(){
+    const dialogRef = this.dialog.open(AddCourseComponent, {
+      data:{
+        title:"Add Course",
+      }
+    });
+
+    dialogRef.closed.subscribe((success) => {
+      if(success){
+        this.getAllCourses();
+      }
+    });
+  }
+
   openDeleteDialog(courseId:string){
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data:{
-        title:"Delete",
+        title:"Delete Course",
         description:"Are you sure you want to delete this course?"
       }
     });

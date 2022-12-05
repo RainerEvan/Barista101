@@ -1,14 +1,18 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { map, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Modules } from '../../models/modules';
+
+const API_URL = environment.apiUrl + "/module";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ModuleService {
 
-  constructor(private apollo:Apollo) { }
+  constructor(private http: HttpClient, private apollo:Apollo) { }
 
   public getAllModulesForCourse(courseId: string): Observable<Modules[]>{
     return this.apollo.watchQuery<any>({
@@ -53,5 +57,10 @@ export class ModuleService {
       },
     })
       .valueChanges.pipe(map((result)=>result.data.getModule));
+  }
+
+  public deleteModule(moduleId: string): Observable<any>{
+    const params = new HttpParams().set('moduleId',moduleId);
+    return this.http.delete(API_URL+'/delete',{params:params});
   }
 }
