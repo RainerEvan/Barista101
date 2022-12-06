@@ -10,17 +10,16 @@ import { CourseService } from 'src/app/main/services/course/course.service';
 })
 export class AddCourseComponent implements OnInit {
 
-  courseForm:FormGroup;
+  courseForm = this.formBuilder.group({
+    title: [null, [Validators.required]],
+    description: [null, [Validators.required]],
+  });
+
   isCourseFormSubmitted:boolean = false;
   thumbnail:any;
   imageUrl:any;
 
-  constructor(public dialogRef:DialogRef, @Inject(DIALOG_DATA) public data:any, private courseService:CourseService, private formBuilder:FormBuilder) {
-    this.courseForm = this.formBuilder.group({
-      title: [null, [Validators.required]],
-      description: [null, [Validators.required]],
-    });
-  }
+  constructor(public dialogRef:DialogRef, @Inject(DIALOG_DATA) public data:any, private courseService:CourseService, private formBuilder:FormBuilder) {}
 
   ngOnInit(): void {
   }
@@ -46,13 +45,6 @@ export class AddCourseComponent implements OnInit {
         }
       });
     } 
-  }
-
-  get title(){
-    return this.courseForm.get('title');
-  }
-  get description(){
-    return this.courseForm.get('description');
   }
 
   @HostListener("dragover", ["$event"]) onDragOver(event: any) {
@@ -87,7 +79,7 @@ export class AddCourseComponent implements OnInit {
 
   resetForm(form: FormGroup){
     form.reset();
-    this.thumbnail = undefined;
+    this.thumbnail = null;
   }
 
   closeDialog(){

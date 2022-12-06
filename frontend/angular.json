@@ -28,9 +28,13 @@
               "src/manifest.webmanifest"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/richtexteditor/rte_theme_default.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/assets/richtexteditor/rte.js",
+              "src/assets/richtexteditor/plugins/all_plugins.js"
+            ],
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json"
           },

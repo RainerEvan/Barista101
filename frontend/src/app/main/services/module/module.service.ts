@@ -59,6 +59,10 @@ export class ModuleService {
       .valueChanges.pipe(map((result)=>result.data.getModule));
   }
 
+  public addModule(formData: FormData): Observable<any>{
+    return this.http.post(API_URL+'/add',formData);
+  }
+
   public deleteModule(moduleId: string): Observable<any>{
     const params = new HttpParams().set('moduleId',moduleId);
     return this.http.delete(API_URL+'/delete',{params:params});

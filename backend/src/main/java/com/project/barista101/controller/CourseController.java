@@ -31,7 +31,7 @@ public class CourseController {
     private final CourseService courseService;
 
     @PostMapping(path = "/add")
-    public ResponseEntity<Object> addCourse(@RequestPart("image") MultipartFile image, @RequestPart("course") CourseRequest courseRequest){
+    public ResponseEntity<Object> addCourse(@RequestPart(name = "image",required = false) MultipartFile image, @RequestPart("course") CourseRequest courseRequest){
         try{
             Courses course = courseService.addCourse(image, courseRequest);
 

@@ -29,7 +29,7 @@ public class AccountController {
     private final AccountService accountService;
 
     @PutMapping(path = "/edit")
-    public ResponseEntity<Object> editAccount(@RequestPart(name="image", required = false) MultipartFile image, @RequestPart("accountId") UUID accountId, @RequestPart("account") SignupRequest accountRequest){
+    public ResponseEntity<Object> editAccount(@RequestPart(name = "image", required = false) MultipartFile image, @RequestPart("accountId") UUID accountId, @RequestPart("account") SignupRequest accountRequest){
         try{
             Accounts account = accountService.editAccount(image, accountId, accountRequest);
 

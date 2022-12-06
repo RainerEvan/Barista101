@@ -31,7 +31,7 @@ public class RecipeController {
     private final RecipeService recipeService;
     
     @PostMapping(path = "/add")
-    public ResponseEntity<Object> addRecipe(@RequestPart("image") MultipartFile image, @RequestPart("recipe") RecipeRequest recipeRequest){
+    public ResponseEntity<Object> addRecipe(@RequestPart(name = "image",required = false) MultipartFile image, @RequestPart("recipe") RecipeRequest recipeRequest){
         try{
             Recipes recipe = recipeService.addRecipe(image,recipeRequest);
 

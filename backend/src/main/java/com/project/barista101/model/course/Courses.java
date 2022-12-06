@@ -1,15 +1,11 @@
 package com.project.barista101.model.course;
 
-import java.util.List;
 import java.util.UUID;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -35,8 +31,5 @@ public class Courses {
 
     @Lob
     private String thumbnail;
-
-    @OneToMany(mappedBy = "course",cascade = CascadeType.PERSIST,orphanRemoval = true,fetch = FetchType.LAZY)
-    private List<Modules> modules;
 
 }

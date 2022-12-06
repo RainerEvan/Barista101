@@ -31,6 +31,10 @@ export class ContentService {
     })
       .valueChanges.pipe(map((result)=>result.data.getAllContentsForModule));
   }
+
+  public addContent(formData: FormData): Observable<any>{
+    return this.http.post(API_URL+'/add',formData);
+  }
   
   public deleteContent(contentId: string): Observable<any>{
     const params = new HttpParams().set('contentId',contentId);
