@@ -7,6 +7,7 @@ type Recipes{
     ingredients:String
     instructions:String
     notes:String
+    thumbnail:String
     createdAt:DateTime
 }
 

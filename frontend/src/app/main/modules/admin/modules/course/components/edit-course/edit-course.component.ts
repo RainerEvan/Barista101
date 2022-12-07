@@ -2,17 +2,18 @@ import { DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CourseService } from 'src/app/main/services/course/course.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-add-course',
-  templateUrl: './add-course.component.html',
-  styleUrls: ['./add-course.component.css']
+  selector: 'app-edit-course',
+  templateUrl: './edit-course.component.html',
+  styleUrls: ['./edit-course.component.css']
 })
-export class AddCourseComponent implements OnInit {
+export class EditCourseComponent implements OnInit {
 
   courseForm = this.formBuilder.group({
-    title: [null, [Validators.required]],
-    description: [null, [Validators.required,Validators.maxLength(255)]],
+    title: [this.data.course.title, [Validators.required]],
+    description: [this.data.course.description, [Validators.required,Validators.maxLength(255)]],
   });
 
   isCourseFormSubmitted:boolean = false;
@@ -22,6 +23,7 @@ export class AddCourseComponent implements OnInit {
   constructor(public dialogRef:DialogRef, @Inject(DIALOG_DATA) public data:any, private courseService:CourseService, private formBuilder:FormBuilder) {}
 
   ngOnInit(): void {
+    this.imageUrl = environment.apiUrl+"/course/thumbnail/"+this.data.course.id;
   }
 
   public addCourse(): void{
@@ -30,9 +32,10 @@ export class AddCourseComponent implements OnInit {
       const course = this.courseForm.value;
 
       formData.append('image',this.thumbnail);
+      formData.append('courseId', new Blob([JSON.stringify(this.data.course.id)], {type:"application/json"}));
       formData.append('course', new Blob([JSON.stringify(course)], {type:"application/json"}));
       
-      this.courseService.addCourse(formData).subscribe({
+      this.courseService.editCourse(formData).subscribe({
         next: (result: any) => {
           console.log(result);
           this.isCourseFormSubmitted = true;
@@ -75,11 +78,6 @@ export class AddCourseComponent implements OnInit {
     reader.onload = (_event) => {
       this.imageUrl = reader.result;
     }
-  }
-
-  resetForm(form: FormGroup){
-    form.reset();
-    this.thumbnail = null;
   }
 
   closeDialog(){

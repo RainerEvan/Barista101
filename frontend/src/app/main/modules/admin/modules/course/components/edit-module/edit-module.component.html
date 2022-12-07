@@ -4,12 +4,12 @@
     </button>
     <div class="space-y-4">
         <h1 class="font-semibold text-xl">{{data.title}}</h1>
-        <form [formGroup]="courseForm" (ngSubmit)="addCourse()" class="flex flex-col space-y-4">
+        <form [formGroup]="moduleForm" (ngSubmit)="editModule()" class="flex flex-col space-y-4">
             <div class="space-y-1">
                 <label for="thumbnail" class="font-medium">Thumbnail</label>
                 <div draggable="true" (click)="fileInput.click()" class="input-image h-40 text-gray-500 bg-gray-50 cursor-pointer">
-                    <img *ngIf="thumbnail" [src]="imageUrl" class="object-cover w-full h-full rounded-md">
-                    <div *ngIf="!thumbnail" class="w-full h-full flex flex-col items-center justify-center space-y-1"> 
+                    <img *ngIf="imageUrl" [src]="imageUrl" class="object-cover w-full h-full rounded-md">
+                    <div *ngIf="!imageUrl" class="w-full h-full flex flex-col items-center justify-center space-y-1"> 
                         <hero-icon name="photograph" type="outline" class="w-6 h-6 text-inherit"></hero-icon>
                         <span class="text-inherit">Select or Drop Image</span>
                     </div>
@@ -20,13 +20,9 @@
                 <label for="title" class="font-medium">Title*</label>
                 <input type="text" placeholder="Enter title" class="input-text" formControlName="title">
             </div>
-            <div class="space-y-1">
-                <label for="description" class="font-medium">Description*</label>
-                <textarea rows="4" placeholder="Enter description" class="input-text resize-none" formControlName="description"></textarea>
-            </div>
             <div class="flex items-center justify-evenly space-x-4">
                 <button type="submit" class="w-full button-primary">Submit</button>
-                <button type="button" (click)="resetForm(courseForm)" class="w-full button-secondary">Reset</button>
+                <button type="button" (click)="closeDialog()" class="w-full button-secondary">Cancel</button>
             </div>
         </form>
     </div>

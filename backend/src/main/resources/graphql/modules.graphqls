@@ -2,6 +2,7 @@ type Modules{
     id:ID!
     course:Courses
     title:String
+    thumbnail:String
     contents:[Contents]
 }
 

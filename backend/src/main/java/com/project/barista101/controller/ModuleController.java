@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -36,6 +37,18 @@ public class ModuleController {
             Modules module = moduleService.addModule(image, moduleRequest);
 
             return ResponseHandler.generateResponse("Module has been added successfully!", HttpStatus.OK, module);
+
+        } catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);
+        }
+    }
+
+    @PutMapping(path = "/edit")
+    public ResponseEntity<Object> editModule(@RequestPart(name = "image",required = false) MultipartFile image, @RequestPart("moduleId") UUID moduleId, @RequestPart("module") ModuleRequest moduleRequest){
+        try{
+            Modules module = moduleService.editModule(image, moduleId, moduleRequest);
+
+            return ResponseHandler.generateResponse("Module has been updated successfully!", HttpStatus.OK, module);
 
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);

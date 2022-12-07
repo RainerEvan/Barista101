@@ -1,8 +1,10 @@
+import { Dialog } from '@angular/cdk/dialog';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Modules } from 'src/app/main/models/modules';
 import { ModuleService } from 'src/app/main/services/module/module.service';
 import { environment } from 'src/environments/environment';
+import { EditModuleComponent } from '../edit-module/edit-module.component';
 
 @Component({
   selector: 'app-module-detail',
@@ -15,7 +17,7 @@ export class ModuleDetailComponent implements OnInit {
   loading:boolean = false;
   thumbnailUrl=environment.apiUrl+"/module/thumbnail/";
 
-  constructor(private route:ActivatedRoute,private moduleService:ModuleService) { }
+  constructor(public dialog:Dialog, private route:ActivatedRoute,private moduleService:ModuleService) { }
 
   ngOnInit(): void {
     this.getModule();
@@ -37,6 +39,21 @@ export class ModuleDetailComponent implements OnInit {
         }
       });
     }
+  }
+
+  openEditDialog(){
+    const dialogRef = this.dialog.open(EditModuleComponent, {
+      data:{
+        title:"Edit Module",
+        module:this.module
+      }
+    });
+
+    dialogRef.closed.subscribe((success) => {
+      if(success){
+        this.getModule();
+      }
+    });
   }
 
 }

@@ -7,9 +7,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.barista101.model.course.Contents;
@@ -33,6 +35,18 @@ public class ContentController {
             Contents content = contentService.addContent(contentRequest);
 
             return ResponseHandler.generateResponse("Content has been added successfully!", HttpStatus.OK, content);
+
+        } catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);
+        }
+    }
+
+    @PutMapping(path = "/edit")
+    public ResponseEntity<Object> editContent(@RequestPart("contentId") UUID contentId, @RequestPart("content") ContentRequest contentRequest){
+        try{
+            Contents content = contentService.editContent(contentId, contentRequest);
+
+            return ResponseHandler.generateResponse("Content has been updated successfully!", HttpStatus.OK, content);
 
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);

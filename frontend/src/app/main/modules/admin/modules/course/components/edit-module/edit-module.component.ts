@@ -1,47 +1,49 @@
 import { DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CourseService } from 'src/app/main/services/course/course.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ModuleService } from 'src/app/main/services/module/module.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-add-course',
-  templateUrl: './add-course.component.html',
-  styleUrls: ['./add-course.component.css']
+  selector: 'app-edit-module',
+  templateUrl: './edit-module.component.html',
+  styleUrls: ['./edit-module.component.css']
 })
-export class AddCourseComponent implements OnInit {
+export class EditModuleComponent implements OnInit {
 
-  courseForm = this.formBuilder.group({
-    title: [null, [Validators.required]],
-    description: [null, [Validators.required,Validators.maxLength(255)]],
+  moduleForm = this.formBuilder.group({
+    title: [this.data.module.title, [Validators.required]],
   });
 
-  isCourseFormSubmitted:boolean = false;
+  isModuleFormSubmitted:boolean = false;
   thumbnail:any;
   imageUrl:any;
 
-  constructor(public dialogRef:DialogRef, @Inject(DIALOG_DATA) public data:any, private courseService:CourseService, private formBuilder:FormBuilder) {}
+  constructor(public dialogRef:DialogRef, @Inject(DIALOG_DATA) public data:any, private moduleService:ModuleService, private formBuilder:FormBuilder) {}
 
   ngOnInit(): void {
+    this.imageUrl = environment.apiUrl+"/module/thumbnail/"+this.data.module.id;
   }
 
-  public addCourse(): void{
-    if(this.courseForm.valid){
+  public editModule(): void{
+    if(this.moduleForm.valid){
       const formData = new FormData();
-      const course = this.courseForm.value;
+      const module = this.moduleForm.value;
 
       formData.append('image',this.thumbnail);
-      formData.append('course', new Blob([JSON.stringify(course)], {type:"application/json"}));
+      formData.append('moduleId', new Blob([JSON.stringify(this.data.module.id)], {type:"application/json"}));
+      formData.append('module', new Blob([JSON.stringify(module)], {type:"application/json"}));
       
-      this.courseService.addCourse(formData).subscribe({
+      this.moduleService.editModule(formData).subscribe({
         next: (result: any) => {
           console.log(result);
-          this.isCourseFormSubmitted = true;
-          this.dialogRef.close(this.isCourseFormSubmitted);
+          this.isModuleFormSubmitted = true;
+          this.dialogRef.close(this.isModuleFormSubmitted);
         },
         error: (error: any) => {
           console.log(error);
-          this.isCourseFormSubmitted = false;
-          this.dialogRef.close(this.isCourseFormSubmitted);
+          this.isModuleFormSubmitted = false;
+          this.dialogRef.close(this.isModuleFormSubmitted);
         }
       });
     } 
@@ -75,11 +77,6 @@ export class AddCourseComponent implements OnInit {
     reader.onload = (_event) => {
       this.imageUrl = reader.result;
     }
-  }
-
-  resetForm(form: FormGroup){
-    form.reset();
-    this.thumbnail = null;
   }
 
   closeDialog(){

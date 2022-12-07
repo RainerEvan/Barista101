@@ -53,6 +53,21 @@ public class ContentService {
     }
 
     @Transactional
+    public Contents editContent(UUID contentId, ContentRequest contentRequest){
+        Contents content = getContent(contentId);
+
+        if(contentRequest.getTitle() != null){
+            content.setTitle(contentRequest.getTitle());
+        }
+
+        if(contentRequest.getBody() != null){
+            content.setBody(contentRequest.getBody());
+        }
+
+        return contentRepository.save(content);
+    }
+
+    @Transactional
     public void deleteContent(UUID contentId){
         Contents content = contentRepository.findById(contentId)
             .orElseThrow(() -> new IllegalStateException("Content with current id cannot be found"));

@@ -59,6 +59,21 @@ public class ModuleService {
     }
 
     @Transactional
+    public Modules editModule(MultipartFile file, UUID moduleId, ModuleRequest moduleRequest){
+        Modules module = getModule(moduleId);
+
+        if(moduleRequest.getTitle() != null){
+            module.setTitle(moduleRequest.getTitle());
+        }
+
+        if(file != null){
+            module.setThumbnail(addImage(file));
+        }
+
+        return moduleRepository.save(module);
+    }
+
+    @Transactional
     public void deleteModule(UUID moduleId){
         Modules module = moduleRepository.findById(moduleId)
             .orElseThrow(() -> new IllegalStateException("Module with current id cannot be found"));

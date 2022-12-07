@@ -1,19 +1,18 @@
 import { DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ContentService } from 'src/app/main/services/content/content.service';
 
 @Component({
-  selector: 'app-add-content',
-  templateUrl: './add-content.component.html',
-  styleUrls: ['./add-content.component.css']
+  selector: 'app-edit-content',
+  templateUrl: './edit-content.component.html',
+  styleUrls: ['./edit-content.component.css']
 })
-export class AddContentComponent implements OnInit {
+export class EditContentComponent implements OnInit {
 
   contentForm = this.formBuilder.group({
-    moduleId: [this.data.moduleId],
-    title: [null, [Validators.required]],
-    body: [null, [Validators.required]],
+    title: [this.data.content.title, [Validators.required]],
+    body: [this.data.content.body, [Validators.required]],
   });
 
   isContentFormSubmitted:boolean = false;
@@ -23,11 +22,15 @@ export class AddContentComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public addContent(): void{
+  public editContent(): void{
     if(this.contentForm.valid){
-      const formData = this.contentForm.value;
+      const formData = new FormData();
+      const content = this.contentForm.value;
 
-      this.contentService.addContent(formData).subscribe({
+      formData.append('contentId', new Blob([JSON.stringify(this.data.content.id)], {type:"application/json"}));
+      formData.append('content', new Blob([JSON.stringify(content)], {type:"application/json"}));
+
+      this.contentService.editContent(formData).subscribe({
         next: (result: any) => {
           console.log(result);
           this.isContentFormSubmitted = true;
@@ -40,10 +43,6 @@ export class AddContentComponent implements OnInit {
         }
       });
     } 
-  }
-
-  resetForm(form: FormGroup){
-    form.reset();
   }
 
   closeDialog(){

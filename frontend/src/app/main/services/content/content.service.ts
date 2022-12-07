@@ -32,8 +32,30 @@ export class ContentService {
       .valueChanges.pipe(map((result)=>result.data.getAllContentsForModule));
   }
 
+  public getContent(contentId: string): Observable<Contents>{
+    return this.apollo.watchQuery<any>({
+      query: gql`
+        query getContent($contentId:ID!){
+          getContent(contentId: $contentId){
+            id
+            title
+            body
+          }
+        }
+      `, 
+      variables: {
+        contentId: contentId,
+      },
+    })
+      .valueChanges.pipe(map((result)=>result.data.getContent));
+  }
+
   public addContent(formData: any): Observable<any>{
     return this.http.post(API_URL+'/add',formData);
+  }
+
+  public editContent(formData: any): Observable<any>{
+    return this.http.put(API_URL+'/edit',formData);
   }
   
   public deleteContent(contentId: string): Observable<any>{

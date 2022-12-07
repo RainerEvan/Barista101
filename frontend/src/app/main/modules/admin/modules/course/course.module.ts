@@ -14,6 +14,9 @@ import { AddModuleComponent } from './components/add-module/add-module.component
 import { AddContentComponent } from './components/add-content/add-content.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../../shared/shared.module';
+import { EditCourseComponent } from './components/edit-course/edit-course.component';
+import { EditModuleComponent } from './components/edit-module/edit-module.component';
+import { EditContentComponent } from './components/edit-content/edit-content.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,9 @@ import { SharedModule } from '../../../shared/shared.module';
     AddCourseComponent,
     AddModuleComponent,
     AddContentComponent,
+    EditCourseComponent,
+    EditModuleComponent,
+    EditContentComponent,
   ],
   imports: [
     CommonModule,

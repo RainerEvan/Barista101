@@ -48,6 +48,25 @@ public class CourseService {
     }
 
     @Transactional
+    public Courses editCourse(MultipartFile file, UUID courseId, CourseRequest courseRequest){
+        Courses course = getCourse(courseId);
+
+        if(courseRequest.getTitle() != null){
+            course.setTitle(courseRequest.getTitle());
+        }
+
+        if(courseRequest.getDescription() != null){
+            course.setDescription(courseRequest.getDescription());
+        }
+
+        if(file != null){
+            course.setThumbnail(addImage(file));
+        }
+
+        return courseRepository.save(course);
+    }
+
+    @Transactional
     public void deleteCourse(UUID courseId){
         Courses course = courseRepository.findById(courseId)
             .orElseThrow(() -> new IllegalStateException("Course with current id cannot be found"));

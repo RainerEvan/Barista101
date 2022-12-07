@@ -1,8 +1,10 @@
+import { Dialog } from '@angular/cdk/dialog';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Courses } from 'src/app/main/models/courses';
 import { CourseService } from 'src/app/main/services/course/course.service';
 import { environment } from 'src/environments/environment';
+import { EditCourseComponent } from '../edit-course/edit-course.component';
 
 @Component({
   selector: 'app-course-detail',
@@ -15,7 +17,7 @@ export class CourseDetailComponent implements OnInit {
   loading:boolean = false;
   thumbnailUrl=environment.apiUrl+"/course/thumbnail/";
 
-  constructor(private route:ActivatedRoute,private courseService:CourseService) { }
+  constructor(public dialog:Dialog, private route:ActivatedRoute,private courseService:CourseService) { }
 
   ngOnInit(): void {
     this.getCourse();
@@ -37,6 +39,21 @@ export class CourseDetailComponent implements OnInit {
         }
       });
     }
+  }
+
+  openEditDialog(){
+    const dialogRef = this.dialog.open(EditCourseComponent, {
+      data:{
+        title:"Edit Course",
+        course:this.course
+      }
+    });
+
+    dialogRef.closed.subscribe((success) => {
+      if(success){
+        this.getCourse();
+      }
+    });
   }
 
 }

@@ -1,15 +1,17 @@
 <div class="container p-4">
     <div class="flex flex-row items-center justify-between">
         <h1 class="font-bold text-3xl">Course Details</h1>
-        <button class="button-primary flex items-center space-x-1.5">
+        <button (click)="openEditDialog()" class="button-primary flex items-center space-x-1.5">
             <hero-icon name="pencil" type="solid" class="w-4 h-4 text-white fill-white"></hero-icon>
             <span class="text-sm">Edit Course</span>
         </button>
     </div>
-    <div class="w-full flex flex-row space-x-8 my-3">
-        <img *ngIf="course" [src]="thumbnailUrl+course.id" [src]="thumbnailUrl+course.id" class="object-cover w-64 h-48 rounded-md">
-        <div *ngIf="loading" class="w-64 h-48 rounded-md bg-gray-200 animate-pulse"></div>
-        <div class="flex flex-col justify-center space-y-4">
+    <div class="w-full grid grid-cols-5 gap-8 my-3">
+        <div class="col-span-2">
+            <img *ngIf="course" [src]="thumbnailUrl+course.id" class="object-cover w-full h-48 rounded-md">
+            <div *ngIf="loading" class="w-full h-48 rounded-md bg-gray-200 animate-pulse"></div>
+        </div>
+        <div class="col-span-3 flex flex-col justify-center space-y-4">
             <div class="block">
                 <h3 class="text-lg font-semibold">Title</h3>
                 <span *ngIf="course">{{course.title}}</span>

@@ -1,1 +1,13 @@
-<p>content-detail works!</p>
+<div class="container p-4">
+    <div class="flex flex-row items-center justify-between">
+        <h1 class="font-bold text-3xl">Content Details</h1>
+        <button (click)="openEditDialog()" class="button-primary flex items-center space-x-1.5">
+            <hero-icon name="pencil" type="solid" class="w-4 h-4 text-white fill-white"></hero-icon>
+            <span class="text-sm">Edit Content</span>
+        </button>
+    </div>
+    <div class="w-full p-6 rounded-lg bg-orange-100 my-3">
+        <h1 *ngIf="content" class="font-semibold text-xl">{{content.title}}</h1>
+        <div *ngIf="content" class="text-justify py-3" [innerHTML]="content.body"></div>
+    </div>
+</div>

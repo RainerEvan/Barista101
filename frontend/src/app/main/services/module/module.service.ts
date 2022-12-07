@@ -21,6 +21,7 @@ export class ModuleService {
           getAllModulesForCourse(courseId: $courseId){
             id
             title
+            thumbnail
             contents{
               id
             }
@@ -44,6 +45,7 @@ export class ModuleService {
               id
             }
             title
+            thumbnail
             contents{
               id
               title
@@ -61,6 +63,10 @@ export class ModuleService {
 
   public addModule(formData: FormData): Observable<any>{
     return this.http.post(API_URL+'/add',formData);
+  }
+
+  public editModule(formData: FormData): Observable<any>{
+    return this.http.put(API_URL+'/edit',formData);
   }
 
   public deleteModule(moduleId: string): Observable<any>{

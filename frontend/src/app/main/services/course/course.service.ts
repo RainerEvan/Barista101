@@ -22,6 +22,7 @@ export class CourseService {
             id
             title
             description
+            thumbnail
             modules{
               id
             }
@@ -40,6 +41,7 @@ export class CourseService {
             id
             title
             description
+            thumbnail
             modules{
               id
             }
@@ -55,6 +57,10 @@ export class CourseService {
 
   public addCourse(formData: FormData): Observable<any>{
     return this.http.post(API_URL+'/add',formData);
+  }
+
+  public editCourse(formData: FormData): Observable<any>{
+    return this.http.put(API_URL+'/edit',formData);
   }
 
   public deleteCourse(courseId: string): Observable<any>{
