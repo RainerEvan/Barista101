@@ -11,6 +11,7 @@ import { ContentService } from 'src/app/main/services/content/content.service';
 export class AddContentComponent implements OnInit {
 
   contentForm = this.formBuilder.group({
+    moduleId: [this.data.moduleId],
     title: [null, [Validators.required]],
     body: [null, [Validators.required]],
   });
@@ -26,12 +27,8 @@ export class AddContentComponent implements OnInit {
 
   public addContent(): void{
     if(this.contentForm.valid){
-      const formData = new FormData();
-      const content = this.contentForm.value;
+      const formData = this.contentForm.value;
 
-      formData.append('image',this.thumbnail);
-      formData.append('content', new Blob([JSON.stringify(content)], {type:"application/json"}));
-      
       this.contentService.addContent(formData).subscribe({
         next: (result: any) => {
           console.log(result);

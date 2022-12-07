@@ -32,7 +32,7 @@ export class ContentService {
       .valueChanges.pipe(map((result)=>result.data.getAllContentsForModule));
   }
 
-  public addContent(formData: FormData): Observable<any>{
+  public addContent(formData: any): Observable<any>{
     return this.http.post(API_URL+'/add',formData);
   }
   
