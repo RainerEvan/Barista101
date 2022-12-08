@@ -13,7 +13,7 @@ import { EditModuleComponent } from '../edit-module/edit-module.component';
 })
 export class ModuleDetailComponent implements OnInit {
 
-  module?:Modules;
+  module:Modules;
   loading:boolean = false;
   thumbnailUrl=environment.apiUrl+"/module/thumbnail/";
 

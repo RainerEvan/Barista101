@@ -8,12 +8,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.barista101.model.account.Accounts;
+import com.project.barista101.payload.request.ChangePasswordRequest;
 import com.project.barista101.payload.request.SignupRequest;
 import com.project.barista101.service.AccountService;
 import com.project.barista101.utils.ResponseHandler;
@@ -41,9 +43,9 @@ public class AccountController {
     }
 
     @PutMapping(path = "/changePassword")
-    public ResponseEntity<Object> changePassword(@RequestPart("currentPassword") String currentPassword, @RequestPart("newPassword") String newPassword){
+    public ResponseEntity<Object> changePassword(@RequestBody ChangePasswordRequest changePasswordRequest){
         try{
-            accountService.changePassword(currentPassword, newPassword);
+            accountService.changePassword(changePasswordRequest);
 
             return ResponseHandler.generateResponse("Password has been updated successfully", HttpStatus.OK, null);
 

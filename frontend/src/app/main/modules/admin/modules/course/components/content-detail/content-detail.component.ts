@@ -12,7 +12,7 @@ import { EditContentComponent } from '../edit-content/edit-content.component';
 })
 export class ContentDetailComponent implements OnInit {
 
-  content?:Contents;
+  content:Contents;
   loading:boolean = false;
 
   constructor(public dialog:Dialog, private route:ActivatedRoute,private contentService:ContentService) { }

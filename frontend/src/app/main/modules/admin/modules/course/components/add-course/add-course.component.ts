@@ -10,11 +10,7 @@ import { CourseService } from 'src/app/main/services/course/course.service';
 })
 export class AddCourseComponent implements OnInit {
 
-  courseForm = this.formBuilder.group({
-    title: [null, [Validators.required]],
-    description: [null, [Validators.required,Validators.maxLength(255)]],
-  });
-
+  courseForm:FormGroup;
   isCourseFormSubmitted:boolean = false;
   thumbnail:any;
   imageUrl:any;
@@ -22,6 +18,14 @@ export class AddCourseComponent implements OnInit {
   constructor(public dialogRef:DialogRef, @Inject(DIALOG_DATA) public data:any, private courseService:CourseService, private formBuilder:FormBuilder) {}
 
   ngOnInit(): void {
+    this.generateCourseForm();
+  }
+
+  generateCourseForm(){
+    this.courseForm = this.formBuilder.group({
+      title: [null, [Validators.required]],
+      description: [null, [Validators.required,Validators.maxLength(255)]],
+    });
   }
 
   public addCourse(): void{

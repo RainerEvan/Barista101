@@ -1,6 +1,6 @@
 import { DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContentService } from 'src/app/main/services/content/content.service';
 
 @Component({
@@ -10,16 +10,20 @@ import { ContentService } from 'src/app/main/services/content/content.service';
 })
 export class EditContentComponent implements OnInit {
 
-  contentForm = this.formBuilder.group({
-    title: [this.data.content.title, [Validators.required]],
-    body: [this.data.content.body, [Validators.required]],
-  });
-
+  contentForm:FormGroup;
   isContentFormSubmitted:boolean = false;
 
   constructor(public dialogRef:DialogRef, @Inject(DIALOG_DATA) public data:any, private contentService:ContentService, private formBuilder:FormBuilder) {}
 
   ngOnInit(): void {
+    this.generateContentForm();
+  }
+
+  generateContentForm(){
+    this.contentForm = this.formBuilder.group({
+      title: [this.data.content.title, [Validators.required]],
+      body: [this.data.content.body, [Validators.required]],
+    });
   }
 
   public editContent(): void{

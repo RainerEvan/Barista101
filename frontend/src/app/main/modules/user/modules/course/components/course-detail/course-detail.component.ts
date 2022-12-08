@@ -13,7 +13,7 @@ import { DescriptionDialogComponent } from 'src/app/main/modules/shared/componen
 })
 export class CourseDetailComponent implements OnInit {
 
-  course?:Courses;
+  course:Courses;
   loading:boolean = false;
   thumbnailUrl=environment.apiUrl+"/course/thumbnail/";
 

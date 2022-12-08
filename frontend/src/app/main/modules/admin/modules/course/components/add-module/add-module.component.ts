@@ -10,11 +10,7 @@ import { ModuleService } from 'src/app/main/services/module/module.service';
 })
 export class AddModuleComponent implements OnInit {
 
-  moduleForm = this.formBuilder.group({
-    courseId: [this.data.courseId],
-    title: [null, [Validators.required]],
-  });
-
+  moduleForm:FormGroup;
   isModuleFormSubmitted:boolean = false;
   thumbnail:any;
   imageUrl:any;
@@ -22,6 +18,14 @@ export class AddModuleComponent implements OnInit {
   constructor(public dialogRef:DialogRef, @Inject(DIALOG_DATA) public data:any, private moduleService:ModuleService, private formBuilder:FormBuilder) {}
 
   ngOnInit(): void {
+    this.generateModuleForm();
+  }
+
+  generateModuleForm(){
+    this.moduleForm = this.formBuilder.group({
+      courseId: [this.data.courseId],
+      title: [null, [Validators.required]],
+    });
   }
 
   public addModule(): void{

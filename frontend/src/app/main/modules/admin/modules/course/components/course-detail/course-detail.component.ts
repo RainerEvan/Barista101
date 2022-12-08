@@ -13,7 +13,7 @@ import { EditCourseComponent } from '../edit-course/edit-course.component';
 })
 export class CourseDetailComponent implements OnInit {
 
-  course?:Courses;
+  course:Courses;
   loading:boolean = false;
   thumbnailUrl=environment.apiUrl+"/course/thumbnail/";
 

@@ -13,9 +13,9 @@ import { ModuleService } from 'src/app/main/services/module/module.service';
 })
 export class ModuleContentComponent implements OnInit {
 
-  module?:Modules;
+  module:Modules;
   contents:Contents[] = [];
-  currentContent?:Contents;
+  currentContent:Contents;
   currentPage:number = 0;
   loading:boolean = false;
 

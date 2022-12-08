@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.project.barista101.data.ERoles;
 import com.project.barista101.model.account.Accounts;
 import com.project.barista101.model.account.Roles;
+import com.project.barista101.payload.request.ChangePasswordRequest;
 import com.project.barista101.payload.request.SignupRequest;
 import com.project.barista101.repository.AccountRepository;
 import com.project.barista101.repository.RoleRepository;
@@ -31,8 +32,6 @@ public class AccountService {
     private final AccountRepository accountRepository;
     @Autowired
     private final RoleRepository roleRepository;
-    @Autowired
-    private final AuthService authService;
     @Autowired
     private final PasswordEncoder passwordEncoder;
 
@@ -107,16 +106,16 @@ public class AccountService {
         return accountRepository.save(account);
     }
 
-    public void changePassword(String currentPassword, String newPassword){
+    public void changePassword(ChangePasswordRequest changePasswordRequest){
         
-        Accounts account = authService.getCurrentAccount();
+        Accounts account = getAccount(changePasswordRequest.getAccountId());
 
-        if(!passwordEncoder.matches(currentPassword, account.getPassword())){
-            throw new IllegalStateException("The current password is not correct");
+        if(!passwordEncoder.matches(changePasswordRequest.getOldPassword(), account.getPassword())){
+            throw new IllegalStateException("The old password is not correct");
         }
 
-        if(newPassword != null && newPassword.length() > 0){
-            account.setPassword(passwordEncoder.encode(newPassword));
+        if(changePasswordRequest.getNewPassword() != null && changePasswordRequest.getNewPassword().length() > 0){
+            account.setPassword(passwordEncoder.encode(changePasswordRequest.getNewPassword()));
         }
 
         accountRepository.save(account);

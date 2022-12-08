@@ -11,11 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 export class EditCourseComponent implements OnInit {
 
-  courseForm = this.formBuilder.group({
-    title: [this.data.course.title, [Validators.required]],
-    description: [this.data.course.description, [Validators.required,Validators.maxLength(255)]],
-  });
-
+  courseForm:FormGroup;
   isCourseFormSubmitted:boolean = false;
   thumbnail:any;
   imageUrl:any;
@@ -23,7 +19,15 @@ export class EditCourseComponent implements OnInit {
   constructor(public dialogRef:DialogRef, @Inject(DIALOG_DATA) public data:any, private courseService:CourseService, private formBuilder:FormBuilder) {}
 
   ngOnInit(): void {
+    this.generateCourseForm();
     this.imageUrl = environment.apiUrl+"/course/thumbnail/"+this.data.course.id;
+  }
+
+  generateCourseForm(){
+    this.courseForm = this.formBuilder.group({
+      title: [this.data.course.title, [Validators.required]],
+      description: [this.data.course.description, [Validators.required,Validators.maxLength(255)]],
+    });
   }
 
   public addCourse(): void{

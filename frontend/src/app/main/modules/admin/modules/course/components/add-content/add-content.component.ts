@@ -10,17 +10,21 @@ import { ContentService } from 'src/app/main/services/content/content.service';
 })
 export class AddContentComponent implements OnInit {
 
-  contentForm = this.formBuilder.group({
-    moduleId: [this.data.moduleId],
-    title: [null, [Validators.required]],
-    body: [null, [Validators.required]],
-  });
-
+  contentForm:FormGroup;
   isContentFormSubmitted:boolean = false;
 
   constructor(public dialogRef:DialogRef, @Inject(DIALOG_DATA) public data:any, private contentService:ContentService, private formBuilder:FormBuilder) {}
 
   ngOnInit(): void {
+    this.generateContentForm();
+  }
+
+  generateContentForm(){
+    this.contentForm = this.formBuilder.group({
+      moduleId: [this.data.moduleId],
+      title: [null, [Validators.required]],
+      body: [null, [Validators.required]],
+    });
   }
 
   public addContent(): void{

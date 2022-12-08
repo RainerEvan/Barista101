@@ -1,6 +1,6 @@
 import { DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModuleService } from 'src/app/main/services/module/module.service';
 import { environment } from 'src/environments/environment';
 
@@ -11,10 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 export class EditModuleComponent implements OnInit {
 
-  moduleForm = this.formBuilder.group({
-    title: [this.data.module.title, [Validators.required]],
-  });
-
+  moduleForm:FormGroup;
   isModuleFormSubmitted:boolean = false;
   thumbnail:any;
   imageUrl:any;
@@ -22,7 +19,14 @@ export class EditModuleComponent implements OnInit {
   constructor(public dialogRef:DialogRef, @Inject(DIALOG_DATA) public data:any, private moduleService:ModuleService, private formBuilder:FormBuilder) {}
 
   ngOnInit(): void {
+    this.generateModuleForm();
     this.imageUrl = environment.apiUrl+"/module/thumbnail/"+this.data.module.id;
+  }
+
+  generateModuleForm(){
+    this.moduleForm = this.formBuilder.group({
+      title: [this.data.module.title, [Validators.required]],
+    });
   }
 
   public editModule(): void{

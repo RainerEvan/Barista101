@@ -9,21 +9,24 @@ import com.project.barista101.model.account.Accounts;
 import com.project.barista101.model.account.Roles;
 import com.project.barista101.model.course.Contents;
 import com.project.barista101.model.course.Courses;
+import com.project.barista101.model.course.Enrollments;
 import com.project.barista101.model.course.Modules;
 import com.project.barista101.payload.request.ContentRequest;
 import com.project.barista101.payload.request.CourseRequest;
+import com.project.barista101.payload.request.EnrollmentRequest;
 import com.project.barista101.payload.request.ModuleRequest;
 import com.project.barista101.payload.request.SignupRequest;
 import com.project.barista101.repository.RoleRepository;
 import com.project.barista101.service.AccountService;
 import com.project.barista101.service.ContentService;
 import com.project.barista101.service.CourseService;
+import com.project.barista101.service.EnrollmentService;
 import com.project.barista101.service.ModuleService;
 
 @Configuration
 public class StartAppConfig {
     @Bean
-    CommandLineRunner commandLineRunner(RoleRepository roleRepository, AccountService accountService, CourseService courseService, ModuleService moduleService, ContentService contentService){
+    CommandLineRunner commandLineRunner(RoleRepository roleRepository, AccountService accountService, CourseService courseService, ModuleService moduleService, ContentService contentService, EnrollmentService enrollmentService){
         return args -> {
 
             Roles role1 = new Roles();
@@ -57,6 +60,9 @@ public class StartAppConfig {
             
             ModuleRequest moduleRequest3 = new ModuleRequest(course1.getId(), "Roasting");
             Modules module3 = moduleService.addModule(null, moduleRequest3);
+
+            EnrollmentRequest enrollmentRequest = new EnrollmentRequest(account.getId(), course1.getId());
+            Enrollments enrollment1 = enrollmentService.addEnrollment(enrollmentRequest);
         };
     }
 }

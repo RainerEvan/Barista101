@@ -18,7 +18,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class UserDetailsImpl implements UserDetails{
-    private UUID id;
+    private UUID accountId;
     private String username;
     @JsonIgnore
     private String email;
