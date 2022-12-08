@@ -4,6 +4,7 @@ type Modules{
     title:String
     thumbnail:String
     contents:[Contents]
+    createdAt:DateTime
 }
 
 extend type Query{

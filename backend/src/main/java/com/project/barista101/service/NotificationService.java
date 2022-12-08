@@ -31,7 +31,7 @@ public class NotificationService {
         Accounts account = accountRepository.findById(accountId)
             .orElseThrow(() -> new IllegalStateException("Account with current id cannot be found"));
 
-        return notificationRepository.findAllByReceiver(account);
+        return notificationRepository.findAllByReceiverOrderByCreatedAtDesc(account);
     }
 
     @Transactional

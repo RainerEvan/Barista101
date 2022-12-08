@@ -1,5 +1,6 @@
 package com.project.barista101.service;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,7 +31,7 @@ public class ContentService {
         Modules module = moduleRepository.findById(moduleId)
             .orElseThrow(() -> new IllegalStateException("Module with current id cannot be found"));
 
-        return contentRepository.findAllByModule(module);
+        return contentRepository.findAllByModuleOrderByCreatedAtAsc(module);
     }
 
     @Transactional
@@ -48,6 +49,7 @@ public class ContentService {
         content.setModule(module);
         content.setTitle(contentRequest.getTitle());
         content.setBody(contentRequest.getBody());
+        content.setCreatedAt(OffsetDateTime.now());
 
         return contentRepository.save(content);
     }

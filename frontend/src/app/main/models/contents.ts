@@ -5,4 +5,5 @@ export type Contents = {
     module:Modules;
     title:string;
     body:string;
+    createdAt:Date;
 }

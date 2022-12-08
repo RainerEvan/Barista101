@@ -5,5 +5,6 @@ export type Courses = {
     title:string;
     description:string;
     thumbnail:string;
+    createdAt:Date;
     modules:Modules[];
 }

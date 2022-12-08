@@ -11,5 +11,6 @@ import com.project.barista101.model.recipe.Recipes;
 
 @Repository
 public interface RecipeRepository extends JpaRepository<Recipes,UUID>{
-    List<Recipes> findAllByAuthor(Accounts account);
+    List<Recipes> findAllByOrderByCreatedAtDesc();
+    List<Recipes> findAllByAuthorOrderByCreatedAtDesc(Accounts account);
 }

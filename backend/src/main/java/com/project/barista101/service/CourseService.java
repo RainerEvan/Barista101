@@ -2,6 +2,7 @@ package com.project.barista101.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
@@ -28,7 +29,7 @@ public class CourseService {
 
     @Transactional
     public List<Courses> getAllCourses(){
-        return courseRepository.findAll();
+        return courseRepository.findAllByOrderByCreatedAtAsc();
     }
 
     @Transactional
@@ -43,6 +44,7 @@ public class CourseService {
         course.setTitle(courseRequest.getTitle());
         course.setDescription(courseRequest.getDescription());
         course.setThumbnail(addImage(file));
+        course.setCreatedAt(OffsetDateTime.now());
 
         return courseRepository.save(course);
     }

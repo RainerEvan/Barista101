@@ -22,6 +22,7 @@ export class ContentService {
             id
             title
             body
+            createdAt
           }
         }
       `, 
@@ -40,6 +41,7 @@ export class ContentService {
             id
             title
             body
+            createdAt
           }
         }
       `, 

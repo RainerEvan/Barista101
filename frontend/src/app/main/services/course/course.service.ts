@@ -23,6 +23,7 @@ export class CourseService {
             title
             description
             thumbnail
+            createdAt
             modules{
               id
             }
@@ -42,6 +43,7 @@ export class CourseService {
             title
             description
             thumbnail
+            createdAt
             modules{
               id
             }

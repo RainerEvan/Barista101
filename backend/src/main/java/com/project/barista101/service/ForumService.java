@@ -28,7 +28,7 @@ public class ForumService {
 
     @Transactional
     public List<Forums> getAllForums(){
-        return forumRepository.findAll();
+        return forumRepository.findAllByOrderByCreatedAtDesc();
     }
 
     @Transactional
@@ -42,7 +42,7 @@ public class ForumService {
         Accounts account = accountRepository.findById(accountId)
             .orElseThrow(() -> new IllegalStateException("Account with current id cannot be found"));
 
-        return forumRepository.findAllByAuthor(account);
+        return forumRepository.findAllByAuthorOrderByCreatedAtDesc(account);
     }
 
     @Transactional

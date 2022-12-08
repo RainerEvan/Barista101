@@ -29,7 +29,7 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
   exports: [
     ProfileDropdownComponent,
     DescriptionDialogComponent,
-    CompleteDialogComponent
+    CompleteDialogComponent,
   ]
 })
 export class SharedModule { }

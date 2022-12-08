@@ -6,5 +6,6 @@ export type Modules = {
     course:Courses;
     title:string;
     thumbnail:string;
+    createdAt:Date;
     contents:Contents[];
 }

@@ -11,5 +11,5 @@ import com.project.barista101.model.course.Modules;
 
 @Repository
 public interface ContentRepository extends JpaRepository<Contents,UUID>{
-    List<Contents> findAllByModule(Modules Module);
+    List<Contents> findAllByModuleOrderByCreatedAtAsc(Modules Module);
 }

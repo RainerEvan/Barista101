@@ -11,5 +11,5 @@ import com.project.barista101.model.course.Modules;
 
 @Repository
 public interface ModuleRepository extends JpaRepository<Modules,UUID> {
-    List<Modules> findAllByCourse(Courses course);
+    List<Modules> findAllByCourseOrderByCreatedAtAsc(Courses course);
 }

@@ -14,7 +14,7 @@
                 </div>
                 <div class="p-2 flex flex-col justify-center">
                     <span class="font-medium">{{course.title}}</span>
-                    <span class="text-sm">{{course.modules.length}} Modules</span>
+                    <span class="text-xs">Created {{course.createdAt | date:'d MMM y, h:mm a'}}</span>
                 </div>
             </a>
             <button (click)="openDeleteDialog(course.id)" class="z-10 col-span-1 rounded-r-md bg-red-600 p-4 flex items-center justify-center hover:bg-red-500">

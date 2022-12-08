@@ -11,5 +11,5 @@ import com.project.barista101.model.notification.Notifications;
 
 @Repository
 public interface NotificationRepository extends JpaRepository<Notifications,UUID>{
-    List<Notifications> findAllByReceiver(Accounts receiver);
+    List<Notifications> findAllByReceiverOrderByCreatedAtDesc(Accounts receiver);
 }

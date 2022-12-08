@@ -4,6 +4,7 @@ type Courses{
     description:String
     thumbnail:String
     modules:[Modules]
+    createdAt:DateTime
 }
 
 extend type Query{

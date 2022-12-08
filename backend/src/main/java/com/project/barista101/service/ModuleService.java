@@ -2,6 +2,7 @@ package com.project.barista101.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
@@ -36,7 +37,7 @@ public class ModuleService {
         Courses course = courseRepository.findById(courseId)
             .orElseThrow(() -> new IllegalStateException("Course with current id cannot be found"));
 
-        return moduleRepository.findAllByCourse(course);
+        return moduleRepository.findAllByCourseOrderByCreatedAtAsc(course);
     }
 
     @Transactional
@@ -54,6 +55,7 @@ public class ModuleService {
         module.setCourse(course);
         module.setTitle(moduleRequest.getTitle());
         module.setThumbnail(addImage(file));
+        module.setCreatedAt(OffsetDateTime.now());
 
         return moduleRepository.save(module);
     }

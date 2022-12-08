@@ -6,8 +6,9 @@
             <span class="text-sm">Edit Content</span>
         </button>
     </div>
-    <div class="w-full p-6 rounded-lg bg-orange-100 my-3">
-        <h1 *ngIf="content" class="font-semibold text-xl">{{content.title}}</h1>
-        <div *ngIf="content" class="text-justify py-3" [innerHTML]="content.body"></div>
+    <div *ngIf="content" class="w-full flex flex-col space-y-3 p-6 rounded-lg bg-orange-100 my-3">
+        <h1 class="font-semibold text-lg">{{content.title}}</h1>
+        <div class="text-justify" [innerHTML]="content.body"></div>
     </div>
+    <div *ngIf="loading" class="w-full h-64 bg-gray-200 rounded-md animate-pulse my-3"></div>
 </div>

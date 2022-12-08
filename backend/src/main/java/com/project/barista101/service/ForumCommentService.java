@@ -35,7 +35,7 @@ public class ForumCommentService {
         Forums forum = forumRepository.findById(forumId)
             .orElseThrow(() -> new IllegalStateException("Forum with current id cannot be found"));
 
-        return forumCommentRepository.findAllByForum(forum);
+        return forumCommentRepository.findAllByForumOrderByCreatedAtDesc(forum);
     }
 
     @Transactional

@@ -35,7 +35,7 @@ public class RecipeCommentService {
         Recipes recipe = recipeRepository.findById(recipeId)
             .orElseThrow(() -> new IllegalStateException("Recipe with current id cannot be found"));
 
-        return recipeCommentRepository.findAllByRecipe(recipe);
+        return recipeCommentRepository.findAllByRecipeOrderByCreatedAtDesc(recipe);
     }
 
     @Transactional

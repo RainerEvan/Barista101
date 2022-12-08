@@ -22,6 +22,7 @@ export class ModuleService {
             id
             title
             thumbnail
+            createdAt
             contents{
               id
             }
@@ -46,6 +47,7 @@ export class ModuleService {
             }
             title
             thumbnail
+            createdAt
             contents{
               id
               title

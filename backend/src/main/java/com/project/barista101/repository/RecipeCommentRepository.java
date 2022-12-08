@@ -11,5 +11,5 @@ import com.project.barista101.model.recipe.Recipes;
 
 @Repository
 public interface RecipeCommentRepository extends JpaRepository<RecipeComments,UUID>{
-    List<RecipeComments> findAllByRecipe(Recipes recipe);
+    List<RecipeComments> findAllByRecipeOrderByCreatedAtDesc(Recipes recipe);
 }

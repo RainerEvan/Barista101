@@ -37,7 +37,7 @@ public class RecipeService {
 
     @Transactional
     public List<Recipes> getAllRecipes(){
-        return recipeRepository.findAll();
+        return recipeRepository.findAllByOrderByCreatedAtDesc();
     }
 
     @Transactional
@@ -51,7 +51,7 @@ public class RecipeService {
         Accounts account = accountRepository.findById(accountId)
             .orElseThrow(() -> new IllegalStateException("Account with current id cannot be found"));
 
-        return recipeRepository.findAllByAuthor(account);
+        return recipeRepository.findAllByAuthorOrderByCreatedAtDesc(account);
     }
 
     @Transactional

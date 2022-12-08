@@ -1,5 +1,6 @@
 package com.project.barista101.model.course;
 
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 import javax.persistence.Entity;
@@ -36,4 +37,5 @@ public class Contents {
     @Lob
     private String body;
 
+    private OffsetDateTime createdAt;
 }

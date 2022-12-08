@@ -11,5 +11,5 @@ import com.project.barista101.model.forum.Forums;
 
 @Repository
 public interface ForumCommentRepository extends JpaRepository<ForumComments,UUID>{
-    List<ForumComments> findAllByForum(Forums forum);
+    List<ForumComments> findAllByForumOrderByCreatedAtDesc(Forums forum);
 }
