@@ -1,12 +1,12 @@
 <div class="container flex flex-col space-y-4 p-4">
     <a *ngFor="let module of modules" routerLink="../module/{{module.id}}" class="grid grid-cols-5 items-center shadow-md rounded-sm bg-white hover:shadow-lg hover:-translate-y-0.5 focus:scale-95">
         <div class="col-span-1 p-2">
-            <img src="{{thumbnailUrl+module.id}}" alt="Module Thumbnail" class="w-full h-full">
+            <img src="{{thumbnailUrl+module.id}}" alt="Module Thumbnail" class="object-cover aspect-square rounded-lg">
         </div>
         <div class="col-span-3 p-2">
             <div class="flex flex-col justify-between">
-                <span class="font-medium">{{module.title}}</span>
-                <span class="text-sm">Click to start learning</span>
+                <span class="font-medium text-sm sm:text-base">{{module.title}}</span>
+                <span class="text-xs sm:text-sm">Click to start learning</span>
             </div>
         </div>
         <div class="col-span-1 p-2">
