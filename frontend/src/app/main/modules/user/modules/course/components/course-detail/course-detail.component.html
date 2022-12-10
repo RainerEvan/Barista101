@@ -27,7 +27,9 @@
             </div>
         </div>
     </div>
-    <div *ngIf="loading" class="w-full h-40 bg-gray-200 animate-pulse"></div>
+    <ng-container *ngIf="loading">
+        <div class="w-full h-40 bg-gray-200 animate-pulse"></div>
+    </ng-container>
 
     <app-module-list></app-module-list>
 </div>

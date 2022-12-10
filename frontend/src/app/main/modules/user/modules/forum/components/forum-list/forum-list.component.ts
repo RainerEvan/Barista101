@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Forums } from 'src/app/main/models/forums';
+import { ForumService } from 'src/app/main/services/forum/forum.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-forum-list',
@@ -7,9 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForumListComponent implements OnInit {
 
-  constructor() { }
+  forums:Forums[] = [];
+  loading:boolean = false;
+  profileImgUrl=environment.apiUrl+"/account/profileImg/";
+
+  constructor(private forumService:ForumService) { }
 
   ngOnInit(): void {
+    this.getAllforums();
+  }
+
+  public getAllforums(){
+    this.loading = true;
+    
+    this.forumService.getAllForums().subscribe({
+      next:(response:Forums[])=>{
+        this.forums = response;
+        this.loading = false;
+      },
+      error:(error:any)=>{
+          console.log(error);
+      }
+    });
   }
 
 }
