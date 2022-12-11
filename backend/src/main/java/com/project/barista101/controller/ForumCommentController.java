@@ -20,7 +20,7 @@ import com.project.barista101.utils.ResponseHandler;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/api/forum-commment")
+@RequestMapping("/api/forum-comment")
 @AllArgsConstructor
 public class ForumCommentController {
 

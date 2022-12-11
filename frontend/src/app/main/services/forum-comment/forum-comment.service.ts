@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { map, Observable } from 'rxjs';
@@ -38,5 +38,14 @@ export class ForumCommentService {
       },
     })
       .valueChanges.pipe(map((result)=>result.data.getAllCommentsForForum));
+  }
+
+  public addForumComment(formData: FormData): Observable<any>{
+    return this.http.post(API_URL+'/add',formData);
+  }
+
+  public deleteForumComment(forumCommentId: string): Observable<any>{
+    const params = new HttpParams().set('forumCommentId',forumCommentId);
+    return this.http.delete(API_URL+'/delete',{params:params});
   }
 }
