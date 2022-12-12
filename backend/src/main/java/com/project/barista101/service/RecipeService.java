@@ -45,6 +45,14 @@ public class RecipeService {
         return recipeRepository.findById(recipeId)
             .orElseThrow(() -> new IllegalStateException("Recipe with current id cannot be found"));
     }
+
+    @Transactional
+    public List<Recipes> getAllRecipesForCategory(UUID recipeCategoryId){
+        RecipeCategories category = recipeCategoryRepository.findById(recipeCategoryId)
+            .orElseThrow(() -> new IllegalStateException("Recipe category with current id cannot be found"));
+
+        return recipeRepository.findAllByCategoryOrderByCreatedAtDesc(category);
+    }
     
     @Transactional
     public List<Recipes> getAllRecipesForAccount(UUID accountId){

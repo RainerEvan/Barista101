@@ -27,6 +27,10 @@ public class RecipeQueryResolver implements GraphQLQueryResolver{
         return recipeService.getRecipe(recipeId);
     }
     
+    public List<Recipes> getAllRecipesForCategory(UUID recipeCategoryId){
+        return recipeService.getAllRecipesForCategory(recipeCategoryId);
+    }
+
     public List<Recipes> getAllRecipesForAccount(UUID accountId){
         return recipeService.getAllRecipesForAccount(accountId);
     }

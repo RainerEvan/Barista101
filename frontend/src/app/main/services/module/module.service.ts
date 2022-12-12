@@ -21,7 +21,6 @@ export class ModuleService {
           getAllModulesForCourse(courseId: $courseId){
             id
             title
-            thumbnail
             createdAt
             contents{
               id
@@ -46,7 +45,6 @@ export class ModuleService {
               id
             }
             title
-            thumbnail
             createdAt
             contents{
               id

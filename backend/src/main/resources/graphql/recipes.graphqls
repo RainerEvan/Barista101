@@ -19,5 +19,6 @@ type RecipeCategories{
 extend type Query{
     getAllRecipes:[Recipes]
     getRecipe(recipeId:ID!):Recipes
+    getAllRecipesForCategory(recipeCategoryId:ID!):[Recipes]
     getAllRecipesForAccount(accountId:ID!):[Recipes]
 }
