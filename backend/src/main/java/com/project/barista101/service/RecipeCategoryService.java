@@ -26,6 +26,12 @@ public class RecipeCategoryService {
     }
 
     @Transactional
+    public RecipeCategories getRecipeCategory(UUID recipeCategoryId){
+        return recipeCategoryRepository.findById(recipeCategoryId)
+            .orElseThrow(() -> new IllegalStateException("Recipe category with current id cannot be found"));
+    }
+
+    @Transactional
     public RecipeCategories addRecipeCategory(String name){
         RecipeCategories category = new RecipeCategories();
         category.setName(name);

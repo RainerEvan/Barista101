@@ -10,7 +10,7 @@ const API_URL = environment.apiUrl + "/recipe-category";
 @Injectable({
   providedIn: 'root'
 })
-export class RecipeCategorieservice {
+export class RecipeCategoryService {
 
   constructor(private http: HttpClient, private apollo: Apollo) { }
 
@@ -26,6 +26,23 @@ export class RecipeCategorieservice {
       `,
     })
       .valueChanges.pipe(map((result)=>result.data.getAllRecipeCategories));
+  }
+
+  public getRecipeCategory(recipeCategoryId: string): Observable<RecipeCategories>{
+    return this.apollo.watchQuery<any>({
+      query: gql`
+        query getRecipeCategory($recipeCategoryId:ID!){
+          getRecipeCategory(recipeCategoryId: $recipeCategoryId){
+            id
+            name
+          }
+        }
+      `, 
+      variables: {
+        recipeCategoryId: recipeCategoryId,
+      },
+    })
+      .valueChanges.pipe(map((result)=>result.data.getRecipeCategory));
   }
 
   public addRecipeCategory(formData: FormData): Observable<any>{

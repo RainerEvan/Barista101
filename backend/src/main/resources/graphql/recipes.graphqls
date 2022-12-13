@@ -11,11 +11,6 @@ type Recipes{
     createdAt:DateTime
 }
 
-type RecipeCategories{
-    id:ID!
-    name:String
-}
-
 extend type Query{
     getAllRecipes:[Recipes]
     getRecipe(recipeId:ID!):Recipes

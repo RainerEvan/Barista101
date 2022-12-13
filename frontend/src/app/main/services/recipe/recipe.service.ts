@@ -14,11 +14,11 @@ export class RecipeService {
 
   constructor(private http: HttpClient, private apollo: Apollo) { }
 
-  public getAllRecipesForCategory(): Observable<Recipes[]>{
+  public getAllRecipesForCategory(recipeCategoryId: string): Observable<Recipes[]>{
     return this.apollo.watchQuery<any>({
-      query:gql`
-        query getAllRecipesForCategory{
-          getAllRecipesForCategory{
+      query: gql`
+        query getAllRecipesForCategory($recipeCategoryId:ID!){
+          getAllRecipesForCategory(recipeCategoryId: $recipeCategoryId){
             id
             category{
               id
@@ -27,13 +27,14 @@ export class RecipeService {
             author{
               id
               fullname
-              username
             }
             title
-            createdAt
           }
         }
-      `,
+      `, 
+      variables: {
+        recipeCategoryId: recipeCategoryId,
+      },
     })
       .valueChanges.pipe(map((result)=>result.data.getAllRecipesForCategory));
   }

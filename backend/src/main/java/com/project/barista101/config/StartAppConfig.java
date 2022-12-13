@@ -13,12 +13,15 @@ import com.project.barista101.model.course.Enrollments;
 import com.project.barista101.model.course.Modules;
 import com.project.barista101.model.forum.ForumComments;
 import com.project.barista101.model.forum.Forums;
+import com.project.barista101.model.recipe.RecipeCategories;
+import com.project.barista101.model.recipe.Recipes;
 import com.project.barista101.payload.request.ContentRequest;
 import com.project.barista101.payload.request.CourseRequest;
 import com.project.barista101.payload.request.EnrollmentRequest;
 import com.project.barista101.payload.request.ForumCommentRequest;
 import com.project.barista101.payload.request.ForumRequest;
 import com.project.barista101.payload.request.ModuleRequest;
+import com.project.barista101.payload.request.RecipeRequest;
 import com.project.barista101.payload.request.SignupRequest;
 import com.project.barista101.repository.RoleRepository;
 import com.project.barista101.service.AccountService;
@@ -28,11 +31,13 @@ import com.project.barista101.service.EnrollmentService;
 import com.project.barista101.service.ForumCommentService;
 import com.project.barista101.service.ForumService;
 import com.project.barista101.service.ModuleService;
+import com.project.barista101.service.RecipeCategoryService;
+import com.project.barista101.service.RecipeService;
 
 @Configuration
 public class StartAppConfig {
     @Bean
-    CommandLineRunner commandLineRunner(RoleRepository roleRepository, AccountService accountService, CourseService courseService, ModuleService moduleService, ContentService contentService, EnrollmentService enrollmentService, ForumService forumService, ForumCommentService forumCommentService){
+    CommandLineRunner commandLineRunner(RoleRepository roleRepository, AccountService accountService, CourseService courseService, ModuleService moduleService, ContentService contentService, EnrollmentService enrollmentService, ForumService forumService, ForumCommentService forumCommentService, RecipeService recipeService, RecipeCategoryService recipeCategoryService){
         return args -> {
 
             Roles role1 = new Roles();
@@ -79,6 +84,18 @@ public class StartAppConfig {
             ForumCommentRequest forumCommentRequest2 = new ForumCommentRequest(forum1.getId(), account.getId(), "Really inspiring stuff");
             ForumComments forumComment2 = forumCommentService.addForumComment(forumCommentRequest2);
 
+            RecipeCategories category1 = recipeCategoryService.addRecipeCategory("Cocktail");
+            RecipeCategories category2 = recipeCategoryService.addRecipeCategory("Frappucino");
+            RecipeCategories category3 = recipeCategoryService.addRecipeCategory("Manual Brew");
+
+            RecipeRequest recipeRequest1 = new RecipeRequest(category1.getId(), account.getId(), "Negroni", "This is the negroni", "1. Wow", "1. Wew", "Done all");
+            Recipes recipe1 = recipeService.addRecipe(null, recipeRequest1);
+
+            RecipeRequest recipeRequest2 = new RecipeRequest(category1.getId(), account.getId(), "Whiskey Sour", "This is the negroni", "1. Wow", "1. Wew", "Done all");
+            Recipes recipe2 = recipeService.addRecipe(null, recipeRequest2);
+
+            RecipeRequest recipeRequest3 = new RecipeRequest(category1.getId(), account.getId(), "Martini", "This is the negroni", "1. Wow", "1. Wew", "Done all");
+            Recipes recipe3 = recipeService.addRecipe(null, recipeRequest3);
         };
     }
 }

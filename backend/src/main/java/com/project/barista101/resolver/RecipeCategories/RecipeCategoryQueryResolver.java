@@ -1,6 +1,7 @@
 package com.project.barista101.resolver.RecipeCategories;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.transaction.Transactional;
 
@@ -23,5 +24,10 @@ public class RecipeCategoryQueryResolver implements GraphQLQueryResolver{
     @Transactional
     public List<RecipeCategories> getAllRecipeCategories(){
         return recipeCategoryService.getAllRecipeCategories();
+    }
+
+    @Transactional
+    public RecipeCategories getRecipeCategory(UUID recipeCategoryId){
+        return recipeCategoryService.getRecipeCategory(recipeCategoryId);
     }
 }

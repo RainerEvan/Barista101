@@ -64,8 +64,8 @@ public class RecipeService {
 
     @Transactional
     public Recipes addRecipe(MultipartFile file, RecipeRequest recipeRequest){
-        RecipeCategories recipeCategory = recipeCategoryRepository.findById(recipeRequest.getCategoryId())
-            .orElseThrow(() -> new IllegalStateException("Category with current id cannot be found"));
+        RecipeCategories recipeCategory = recipeCategoryRepository.findById(recipeRequest.getRecipeCategoryId())
+            .orElseThrow(() -> new IllegalStateException("Recipe category with current id cannot be found"));
 
         Accounts account = accountRepository.findById(recipeRequest.getAccountId())
             .orElseThrow(() -> new IllegalStateException("Account with current id cannot be found"));
