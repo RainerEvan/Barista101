@@ -44,6 +44,9 @@ public class Recipes {
     private String description;
 
     @Lob
+    private String equipments;
+
+    @Lob
     private String ingredients;
 
     @Lob

@@ -17,6 +17,9 @@ import { environment } from 'src/environments/environment';
 export class RecipeDetailComponent implements OnInit {
 
   recipe:Recipes;
+  equipments:string[];
+  ingredients:string[];
+  instructions:string[];
   loading:boolean = false;
   thumbnailUrl=environment.apiUrl+"/recipe/thumbnail/";
   showDropdown:boolean = false;
@@ -36,6 +39,9 @@ export class RecipeDetailComponent implements OnInit {
       this.recipeService.getRecipe(recipeId).subscribe({
         next:(response:Recipes)=>{
           this.recipe = response;
+          this.equipments = JSON.parse(response.equipments);
+          this.ingredients = JSON.parse(response.ingredients);
+          this.instructions = JSON.parse(response.instructions);
           this.loading = false;
         },
         error:(error:any)=>{

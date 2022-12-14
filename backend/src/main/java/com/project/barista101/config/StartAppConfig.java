@@ -14,6 +14,7 @@ import com.project.barista101.model.course.Modules;
 import com.project.barista101.model.forum.ForumComments;
 import com.project.barista101.model.forum.Forums;
 import com.project.barista101.model.recipe.RecipeCategories;
+import com.project.barista101.model.recipe.RecipeRatings;
 import com.project.barista101.model.recipe.Recipes;
 import com.project.barista101.payload.request.ContentRequest;
 import com.project.barista101.payload.request.CourseRequest;
@@ -21,6 +22,7 @@ import com.project.barista101.payload.request.EnrollmentRequest;
 import com.project.barista101.payload.request.ForumCommentRequest;
 import com.project.barista101.payload.request.ForumRequest;
 import com.project.barista101.payload.request.ModuleRequest;
+import com.project.barista101.payload.request.RecipeRatingRequest;
 import com.project.barista101.payload.request.RecipeRequest;
 import com.project.barista101.payload.request.SignupRequest;
 import com.project.barista101.repository.RoleRepository;
@@ -32,12 +34,13 @@ import com.project.barista101.service.ForumCommentService;
 import com.project.barista101.service.ForumService;
 import com.project.barista101.service.ModuleService;
 import com.project.barista101.service.RecipeCategoryService;
+import com.project.barista101.service.RecipeRatingService;
 import com.project.barista101.service.RecipeService;
 
 @Configuration
 public class StartAppConfig {
     @Bean
-    CommandLineRunner commandLineRunner(RoleRepository roleRepository, AccountService accountService, CourseService courseService, ModuleService moduleService, ContentService contentService, EnrollmentService enrollmentService, ForumService forumService, ForumCommentService forumCommentService, RecipeService recipeService, RecipeCategoryService recipeCategoryService){
+    CommandLineRunner commandLineRunner(RoleRepository roleRepository, AccountService accountService, CourseService courseService, ModuleService moduleService, ContentService contentService, EnrollmentService enrollmentService, ForumService forumService, ForumCommentService forumCommentService, RecipeService recipeService, RecipeCategoryService recipeCategoryService, RecipeRatingService recipeRatingService){
         return args -> {
 
             Roles role1 = new Roles();
@@ -88,14 +91,24 @@ public class StartAppConfig {
             RecipeCategories category2 = recipeCategoryService.addRecipeCategory("Frappucino");
             RecipeCategories category3 = recipeCategoryService.addRecipeCategory("Manual Brew");
 
-            RecipeRequest recipeRequest1 = new RecipeRequest(category1.getId(), account.getId(), "Negroni", "This is the negroni", "1. Wow", "1. Wew", "Done all");
+            RecipeRequest recipeRequest1 = new RecipeRequest(category1.getId(), account.getId(), "Martini", "This is the negroni", "[\"Glass\",\"Shaker\",\"Spoon\"]","Wow", "Wew", "Done all");
             Recipes recipe1 = recipeService.addRecipe(null, recipeRequest1);
-
-            RecipeRequest recipeRequest2 = new RecipeRequest(category1.getId(), account.getId(), "Whiskey Sour", "This is the negroni", "1. Wow", "1. Wew", "Done all");
+            
+            RecipeRequest recipeRequest2 = new RecipeRequest(category1.getId(), account.getId(), "Negroni", "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe voluptates, nesciunt consequuntur deleniti tempore molestias, necessitatibus temporibus ratione in sint quisquam. Quos velit unde ad ab vel aut, aspernatur eius.", "[\"Glass\",\"Shaker\",\"Spoon\"]", "[\"Whiskey\",\"Lemon Juice\",\"Soda Water\"]", "[\"pour 30 ml of whiskey into the shaker\",\"Squeeze 20 ml of lemon and add the juice into the shaker\",\"Add 5 pcs of ice cubes into the shaker\"]", "Lorem ipsum, dolor sit amet consectetur adipisicing elit.");
             Recipes recipe2 = recipeService.addRecipe(null, recipeRequest2);
-
-            RecipeRequest recipeRequest3 = new RecipeRequest(category1.getId(), account.getId(), "Martini", "This is the negroni", "1. Wow", "1. Wew", "Done all");
+            
+            RecipeRequest recipeRequest3 = new RecipeRequest(category1.getId(), account.getId(), "Whiskey Sour", "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe voluptates, nesciunt consequuntur deleniti tempore molestias, necessitatibus temporibus ratione in sint quisquam. Quos velit unde ad ab vel aut, aspernatur eius.", "[\"Glass\",\"Shaker\",\"Spoon\"]", "[\"Whiskey\",\"Lemon Juice\",\"Soda Water\"]", "[\"Pour 30 ml of whiskey into the shaker\",\"Squeeze 20 ml of lemon and add the juice into the shaker\",\"Add 5 pcs of ice cubes into the shaker\"]", "Lorem ipsum, dolor sit amet consectetur adipisicing elit.");
             Recipes recipe3 = recipeService.addRecipe(null, recipeRequest3);
+
+            RecipeRatingRequest recipeRatingRequest1 = new RecipeRatingRequest(recipe3.getId(), account.getId(), 5, "This is a great recipe");
+            RecipeRatings recipeRating1 = recipeRatingService.addRecipeRating(recipeRatingRequest1);
+
+            RecipeRatingRequest recipeRatingRequest2 = new RecipeRatingRequest(recipe3.getId(), account.getId(), 4, "Not bad for a mocktail");
+            RecipeRatings recipeRating2 = recipeRatingService.addRecipeRating(recipeRatingRequest2);
+
+            RecipeRatingRequest recipeRatingRequest3 = new RecipeRatingRequest(recipe3.getId(), account.getId(), 4, "Great recipe here");
+            RecipeRatings recipeRating3 = recipeRatingService.addRecipeRating(recipeRatingRequest3);
+
         };
     }
 }

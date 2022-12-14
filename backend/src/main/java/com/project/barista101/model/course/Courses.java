@@ -28,6 +28,7 @@ public class Courses {
 
     private String title;
 
+    @Lob
     private String description;
 
     @Lob

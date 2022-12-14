@@ -1,5 +1,7 @@
 package com.project.barista101.service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.UUID;
 
@@ -49,6 +51,7 @@ public class RecipeRatingService {
         recipeRating.setRecipe(recipe);
         recipeRating.setAccount(account);
         recipeRating.setRating(recipeRatingRequest.getRating());
+        recipeRating.setBody(recipeRatingRequest.getBody());
 
         return recipeRatingRepository.save(recipeRating);
     }
@@ -59,5 +62,27 @@ public class RecipeRatingService {
             .orElseThrow(() -> new IllegalStateException("Recipe rating with current id cannot be found"));
 
         recipeRatingRepository.delete(recipeRating);
+    }
+
+    @Transactional
+    public String calculateRatingForRecipe(UUID recipeId){
+        List<RecipeRatings> recipeRatings = getAllRatingsForRecipe(recipeId);
+
+        double totalRating = 0;
+
+        for(RecipeRatings recipeRating:recipeRatings){
+            double rating = recipeRating.getRating();
+
+            totalRating += rating;
+        }
+
+        double percentage = totalRating/recipeRatings.size();
+
+        BigDecimal bd = new BigDecimal(Double.toString(percentage));
+        bd = bd.setScale(1, RoundingMode.HALF_UP);
+
+        String finalRate = bd.toString();
+
+        return finalRate;
     }
 }

@@ -29,6 +29,7 @@ export class RecipeService {
               fullname
             }
             title
+            rating
           }
         }
       `, 
@@ -56,10 +57,12 @@ export class RecipeService {
             }
             title
             description
+            equipments
             ingredients
             instructions
             notes
             createdAt
+            rating
           }
         }
       `, 

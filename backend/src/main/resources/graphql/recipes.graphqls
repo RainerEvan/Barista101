@@ -4,11 +4,13 @@ type Recipes{
     author:Accounts
     title:String
     description:String
+    equipments:String
     ingredients:String
     instructions:String
     notes:String
     thumbnail:String
     createdAt:DateTime
+    rating:String
 }
 
 extend type Query{

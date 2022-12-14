@@ -11,4 +11,5 @@ public class RecipeRatingRequest {
     private UUID recipeId;
     private UUID accountId;
     private Integer rating;
+    private String body;
 }

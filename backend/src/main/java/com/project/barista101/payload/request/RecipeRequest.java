@@ -12,6 +12,7 @@ public class RecipeRequest {
     private UUID accountId;
     private String title;
     private String description;
+    private String equipments;
     private String ingredients;
     private String instructions;
     private String notes;

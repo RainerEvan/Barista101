@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -37,4 +38,7 @@ public class RecipeRatings {
     private Accounts account;
 
     private Integer rating;
+
+    @Lob
+    private String body;
 }

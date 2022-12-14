@@ -7,9 +7,11 @@ export type Recipes = {
     author:Accounts;
     title:string;
     description:string;
+    equipments:string;
     ingredients:string;
     instructions:string;
     notes:string;
     thumbnail:string;
     createdAt:Date;
+    rating:string;
 }

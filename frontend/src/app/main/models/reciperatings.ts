@@ -6,4 +6,5 @@ export type RecipeRatings = {
     recipe:Recipes;
     account:Accounts;
     rating:number;
+    body:string;
 }

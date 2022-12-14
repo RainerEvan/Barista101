@@ -1,0 +1,33 @@
+<div class="container p-4">
+    <div>
+        <h1 class="font-bold text-3xl">Add Recipe</h1>
+    </div>
+    <form [formGroup]="recipeForm" (ngSubmit)="addRecipe()" class="flex flex-col space-y-4 my-3">
+        <div class="space-y-1">
+            <label for="recipeCategoryId" class="font-medium">Title*</label>
+            <div class="relative">
+                <select class="input-text appearance-none cursor-pointer" formControlName="recipeCategoryId">
+                    <option [value]="null">Select category</option>
+                    <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                </select>
+                <hero-icon name="chevron-down" type="outline" class="absolute top-2.5 right-3 w-4 h-4 text-inherit pointer-events-none"></hero-icon>
+            </div>
+        </div>
+        <div class="space-y-1">
+            <label for="title" class="font-medium">Title*</label>
+            <input type="text" placeholder="Enter title" class="input-text" formControlName="title">
+        </div>
+        <div class="space-y-1">
+            <label for="description" class="font-medium">Description*</label>
+            <textarea rows="4" placeholder="Enter description" class="input-text" formControlName="description"></textarea>
+        </div>
+        <div class="space-y-1">
+            <label for="notes" class="font-medium">Notes*</label>
+            <textarea rows="3" placeholder="Enter notes" class="input-text" formControlName="notes"></textarea>
+        </div>
+        <div class="flex items-center justify-evenly space-x-4">
+            <button type="submit" [disabled]="recipeForm.invalid" class="w-full button-primary">Submit</button>
+            <button type="button" (click)="resetForm(recipeForm)" class="w-full button-secondary">Reset</button>
+        </div>
+    </form>
+</div>

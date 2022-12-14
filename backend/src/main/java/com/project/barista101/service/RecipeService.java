@@ -75,6 +75,7 @@ public class RecipeService {
         recipe.setAuthor(account);
         recipe.setTitle(recipeRequest.getTitle());
         recipe.setDescription(recipeRequest.getDescription());
+        recipe.setEquipments(recipeRequest.getEquipments());
         recipe.setIngredients(recipeRequest.getIngredients());
         recipe.setInstructions(recipeRequest.getInstructions());
         recipe.setNotes(recipeRequest.getNotes());

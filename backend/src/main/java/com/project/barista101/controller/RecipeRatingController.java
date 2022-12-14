@@ -12,26 +12,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.barista101.model.recipe.RecipeComments;
-import com.project.barista101.payload.request.RecipeCommentRequest;
-import com.project.barista101.service.RecipeCommentService;
+import com.project.barista101.model.recipe.RecipeRatings;
+import com.project.barista101.payload.request.RecipeRatingRequest;
+import com.project.barista101.service.RecipeRatingService;
 import com.project.barista101.utils.ResponseHandler;
 
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/api/recipe-comment")
+@RequestMapping("/api/recipe-Rating")
 @AllArgsConstructor
-public class RecipeCommentController {
+public class RecipeRatingController {
     @Autowired
-    private final RecipeCommentService recipeCommentService;
+    private final RecipeRatingService recipeRatingService;
     
     @PostMapping(path = "/add")
-    public ResponseEntity<Object> addRecipeComment(@RequestBody RecipeCommentRequest recipeCommentRequest){
+    public ResponseEntity<Object> addRecipeRating(@RequestBody RecipeRatingRequest recipeRatingRequest){
         try{
-            RecipeComments recipeComment = recipeCommentService.addRecipeComment(recipeCommentRequest);
+            RecipeRatings recipeRating = recipeRatingService.addRecipeRating(recipeRatingRequest);
 
-            return ResponseHandler.generateResponse("Recipe comment has been added successfully!", HttpStatus.OK, recipeComment);
+            return ResponseHandler.generateResponse("Recipe rating has been added successfully!", HttpStatus.OK, recipeRating);
 
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);
@@ -39,11 +39,11 @@ public class RecipeCommentController {
     }
 
     @DeleteMapping(path = "/delete")
-    public ResponseEntity<Object> deleteRecipeComment(@RequestParam("recipeCommentId") UUID recipeCommentId){
+    public ResponseEntity<Object> deleteRecipeRating(@RequestParam("recipeRatingId") UUID recipeRatingId){
         try{
-            recipeCommentService.deleteRecipeComment(recipeCommentId);
+            recipeRatingService.deleteRecipeRating(recipeRatingId);
 
-            return ResponseHandler.generateResponse("Recipe comment has been deleted successfully!", HttpStatus.OK, null);
+            return ResponseHandler.generateResponse("Recipe rating has been deleted successfully!", HttpStatus.OK, null);
 
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);
