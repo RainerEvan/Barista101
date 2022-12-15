@@ -76,7 +76,11 @@ public class RecipeRatingService {
             totalRating += rating;
         }
 
-        double percentage = totalRating/recipeRatings.size();
+        double percentage = 0;
+
+        if(totalRating != 0){
+            percentage = totalRating/recipeRatings.size();
+        }
 
         BigDecimal bd = new BigDecimal(Double.toString(percentage));
         bd = bd.setScale(1, RoundingMode.HALF_UP);

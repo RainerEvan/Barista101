@@ -1,8 +1,8 @@
 <div class="sticky block inset-x-0 bottom-0 z-10 border-t bg-white">
     <nav class="flex items-center justify-evenly">
         <a *ngFor="let menu of menus" [routerLink]="menu.link" routerLinkActive="active" #rla="routerLinkActive" class="w-full flex flex-col items-center justify-center rounded-xl m-1.5 font-medium transition ease-in-out duration-200 hover:scale-105 active:bg-gray-100">
-            <hero-icon [name]="menu.icon" [type]="rla.isActive ? 'solid':'outline'" class="w-5 h-5 text-inherit" [class]="rla.isActive ? 'fill-gray-900':''"></hero-icon>
-            <span class="text-xs">{{menu.label}}</span>
+            <hero-icon [name]="menu.icon" [type]="rla.isActive ? 'solid':'outline'" class="w-5 h-5 text-inherit" [class]="rla.isActive ? 'fill-red-800 text-red-800':''"></hero-icon>
+            <span class="text-xs tracking-wide">{{menu.label}}</span>
         </a>
     </nav>
 </div>

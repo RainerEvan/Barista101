@@ -77,14 +77,17 @@ public class StartAppConfig {
 
             EnrollmentRequest enrollmentRequest = new EnrollmentRequest(account.getId(), course1.getId());
             Enrollments enrollment1 = enrollmentService.addEnrollment(enrollmentRequest);
-
-            ForumRequest forumRequest1 = new ForumRequest(account.getId(), "The Best Coffee in Bali", "<p>Most coffee plants are grown around what’s known as ‘the bean belt’, an area around the equator between the tropics of Capricorn and Cancer. It’s here that’s home to the coffee capitals of the world such as Brazil, Vietnam, Colombia, Indonesia and Ethiopia, as these are the locations with the perfect conditions for coffee plants to thrive.</p><br><p>Interestingly, the location of where coffee beans are grown can alter the taste. Things such as climate, elevation and even soil type can impact the flavour of the coffee the beans produce.</p>");
+            
+                ForumRequest forumRequest1 = new ForumRequest(account.getId(), "Tips For Making Cold Brew Coffee", "<p>Cold brew is simply coffee that has been brewed with cold rather than hot water and usually involves a long steeping process—anywhere between 12-24 hours. In terms of flavor, cold brew is generally characterized as smooth, low-acid, and heavier than its hot brewed counterparts.<br><br>Although cold brew has been around for centuries, it’s really in the last ten years that it’s become a staple on coffee shops menus and recognizable by most coffee drinkers</p>");
             Forums forum1 = forumService.addForum(forumRequest1);
+           
+                ForumRequest forumRequest2 = new ForumRequest(account.getId(), "The Best Coffee in Bali", "<p>Most coffee plants are grown around what’s known as ‘the bean belt’, an area around the equator between the tropics of Capricorn and Cancer. It’s here that’s home to the coffee capitals of the world such as Brazil, Vietnam, Colombia, Indonesia and Ethiopia, as these are the locations with the perfect conditions for coffee plants to thrive.</p><br><p>Interestingly, the location of where coffee beans are grown can alter the taste. Things such as climate, elevation and even soil type can impact the flavour of the coffee the beans produce.</p>");
+                Forums forum2 = forumService.addForum(forumRequest2);
 
-            ForumCommentRequest forumCommentRequest1 = new ForumCommentRequest(forum1.getId(), account.getId(), "Agreed, what a great information about coffee in Indonesia");
+            ForumCommentRequest forumCommentRequest1 = new ForumCommentRequest(forum2.getId(), account.getId(), "Agreed, what a great information about coffee in Indonesia");
             ForumComments forumComment1 = forumCommentService.addForumComment(forumCommentRequest1);
 
-            ForumCommentRequest forumCommentRequest2 = new ForumCommentRequest(forum1.getId(), account.getId(), "Really inspiring stuff");
+            ForumCommentRequest forumCommentRequest2 = new ForumCommentRequest(forum2.getId(), account.getId(), "Really inspiring stuff");
             ForumComments forumComment2 = forumCommentService.addForumComment(forumCommentRequest2);
 
             RecipeCategories category1 = recipeCategoryService.addRecipeCategory("Cocktail");
