@@ -13,6 +13,9 @@ import { RecipeService } from 'src/app/main/services/recipe/recipe.service';
 export class AddRecipeComponent implements OnInit {
 
   recipeForm:FormGroup;
+  equipments:FormArray;
+  ingredients:FormArray;
+  instructions:FormArray;
   categories:RecipeCategories[]=[];
   loading:boolean = false;
   isRecipeFormSubmitted:boolean = false;
@@ -23,25 +26,25 @@ export class AddRecipeComponent implements OnInit {
 
   ngOnInit(): void {
     this.generateRecipeForm();
+    this.equipments = this.formBuilder.array([this.createEquipment()]);
+    this.ingredients = this.formBuilder.array([this.createEquipment()]);
+    this.instructions = this.formBuilder.array([this.createEquipment()]);
     this.getAllRecipeCategories();
   }
 
   generateRecipeForm(){
     this.recipeForm = this.formBuilder.group({
       recipeCategoryId: [null, [Validators.required]],
-      accountId: ['01c9dc23-c888-4607-8aa4-15f19efc18f1'],
+      accountId: ['08048126-9279-44c7-8965-4573858f0de5'],
       title: [null, [Validators.required]],
       description: [null, [Validators.required]],
-      equipments: this.formBuilder.array([this.createEquipment()]),
-      ingredients: this.formBuilder.array([this.createIngredient()]),
-      instructions: this.formBuilder.array([this.createInstruction()]),
-      notes: [null, [Validators.required]],
+      equipments: [null],
+      ingredients: [null],
+      instructions: [null],
+      notes: [null],
     });
   }
 
-  get equipments(){
-    return this.recipeForm.controls['equipments'] as FormArray;
-  }
   createEquipment(){
     return this.formBuilder.group({
       item: ['', [Validators.required]]
@@ -54,9 +57,6 @@ export class AddRecipeComponent implements OnInit {
     this.equipments.removeAt(index);
   }
 
-  get ingredients(){
-    return this.recipeForm.controls['ingredients'] as FormArray;
-  }
   createIngredient(){
     return this.formBuilder.group({
       item: ['', [Validators.required]]
@@ -69,9 +69,6 @@ export class AddRecipeComponent implements OnInit {
     this.ingredients.removeAt(index);
   }
 
-  get instructions(){
-    return this.recipeForm.controls['instructions'] as FormArray;
-  }
   createInstruction(){
     return this.formBuilder.group({
       item: ['', [Validators.required]]
@@ -129,23 +126,28 @@ export class AddRecipeComponent implements OnInit {
   }
 
   public addRecipe(): void{
-    // if(this.recipeForm.valid){
-      const formData = this.recipeForm.value;
+    if(this.recipeForm.valid){
+      const formData = new FormData();
+      this.recipeForm.controls['equipments'].setValue(JSON.stringify(this.equipments.value));
+      this.recipeForm.controls['ingredients'].setValue(JSON.stringify(this.ingredients.value));
+      this.recipeForm.controls['instructions'].setValue(JSON.stringify(this.instructions.value));
+      const recipe = this.recipeForm.value;
 
-      console.log(formData);
+      formData.append('image',this.thumbnail);
+      formData.append('recipe', new Blob([JSON.stringify(recipe)], {type:"application/json"}));
 
-    //   this.recipeService.addRecipe(formData).subscribe({
-    //     next: (result: any) => {
-    //       console.log(result);
-    //       this.isRecipeFormSubmitted = true;
-    //       this.router.navigate(["./recipe"]);
-    //     },
-    //     error: (error: any) => {
-    //       console.log(error);
-    //       this.isRecipeFormSubmitted = false;
-    //     }
-    //   });
-    // } 
+      this.recipeService.addRecipe(formData).subscribe({
+        next: (result: any) => {
+          console.log(result);
+          this.isRecipeFormSubmitted = true;
+          this.router.navigate(["./recipe"]);
+        },
+        error: (error: any) => {
+          console.log(error);
+          this.isRecipeFormSubmitted = false;
+        }
+      });
+    } 
   }
 
   resetForm(form: FormGroup){

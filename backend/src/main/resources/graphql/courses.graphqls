@@ -3,7 +3,7 @@ type Courses{
     title:String
     description:String
     thumbnail:String
-    modules:[Modules]
+    modules:Int
     createdAt:DateTime
 }
 

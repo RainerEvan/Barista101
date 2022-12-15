@@ -12,7 +12,7 @@
             <div class="relative">
                 <select class="input-text appearance-none cursor-pointer" formControlName="recipeCategoryId">
                     <option [value]="null">Select category</option>
-                    <option *ngFor="let category of categories" [value]="category.id" class="text-inherit">{{category.name}}</option>
+                    <option *ngFor="let category of categories" [value]="category.id" class="text-inherit text-sm">{{category.name}}</option>
                 </select>
                 <hero-icon name="chevron-down" type="outline" class="absolute top-2.5 right-3 w-4 h-4 text-inherit pointer-events-none"></hero-icon>
             </div>
@@ -30,8 +30,8 @@
                 </button>
             </div>
             <div formArrayName="equipments" class="space-y-3">
-                <div *ngFor="let equipmentForm of equipments.controls; let i = index" class="">
-                    <div [formGroup]="equipmentForm" class="w-full inline-flex space-x-2">
+                <div *ngFor="let equipment of equipments.controls; let i = index" class="">
+                    <div [formGroup]="equipment" class="w-full inline-flex space-x-2">
                         <input type="text" placeholder="Enter equipment" class="input-text" formControlName="item">
                         <button (click)="deleteEquipment(i)" type="button" class="flex items-center justify-center rounded-full">
                             <hero-icon name="x-circle" type="solid" class="w-6 h-6 text-red-800 fill-red-800"></hero-icon>
@@ -49,8 +49,8 @@
                 </button>
             </div>
             <div formArrayName="ingredients" class="space-y-3">
-                <div *ngFor="let ingredientForm of ingredients.controls; let i = index" class="">
-                    <div [formGroup]="ingredientForm" class="w-full inline-flex space-x-2">
+                <div *ngFor="let ingredient of ingredients.controls; let i = index" class="">
+                    <div [formGroup]="ingredient" class="w-full inline-flex space-x-2">
                         <input type="text" placeholder="Enter ingredient" class="input-text" formControlName="item">
                         <button (click)="deleteIngredient(i)" type="button" class="flex items-center justify-center rounded-full">
                             <hero-icon name="x-circle" type="solid" class="w-6 h-6 text-red-800 fill-red-800"></hero-icon>
@@ -68,8 +68,8 @@
                 </button>
             </div>
             <div formArrayName="instructions" class="space-y-3">
-                <div *ngFor="let instructionForm of instructions.controls; let i = index" class="">
-                    <div [formGroup]="instructionForm" class="w-full inline-flex space-x-2">
+                <div *ngFor="let instruction of instructions.controls; let i = index" class="">
+                    <div [formGroup]="instruction" class="w-full inline-flex space-x-2">
                         <input type="text" placeholder="Enter instruction" class="input-text" formControlName="item">
                         <button (click)="deleteInstruction(i)" type="button" class="flex items-center justify-center rounded-full">
                             <hero-icon name="x-circle" type="solid" class="w-6 h-6 text-red-800 fill-red-800"></hero-icon>
@@ -95,7 +95,7 @@
         </div>
         <div class="flex items-center justify-evenly space-x-4">
             <button type="button" (click)="resetForm(recipeForm)" class="w-full button-secondary">Reset</button>
-            <button type="submit" [disabled]="!recipeForm.invalid" class="w-full button-primary">Submit</button>
+            <button type="submit" [disabled]="recipeForm.invalid" class="w-full button-primary">Submit</button>
         </div>
     </form>
 </div>

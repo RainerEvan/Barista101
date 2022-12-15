@@ -41,6 +41,14 @@ public class ModuleService {
     }
 
     @Transactional
+    public int countModulesForCourse(UUID courseId){
+        Courses course = courseRepository.findById(courseId)
+            .orElseThrow(() -> new IllegalStateException("Course with current id cannot be found"));
+
+        return moduleRepository.countByCourse(course);
+    }
+
+    @Transactional
     public Modules getModule(UUID moduleId){
         return moduleRepository.findById(moduleId)
             .orElseThrow(() -> new IllegalStateException("Module with current id cannot be found"));

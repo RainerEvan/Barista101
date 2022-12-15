@@ -32,13 +32,13 @@
             <div class="space-y-0.5">
                 <h2 class="font-semibold">Equipment</h2>
                 <ul *ngIf="recipe" class="pl-4 list-disc list-outside text-sm text-gray-600">
-                    <li *ngFor="let equipment of equipments">{{equipment}}</li>
+                    <li *ngFor="let equipment of equipments">{{equipment.item}}</li>
                 </ul>
             </div>
             <div class="space-y-0.5">
                 <h2 class="font-semibold">Ingredients</h2>
                 <ul *ngIf="recipe" class="pl-4 list-disc list-outside text-sm text-gray-600">
-                    <li *ngFor="let ingredient of ingredients">{{ingredient}}</li>
+                    <li *ngFor="let ingredient of ingredients">{{ingredient.item}}</li>
                 </ul>
             </div>
             <div class="space-y-0.5">
@@ -46,13 +46,13 @@
                 <ul *ngIf="recipe" class="space-y-0.5 pl-4 list-disc list-outside text-sm text-gray-600">
                     <li *ngFor="let instruction of instructions; let i = index">
                         <span class="font-semibold">STEP {{i+1}}: </span>
-                        <span class="text-justify">{{instruction}}</span>
+                        <span class="text-justify">{{instruction.item}}</span>
                     </li>
                 </ul>
             </div>
-            <div class="space-y-0.5 p-4 bg-orange-100 rounded-md italic">
+            <div *ngIf="recipe?.notes" class="space-y-0.5 p-4 bg-orange-100 rounded-md italic">
                 <h2 class="font-semibold">Notes</h2>
-                <p *ngIf="recipe" class="text-sm text-justify text-gray-600">{{recipe.notes}}</p>
+                <p class="text-sm text-justify text-gray-600">{{recipe.notes}}</p>
             </div>
         </div>
     </div>

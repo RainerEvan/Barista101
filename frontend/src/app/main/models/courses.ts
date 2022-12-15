@@ -6,5 +6,5 @@ export type Courses = {
     description:string;
     thumbnail:string;
     createdAt:Date;
-    modules:Modules[];
+    modules:number;
 }

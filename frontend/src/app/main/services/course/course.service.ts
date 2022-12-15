@@ -23,9 +23,7 @@ export class CourseService {
             title
             description
             createdAt
-            modules{
-              id
-            }
+            modules
           }
         }
       `,
@@ -42,9 +40,7 @@ export class CourseService {
             title
             description
             createdAt
-            modules{
-              id
-            }
+            modules
           }
         }
       `, 
