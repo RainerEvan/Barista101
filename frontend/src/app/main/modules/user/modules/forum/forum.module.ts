@@ -9,6 +9,7 @@ import { dotsHorizontal, HeroIconModule, plus, trash } from 'ng-heroicon';
 import { AddForumComponent } from './components/add-forum/add-forum.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../../shared/shared.module';
+import { CommentDetailComponent } from './components/comment-detail/comment-detail.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { SharedModule } from '../../../shared/shared.module';
     CommentListComponent,
     ForumDetailComponent,
     AddForumComponent,
+    CommentDetailComponent,
   ],
   imports: [
     CommonModule,

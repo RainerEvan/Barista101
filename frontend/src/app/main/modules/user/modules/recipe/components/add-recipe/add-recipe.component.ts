@@ -1,7 +1,8 @@
+import { Dialog } from '@angular/cdk/dialog';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { RecipeCategories } from 'src/app/main/models/recipecategories';
+import { ResultDialogComponent } from 'src/app/main/modules/shared/components/result-dialog/result-dialog.component';
 import { RecipeCategoryService } from 'src/app/main/services/recipe-category/recipe-category.service';
 import { RecipeService } from 'src/app/main/services/recipe/recipe.service';
 
@@ -22,7 +23,7 @@ export class AddRecipeComponent implements OnInit {
   thumbnail:any;
   imageUrl:any;
 
-  constructor(private router:Router, private recipeService:RecipeService, private recipeCategoryService:RecipeCategoryService, private formBuilder:FormBuilder) {}
+  constructor(public dialog:Dialog, private recipeService:RecipeService, private recipeCategoryService:RecipeCategoryService, private formBuilder:FormBuilder) {}
 
   ngOnInit(): void {
     this.generateRecipeForm();
@@ -35,7 +36,7 @@ export class AddRecipeComponent implements OnInit {
   generateRecipeForm(){
     this.recipeForm = this.formBuilder.group({
       recipeCategoryId: [null, [Validators.required]],
-      accountId: ['08048126-9279-44c7-8965-4573858f0de5'],
+      accountId: ['998f68ee-df07-4280-8f36-08ab0e645d87'],
       title: [null, [Validators.required]],
       description: [null, [Validators.required]],
       equipments: [null],
@@ -140,11 +141,12 @@ export class AddRecipeComponent implements OnInit {
         next: (result: any) => {
           console.log(result);
           this.isRecipeFormSubmitted = true;
-          this.router.navigate(["./recipe"]);
+          this.openResultDialog(this.isRecipeFormSubmitted,"Recipe has been created","./recipe");
         },
         error: (error: any) => {
           console.log(error);
           this.isRecipeFormSubmitted = false;
+          this.openResultDialog(this.isRecipeFormSubmitted,"There was a problem",null);
         }
       });
     } 
@@ -154,4 +156,13 @@ export class AddRecipeComponent implements OnInit {
     form.reset();
   }
 
+  openResultDialog(success:boolean,description:string,link:string){
+    const dialogRef = this.dialog.open(ResultDialogComponent,{
+      data:{
+        success:success,
+        description:description,
+        link:link
+      }
+    });
+  }
 }

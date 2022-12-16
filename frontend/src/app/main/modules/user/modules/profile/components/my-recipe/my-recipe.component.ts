@@ -22,7 +22,7 @@ export class MyRecipeComponent implements OnInit {
   }
 
   public getAllRecipes(){
-    const accountId = "ba1c2d28-6ea5-4dba-a8ae-bf7d4dc5bfe8";
+    const accountId = "998f68ee-df07-4280-8f36-08ab0e645d87";
 
     this.loading = true;
     

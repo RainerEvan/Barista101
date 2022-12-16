@@ -1,6 +1,7 @@
+import { Dialog } from '@angular/cdk/dialog';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ResultDialogComponent } from 'src/app/main/modules/shared/components/result-dialog/result-dialog.component';
 import { ForumService } from 'src/app/main/services/forum/forum.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class AddForumComponent implements OnInit {
   forumForm:FormGroup;
   isForumFormSubmitted:boolean = false;
 
-  constructor(private router:Router, private forumService:ForumService, private formBuilder:FormBuilder) {}
+  constructor(public dialog:Dialog, private forumService:ForumService, private formBuilder:FormBuilder) {}
 
   ngOnInit(): void {
     this.generateForumForm();
@@ -21,7 +22,7 @@ export class AddForumComponent implements OnInit {
 
   generateForumForm(){
     this.forumForm = this.formBuilder.group({
-      accountId: ['01c9dc23-c888-4607-8aa4-15f19efc18f1'],
+      accountId: ['998f68ee-df07-4280-8f36-08ab0e645d87'],
       title: [null, [Validators.required]],
       body: [null, [Validators.required]],
     });
@@ -35,11 +36,12 @@ export class AddForumComponent implements OnInit {
         next: (result: any) => {
           console.log(result);
           this.isForumFormSubmitted = true;
-          this.router.navigate(["./forum"]);
+          this.openResultDialog(this.isForumFormSubmitted,"Thread has been created","./forum");
         },
         error: (error: any) => {
           console.log(error);
           this.isForumFormSubmitted = false;
+          this.openResultDialog(this.isForumFormSubmitted,"There was a problem",null);
         }
       });
     } 
@@ -49,4 +51,13 @@ export class AddForumComponent implements OnInit {
     form.reset();
   }
 
+  openResultDialog(success:boolean,description:string,link:string){
+    const dialogRef = this.dialog.open(ResultDialogComponent,{
+      data:{
+        success:success,
+        description:description,
+        link:link
+      }
+    });
+  }
 }
