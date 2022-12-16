@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+import javax.transaction.Transactional;
+
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -35,15 +37,18 @@ public class AccountService {
     @Autowired
     private final PasswordEncoder passwordEncoder;
 
+    @Transactional
     public List<Accounts> getAllAccounts(){
         return accountRepository.findAll();
     }
 
+    @Transactional
     public Accounts getAccount(UUID accountId){
         return accountRepository.findById(accountId)
             .orElseThrow(() -> new IllegalStateException("Account with current id cannot be found"));
     }
 
+    @Transactional
     public Accounts addAccount(SignupRequest accountRequest) {
 
         String username = accountRequest.getUsername();
@@ -71,32 +76,15 @@ public class AccountService {
         return accountRepository.save(account);
     }
 
+    @Transactional
     public Accounts editAccount(MultipartFile file, UUID accountId, SignupRequest accountRequest) {
         
         Accounts account = getAccount(accountId);
 
-        String username = accountRequest.getUsername();
         String fullname = accountRequest.getFullname();
-        String email = accountRequest.getEmail();
-
-        if(accountRepository.existsByUsername(username)){
-            throw new IllegalStateException("Account with current username already exists: "+username);
-        }
-
-        if(username != null && username.length() > 0 && !Objects.equals(account.getUsername(), username)){
-            account.setUsername(username);
-        }
 
         if(fullname != null && fullname.length() > 0 && !Objects.equals(account.getFullname(), fullname)){
             account.setFullname(fullname);
-        }
-
-        if(accountRepository.existsByEmail(email)){
-            throw new IllegalStateException("Account with current email already exists: "+email);
-        }
-
-        if(email != null && email.length() > 0 && !Objects.equals(account.getEmail(), email)){
-            account.setEmail(email);
         }
 
         if(file != null){
@@ -106,13 +94,10 @@ public class AccountService {
         return accountRepository.save(account);
     }
 
+    @Transactional
     public void changePassword(ChangePasswordRequest changePasswordRequest){
         
         Accounts account = getAccount(changePasswordRequest.getAccountId());
-
-        if(!passwordEncoder.matches(changePasswordRequest.getOldPassword(), account.getPassword())){
-            throw new IllegalStateException("The old password is not correct");
-        }
 
         if(changePasswordRequest.getNewPassword() != null && changePasswordRequest.getNewPassword().length() > 0){
             account.setPassword(passwordEncoder.encode(changePasswordRequest.getNewPassword()));

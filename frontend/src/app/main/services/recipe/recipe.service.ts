@@ -40,6 +40,31 @@ export class RecipeService {
       .valueChanges.pipe(map((result)=>result.data.getAllRecipesForCategory));
   }
 
+  public getAllRecipesForAccount(accountId: string): Observable<Recipes[]>{
+    return this.apollo.watchQuery<any>({
+      query: gql`
+        query getAllRecipesForAccount($accountId:ID!){
+          getAllRecipesForAccount(accountId: $accountId){
+            id
+            category{
+              id
+              name
+            }
+            author{
+              id
+            }
+            title
+            rating
+          }
+        }
+      `, 
+      variables: {
+        accountId: accountId,
+      },
+    })
+      .valueChanges.pipe(map((result)=>result.data.getAllRecipesForAccount));
+  }
+
   public getRecipe(recipeId: string): Observable<Recipes>{
     return this.apollo.watchQuery<any>({
       query: gql`

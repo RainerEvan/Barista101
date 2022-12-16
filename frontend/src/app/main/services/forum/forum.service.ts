@@ -35,6 +35,30 @@ export class ForumService {
       .valueChanges.pipe(map((result)=>result.data.getAllForums));
   }
 
+  public getAllForumsForAccount(accountId: string): Observable<Forums[]>{
+    return this.apollo.watchQuery<any>({
+      query: gql`
+        query getAllForumsForAccount($accountId:ID!){
+          getAllForumsForAccount(accountId: $accountId){
+            id
+            author{
+              id
+              fullname
+              username
+            }
+            title
+            body
+            createdAt
+          }
+        }
+      `, 
+      variables: {
+        accountId: accountId,
+      },
+    })
+      .valueChanges.pipe(map((result)=>result.data.getAllForumsForAccount));
+  }
+
   public getForum(forumId: string): Observable<Forums>{
     return this.apollo.watchQuery<any>({
       query: gql`

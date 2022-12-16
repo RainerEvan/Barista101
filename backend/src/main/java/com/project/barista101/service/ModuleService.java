@@ -96,7 +96,7 @@ public class ModuleService {
             byte[] image = new byte[0];
             
             if(file == null){
-                File defaultImg = new File("src/main/resources/image/course.jpg");
+                File defaultImg = new File("src/main/resources/image/module.jpg");
                 image = FileUtils.readFileToByteArray(defaultImg);
             } else {
                 image = ProfileImageUtils.cropImageSquare(file);

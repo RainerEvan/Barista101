@@ -9,6 +9,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class ChangePasswordRequest {
     private UUID accountId;
-    private String oldPassword;
     private String newPassword;
 }

@@ -1,0 +1,22 @@
+<div class="container tracking-wide flex flex-col space-y-4 p-4">
+    <a *ngFor="let recipe of recipes" routerLink="../../recipe/detail/{{recipe.id}}" class="grid grid-cols-5 items-center shadow-md rounded-sm bg-white hover:shadow-lg hover:-translate-y-0.5 focus:scale-95">
+        <div class="col-span-1 p-1 sm:p-2">
+            <img [src]="thumbnailUrl+recipe.id" alt="recipe Thumbnail" class="object-cover aspect-square rounded-lg">
+        </div>
+        <div class="col-span-3 p-2">
+            <div class="flex flex-col justify-between space-y-1">
+                <span class="font-medium text-sm sm:text-base">{{recipe.title}}</span>
+                <span class="text-xs sm:text-sm">{{recipe.category.name}}</span>
+            </div>
+        </div>
+        <div class="col-span-1 p-2">
+            <div class="w-full inline-flex items-center justify-center space-x-1">
+                <hero-icon name="star" type="solid" class="w-5 h-5 text-yellow-400 fill-yellow-400"></hero-icon>
+                <span class="text-sm sm:text-base">{{recipe.rating ?? '0'}}</span>
+            </div>
+        </div>
+    </a>
+    <ng-container *ngFor="let i of [0,1,2,3,4,5]">
+        <div *ngIf="loading" class="w-full h-14 bg-gray-200 rounded-sm animate-pulse"></div>
+    </ng-container>
+</div>
