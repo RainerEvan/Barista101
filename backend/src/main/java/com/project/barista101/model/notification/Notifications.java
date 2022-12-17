@@ -33,16 +33,14 @@ public class Notifications {
     @ManyToOne
     @JoinColumn(name="account_id")
     private Accounts receiver;
-
-    private OffsetDateTime createdAt;
-
-    private String title;
-
+    
     @Lob
     private String body;
-
+    
     @Lob
     private String data;
+
+    private OffsetDateTime createdAt;
 
     private Boolean isRead;
 }

@@ -1,10 +1,9 @@
 type Notifications{
     id:ID!
     receiver:Accounts
-    createdAt:DateTime
-    title:String
     body:String
     data:String
+    createdAt:DateTime
     isRead:Boolean
 }
 

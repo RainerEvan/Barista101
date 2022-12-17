@@ -15,6 +15,9 @@ module.exports = {
                 semibold: 600,
                 bold: 700
             },
+            colors: {
+                brown:'#541103'
+            }
         },
     },
 }

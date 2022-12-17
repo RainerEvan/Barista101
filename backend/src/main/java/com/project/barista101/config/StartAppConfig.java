@@ -13,6 +13,7 @@ import com.project.barista101.model.course.Enrollments;
 import com.project.barista101.model.course.Modules;
 import com.project.barista101.model.forum.ForumComments;
 import com.project.barista101.model.forum.Forums;
+import com.project.barista101.model.notification.Notifications;
 import com.project.barista101.model.recipe.RecipeCategories;
 import com.project.barista101.model.recipe.RecipeRatings;
 import com.project.barista101.model.recipe.Recipes;
@@ -22,6 +23,7 @@ import com.project.barista101.payload.request.EnrollmentRequest;
 import com.project.barista101.payload.request.ForumCommentRequest;
 import com.project.barista101.payload.request.ForumRequest;
 import com.project.barista101.payload.request.ModuleRequest;
+import com.project.barista101.payload.request.NotificationRequest;
 import com.project.barista101.payload.request.RecipeRatingRequest;
 import com.project.barista101.payload.request.RecipeRequest;
 import com.project.barista101.payload.request.SignupRequest;
@@ -33,6 +35,7 @@ import com.project.barista101.service.EnrollmentService;
 import com.project.barista101.service.ForumCommentService;
 import com.project.barista101.service.ForumService;
 import com.project.barista101.service.ModuleService;
+import com.project.barista101.service.NotificationService;
 import com.project.barista101.service.RecipeCategoryService;
 import com.project.barista101.service.RecipeRatingService;
 import com.project.barista101.service.RecipeService;
@@ -40,7 +43,7 @@ import com.project.barista101.service.RecipeService;
 @Configuration
 public class StartAppConfig {
     @Bean
-    CommandLineRunner commandLineRunner(RoleRepository roleRepository, AccountService accountService, CourseService courseService, ModuleService moduleService, ContentService contentService, EnrollmentService enrollmentService, ForumService forumService, ForumCommentService forumCommentService, RecipeService recipeService, RecipeCategoryService recipeCategoryService, RecipeRatingService recipeRatingService){
+    CommandLineRunner commandLineRunner(RoleRepository roleRepository, AccountService accountService, CourseService courseService, ModuleService moduleService, ContentService contentService, EnrollmentService enrollmentService, ForumService forumService, ForumCommentService forumCommentService, RecipeService recipeService, RecipeCategoryService recipeCategoryService, RecipeRatingService recipeRatingService, NotificationService notificationService){
         return args -> {
 
             Roles role1 = new Roles();
@@ -78,11 +81,11 @@ public class StartAppConfig {
             EnrollmentRequest enrollmentRequest = new EnrollmentRequest(account.getId(), course1.getId());
             Enrollments enrollment1 = enrollmentService.addEnrollment(enrollmentRequest);
             
-                ForumRequest forumRequest1 = new ForumRequest(account.getId(), "Tips For Making Cold Brew Coffee", "<p>Cold brew is simply coffee that has been brewed with cold rather than hot water and usually involves a long steeping process—anywhere between 12-24 hours. In terms of flavor, cold brew is generally characterized as smooth, low-acid, and heavier than its hot brewed counterparts.<br><br>Although cold brew has been around for centuries, it’s really in the last ten years that it’s become a staple on coffee shops menus and recognizable by most coffee drinkers</p>");
+            ForumRequest forumRequest1 = new ForumRequest(account.getId(), "Tips For Making Cold Brew Coffee", "<p>Cold brew is simply coffee that has been brewed with cold rather than hot water and usually involves a long steeping process—anywhere between 12-24 hours. In terms of flavor, cold brew is generally characterized as smooth, low-acid, and heavier than its hot brewed counterparts.<br><br>Although cold brew has been around for centuries, it’s really in the last ten years that it’s become a staple on coffee shops menus and recognizable by most coffee drinkers</p>");
             Forums forum1 = forumService.addForum(forumRequest1);
            
-                ForumRequest forumRequest2 = new ForumRequest(account.getId(), "The Best Coffee in Bali", "<p>Most coffee plants are grown around what’s known as ‘the bean belt’, an area around the equator between the tropics of Capricorn and Cancer. It’s here that’s home to the coffee capitals of the world such as Brazil, Vietnam, Colombia, Indonesia and Ethiopia, as these are the locations with the perfect conditions for coffee plants to thrive.</p><br><p>Interestingly, the location of where coffee beans are grown can alter the taste. Things such as climate, elevation and even soil type can impact the flavour of the coffee the beans produce.</p>");
-                Forums forum2 = forumService.addForum(forumRequest2);
+            ForumRequest forumRequest2 = new ForumRequest(account.getId(), "The Best Coffee in Bali", "<p>Most coffee plants are grown around what’s known as ‘the bean belt’, an area around the equator between the tropics of Capricorn and Cancer. It’s here that’s home to the coffee capitals of the world such as Brazil, Vietnam, Colombia, Indonesia and Ethiopia, as these are the locations with the perfect conditions for coffee plants to thrive.</p><br><p>Interestingly, the location of where coffee beans are grown can alter the taste. Things such as climate, elevation and even soil type can impact the flavour of the coffee the beans produce.</p>");
+            Forums forum2 = forumService.addForum(forumRequest2);
 
             ForumCommentRequest forumCommentRequest1 = new ForumCommentRequest(forum2.getId(), account.getId(), "Agreed, what a great information about coffee in Indonesia");
             ForumComments forumComment1 = forumCommentService.addForumComment(forumCommentRequest1);
@@ -112,6 +115,8 @@ public class StartAppConfig {
             RecipeRatingRequest recipeRatingRequest3 = new RecipeRatingRequest(recipe3.getId(), account.getId(), 4, "Great recipe here");
             RecipeRatings recipeRating3 = recipeRatingService.addRecipeRating(recipeRatingRequest3);
 
+            NotificationRequest notificationRequest1 = new NotificationRequest(account.getId(), "Congratulations you have completed the module", "");
+            Notifications notification1 = notificationService.addNotification(notificationRequest1);
         };
     }
 }

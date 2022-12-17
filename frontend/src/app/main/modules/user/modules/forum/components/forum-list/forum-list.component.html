@@ -26,5 +26,10 @@
         <ng-container *ngFor="let i of [0,1,2,3]">
             <div *ngIf="loading" class="w-full h-40 bg-gray-200 animate-pulse"></div>
         </ng-container>
+        <ng-container *ngIf="forums.length == 0">
+            <div class="w-full p-4">
+                <span class="font-medium text-sm text-gray-400">No forums yet</span>
+            </div>
+        </ng-container>
     </div>
 </div>

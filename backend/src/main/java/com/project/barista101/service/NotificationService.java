@@ -47,10 +47,9 @@ public class NotificationService {
 
         Notifications notification = new Notifications();
         notification.setReceiver(account);
-        notification.setCreatedAt(OffsetDateTime.now());
-        notification.setTitle(notificationRequest.getTitle());
         notification.setBody(notificationRequest.getBody());
         notification.setData(notificationRequest.getData());
+        notification.setCreatedAt(OffsetDateTime.now());
 
         return notificationRepository.save(notification);
     }

@@ -22,7 +22,7 @@ export class MyForumComponent implements OnInit {
   }
 
   public getAllforums(){
-    const accountId = "998f68ee-df07-4280-8f36-08ab0e645d87";
+    const accountId = "4bfc7ba1-f94c-4841-aba3-acc01ca81a26";
 
     this.loading = true;
     
