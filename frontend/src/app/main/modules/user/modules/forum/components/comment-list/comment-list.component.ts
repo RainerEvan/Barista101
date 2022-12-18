@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ForumComments } from 'src/app/main/models/forumcomments';
+import { AuthService } from 'src/app/main/services/auth/auth.service';
 import { ForumCommentService } from 'src/app/main/services/forum-comment/forum-comment.service';
 import { environment } from 'src/environments/environment';
 
@@ -16,9 +17,10 @@ export class CommentListComponent implements OnInit {
   isForumCommentFormSubmitted:boolean = false;
   comments:ForumComments[] = [];
   loading:boolean = false;
-  profileImgUrl=environment.apiUrl+"/account/profileImg/";
+  profileImgUrl=environment.apiUrl+"/account/profile-img/";
+  accountId = this.authService.accountValue.accountId;
 
-  constructor(private route:ActivatedRoute, private forumCommentService:ForumCommentService, private formBuilder:FormBuilder) { }
+  constructor(private route:ActivatedRoute, private authService:AuthService,private forumCommentService:ForumCommentService, private formBuilder:FormBuilder) { }
 
   ngOnInit(): void {
     this.getAllCommentsForForum();
@@ -30,7 +32,7 @@ export class CommentListComponent implements OnInit {
 
     this.forumCommentForm = this.formBuilder.group({
       forumId: [forumId],
-      accountId: ['01c9dc23-c888-4607-8aa4-15f19efc18f1'],
+      accountId: [this.accountId],
       body: [null, [Validators.required]],
     });
   }

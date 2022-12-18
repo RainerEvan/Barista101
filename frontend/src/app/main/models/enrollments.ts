@@ -7,6 +7,6 @@ export type Enrollments = {
     course:Courses;
     startDate:Date;
     endDate:Date;
-    isCompleted:boolean;
-    progress:string;
+    moduleStatus:string;
+    progress:number;
 }

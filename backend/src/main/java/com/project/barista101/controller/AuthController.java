@@ -33,7 +33,7 @@ public class AuthController {
         try {
             JwtResponse response = authService.signinAccount(signinRequest);
             
-            return ResponseHandler.generateResponse("Authenticated successfully!", HttpStatus.OK, response);
+            return ResponseEntity.status(HttpStatus.OK).body(response);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);
         }

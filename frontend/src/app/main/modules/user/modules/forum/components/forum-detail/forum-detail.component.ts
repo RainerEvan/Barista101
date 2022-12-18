@@ -18,7 +18,7 @@ export class ForumDetailComponent implements OnInit {
 
   forum:Forums;
   loading:boolean = false;
-  profileImgUrl=environment.apiUrl+"/account/profileImg/";
+  profileImgUrl=environment.apiUrl+"/account/profile-img/";
   showDropdown:boolean = false;
 
   constructor(public dialog:Dialog, private router:Router, private route:ActivatedRoute,private forumService:ForumService) { }

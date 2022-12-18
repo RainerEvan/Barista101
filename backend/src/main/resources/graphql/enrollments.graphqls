@@ -4,8 +4,8 @@ type Enrollments{
     course:Courses
     startDate:DateTime
     endDate:DateTime
-    isCompleted:Boolean
-    progress:String
+    moduleStatus:String
+    progress:Int
 }
 
 extend type Query{

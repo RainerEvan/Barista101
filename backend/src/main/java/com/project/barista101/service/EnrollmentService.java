@@ -1,14 +1,14 @@
 package com.project.barista101.service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import javax.transaction.Transactional;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,6 +55,29 @@ public class EnrollmentService {
     }
 
     @Transactional
+    public double calculateProgress(UUID enrollmentId){
+        Enrollments enrollment = getEnrollment(enrollmentId);
+
+        double totalDone = 0;
+        
+        JSONArray moduleStatus = new JSONArray(enrollment.getModuleStatus());
+
+        for(int i=0;i<moduleStatus.length();i++){
+            JSONObject module = moduleStatus.getJSONObject(i);
+            if(module.getBoolean("done")){
+                totalDone += 1;
+            }
+        }
+
+        double percentage = (totalDone / moduleStatus.length()) * 100;
+
+        BigDecimal progress = new BigDecimal(Double.toString(percentage));
+        progress = progress.setScale(0, RoundingMode.HALF_UP);
+
+        return progress.doubleValue();
+    }
+
+    @Transactional
     public Enrollments addEnrollment(EnrollmentRequest enrollmentRequest){
         Accounts account = accountRepository.findById(enrollmentRequest.getAccountId())
             .orElseThrow(() -> new IllegalStateException("Account with current id cannot be found"));
@@ -66,50 +89,43 @@ public class EnrollmentService {
         enrollment.setAccount(account);
         enrollment.setCourse(course);
         enrollment.setStartDate(OffsetDateTime.now());
-        enrollment.setIsCompleted(false);
 
         List<Modules> moduleList = moduleRepository.findAllByCourseOrderByCreatedAtAsc(course);
 
-        JSONArray modules = new JSONArray();
+        JSONArray moduleStatus = new JSONArray();
         
         moduleList.stream().forEach(
             (moduleObject) -> {
                 JSONObject module = new JSONObject();
-                module.put("moduleId", moduleObject.getId().toString());
+                module.put("moduleId", moduleObject.getId());
                 module.put("done", false);
-                modules.put(module);
+                moduleStatus.put(module);
             }
         );
 
-        JSONObject progress = new JSONObject();
-        progress.put("percentage",0);
-        progress.put("modules", modules);
-
-        enrollment.setProgress(progress.toString());
+        enrollment.setModuleStatus(moduleStatus.toString());
 
         return enrollmentRepository.save(enrollment);
     }
 
     @Transactional
-    public String finishModule(UUID enrollmentId, UUID moduleId){
+    public Enrollments finishModule(UUID enrollmentId, UUID moduleId){
         Enrollments enrollment = getEnrollment(enrollmentId);
 
-        JSONObject progress = new JSONObject(enrollment.getProgress());
+        JSONArray moduleStatus = new JSONArray(enrollment.getModuleStatus());
 
-        JSONArray modules = progress.getJSONArray("modules");
-        modules.iterator().forEachRemaining(
-            (moduleObject) -> {
-                JSONObject module = new JSONObject(moduleObject.toString());
-                if(module.get("moduleId").equals(moduleId.toString())){
-                    module.remove("done");
-                    module.put("done", true);
-                } 
+        for(int i=0;i<moduleStatus.length();i++){
+            JSONObject module = moduleStatus.getJSONObject(i);
+            if(module.getString("moduleId").equals(moduleId.toString())){
+                module.put("done", true);
             }
-        );
+            log.info("Module Id {}: {}",i+1,module.get("moduleId"));
+            log.info("Module Id with {} is equals {}",moduleId,module.getString("moduleId").equals(moduleId.toString()));
+            moduleStatus.put(i,module);
+        }
 
-        enrollment.setProgress(progress.toString());
+        enrollment.setModuleStatus(moduleStatus.toString());
 
-        return progress.toString();
-        // return enrollmentRepository.save(enrollment);
+        return enrollmentRepository.save(enrollment);
     }
 }

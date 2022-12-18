@@ -42,8 +42,7 @@ public class EnrollmentController {
     @PutMapping(path = "/finish-module")
     public ResponseEntity<Object> finishModule(@RequestPart("enrollmentId") UUID enrollmentId, @RequestPart("moduleId") UUID moduleId){
         try{
-            // Enrollments enrollment = enrollmentService.finishModule(enrollmentId, moduleId);
-            String enrollment = enrollmentService.finishModule(enrollmentId, moduleId);
+            Enrollments enrollment = enrollmentService.finishModule(enrollmentId, moduleId);
 
             return ResponseHandler.generateResponse("Enrollment has been added successfully!", HttpStatus.OK, enrollment);
 

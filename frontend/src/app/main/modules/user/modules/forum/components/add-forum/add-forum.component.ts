@@ -2,6 +2,7 @@ import { Dialog } from '@angular/cdk/dialog';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ResultDialogComponent } from 'src/app/main/modules/shared/components/result-dialog/result-dialog.component';
+import { AuthService } from 'src/app/main/services/auth/auth.service';
 import { ForumService } from 'src/app/main/services/forum/forum.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class AddForumComponent implements OnInit {
   forumForm:FormGroup;
   isForumFormSubmitted:boolean = false;
 
-  constructor(public dialog:Dialog, private forumService:ForumService, private formBuilder:FormBuilder) {}
+  constructor(public dialog:Dialog, private authService:AuthService, private forumService:ForumService, private formBuilder:FormBuilder) {}
 
   ngOnInit(): void {
     this.generateForumForm();
@@ -22,7 +23,7 @@ export class AddForumComponent implements OnInit {
 
   generateForumForm(){
     this.forumForm = this.formBuilder.group({
-      accountId: ['998f68ee-df07-4280-8f36-08ab0e645d87'],
+      accountId: [this.authService.accountValue.accountId],
       title: [null, [Validators.required]],
       body: [null, [Validators.required]],
     });

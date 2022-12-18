@@ -3,6 +3,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RecipeCategories } from 'src/app/main/models/recipecategories';
 import { ResultDialogComponent } from 'src/app/main/modules/shared/components/result-dialog/result-dialog.component';
+import { AuthService } from 'src/app/main/services/auth/auth.service';
 import { RecipeCategoryService } from 'src/app/main/services/recipe-category/recipe-category.service';
 import { RecipeService } from 'src/app/main/services/recipe/recipe.service';
 
@@ -23,7 +24,7 @@ export class AddRecipeComponent implements OnInit {
   thumbnail:any;
   imageUrl:any;
 
-  constructor(public dialog:Dialog, private recipeService:RecipeService, private recipeCategoryService:RecipeCategoryService, private formBuilder:FormBuilder) {}
+  constructor(public dialog:Dialog, private authService:AuthService, private recipeService:RecipeService, private recipeCategoryService:RecipeCategoryService, private formBuilder:FormBuilder) {}
 
   ngOnInit(): void {
     this.generateRecipeForm();
@@ -36,7 +37,7 @@ export class AddRecipeComponent implements OnInit {
   generateRecipeForm(){
     this.recipeForm = this.formBuilder.group({
       recipeCategoryId: [null, [Validators.required]],
-      accountId: ['998f68ee-df07-4280-8f36-08ab0e645d87'],
+      accountId: [this.authService.accountValue.accountId],
       title: [null, [Validators.required]],
       description: [null, [Validators.required]],
       equipments: [null],

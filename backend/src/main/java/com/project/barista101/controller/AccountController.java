@@ -42,7 +42,7 @@ public class AccountController {
         }
     }
 
-    @PutMapping(path = "/changePassword")
+    @PutMapping(path = "/change-password")
     public ResponseEntity<Object> changePassword(@RequestBody ChangePasswordRequest changePasswordRequest){
         try{
             accountService.changePassword(changePasswordRequest);
@@ -54,7 +54,7 @@ public class AccountController {
         }
     }
 
-    @GetMapping(path = "/profileImg/{accountId}")
+    @GetMapping(path = "/profile-img/{accountId}")
     public byte[] getProfileImg(@PathVariable("accountId") UUID accountId){
         return accountService.getProfileImage(accountId);
     }

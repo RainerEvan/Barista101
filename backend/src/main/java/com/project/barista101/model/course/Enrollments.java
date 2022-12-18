@@ -42,9 +42,7 @@ public class Enrollments {
 
     private OffsetDateTime endDate;
 
-    private Boolean isCompleted;
-
     @Lob
-    private String progress;
+    private String moduleStatus;
 
 }

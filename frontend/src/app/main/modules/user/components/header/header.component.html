@@ -14,7 +14,7 @@
                 <hero-icon name="user-circle" type="outline" class="w-5 h-5 text-inherit"></hero-icon>
                 <span class="text-sm">Profile</span>
             </a>
-            <button class="flex items-center space-x-1 p-2 font-medium transition ease-in-out duration-200 hover:bg-gray-100 active:bg-gray-100">
+            <button (click)="openSignoutDialog()" class="flex items-center space-x-1 p-2 font-medium transition ease-in-out duration-200 hover:bg-gray-100 active:bg-gray-100">
                 <hero-icon name="logout" type="outline" class="w-5 h-5 text-inherit"></hero-icon>
                 <span class="text-sm">Sign Out</span>
             </button>

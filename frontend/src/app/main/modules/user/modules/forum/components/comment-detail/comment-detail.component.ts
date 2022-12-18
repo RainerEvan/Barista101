@@ -16,7 +16,7 @@ export class CommentDetailComponent implements OnInit {
 
   @Input("comment") comment:ForumComments;
   @Output() commentId = new EventEmitter<string>();
-  profileImgUrl=environment.apiUrl+"/account/profileImg/";
+  profileImgUrl=environment.apiUrl+"/account/profile-img/";
   showDropdown:boolean = false;
 
   constructor(public dialog:Dialog) { }
@@ -24,7 +24,7 @@ export class CommentDetailComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  openDeleteDialog(forumCommentId:string){
+  openDeleteDialog(){
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data:{
         title:"Delete Comment",

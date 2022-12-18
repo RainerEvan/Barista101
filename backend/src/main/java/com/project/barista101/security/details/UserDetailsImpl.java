@@ -20,8 +20,8 @@ import lombok.Data;
 public class UserDetailsImpl implements UserDetails{
     private UUID accountId;
     private String username;
-    @JsonIgnore
     private String email;
+    @JsonIgnore
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
 
@@ -32,8 +32,8 @@ public class UserDetailsImpl implements UserDetails{
         return new UserDetailsImpl(
             account.getId(),
             account.getUsername(),
-            account.getPassword(),
             account.getEmail(),
+            account.getPassword(),
             authorities
         );
     }

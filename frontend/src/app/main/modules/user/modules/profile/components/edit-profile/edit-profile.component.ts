@@ -25,7 +25,7 @@ export class EditProfileComponent implements OnInit {
   ngOnInit(): void {
     this.account = history.state;
     this.generateAccountForm();
-    this.imageUrl = environment.apiUrl+"/account/profileImg/"+this.account.id;
+    this.imageUrl = environment.apiUrl+"/account/profile-img/"+this.account.id;
   }
 
   generateAccountForm(){
@@ -38,11 +38,13 @@ export class EditProfileComponent implements OnInit {
 
   public editAccount(): void{
     if(this.accountForm.valid){
+      const accountId = this.authService.accountValue.accountId;
+
       const formData = new FormData();
       const account = this.accountForm.value;
 
       formData.append('image',this.profileImg);
-      formData.append('accountId', new Blob([JSON.stringify("4bfc7ba1-f94c-4841-aba3-acc01ca81a26")], {type:"application/json"}));
+      formData.append('accountId', new Blob([JSON.stringify(accountId)], {type:"application/json"}));
       formData.append('account', new Blob([JSON.stringify(account)], {type:"application/json"}));
 
       this.accountService.editAccount(formData).subscribe({

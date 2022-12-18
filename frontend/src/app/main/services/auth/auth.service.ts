@@ -22,8 +22,8 @@ export class AuthService {
     return this.accountSubject.value;
   }
 
-  public login(username:string,password:string): Observable<any>{
-    return this.http.post(API_URL+'/login',{username,password}).pipe(
+  public signin(formData:any): Observable<any>{
+    return this.http.post(API_URL+'/signin',formData).pipe(
       map((account:any) => {
         sessionStorage.setItem('account', JSON.stringify(account));
         this.accountSubject.next(account);
@@ -31,9 +31,9 @@ export class AuthService {
     );
   }
 
-  public logout(){
+  public signout(){
     sessionStorage.removeItem('account');
     this.accountSubject.next(null);
-    this.router.navigate(['/login']);
+    this.router.navigate(['/signin']);
   }
 }

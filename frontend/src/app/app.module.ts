@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GraphQLModule } from './graphql.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { SignupComponent } from './main/components/signup/signup.component';
@@ -13,6 +13,8 @@ import { SigninComponent } from './main/components/signin/signin.component';
 import { NotFoundComponent } from './main/components/not-found/not-found.component';
 import { HeroIconModule } from 'ng-heroicon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { JwtInterceptor } from './main/utils/jwt-interceptor/jwt.interceptor';
+import { ErrorInterceptor } from './main/utils/error-interceptor/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
       registrationStrategy: 'registerWhenStable:30000'
     })
   ],
-  providers: [],
+  providers: [
+    { 
+      provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true 
+    },
+    { 
+      provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true 
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

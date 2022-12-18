@@ -13,7 +13,7 @@ export class MyForumComponent implements OnInit {
 
   forums:Forums[] = [];
   loading:boolean = false;
-  profileImgUrl=environment.apiUrl+"/account/profileImg/";
+  profileImgUrl=environment.apiUrl+"/account/profile-img/";
 
   constructor(private authService:AuthService, private forumService:ForumService) { }
 
@@ -22,7 +22,7 @@ export class MyForumComponent implements OnInit {
   }
 
   public getAllforums(){
-    const accountId = "4bfc7ba1-f94c-4841-aba3-acc01ca81a26";
+    const accountId = this.authService.accountValue.accountId;
 
     this.loading = true;
     
