@@ -42,7 +42,6 @@ export class SigninComponent implements OnInit {
     if(this.signinForm.valid){
       const formData = this.signinForm.value;
 
-      console.log(formData);
       this.authService.signin(formData).subscribe({
         next: () => {
           const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';

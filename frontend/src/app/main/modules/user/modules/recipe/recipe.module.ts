@@ -5,7 +5,7 @@ import { RecipeRoutingModule } from './recipe-routing.module';
 import { RecipeListComponent } from './components/recipe-list/recipe-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../../shared/shared.module';
-import { chevronDown, dotsHorizontal, HeroIconModule, photograph, plus, trash, xCircle } from 'ng-heroicon';
+import { chevronDown, dotsHorizontal, HeroIconModule, photograph, plus, trash, x, xCircle } from 'ng-heroicon';
 import { CategoryListComponent } from './components/category-list/category-list.component';
 import { RecipeCarouselComponent } from './components/recipe-carousel/recipe-carousel.component';
 import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.component';
@@ -37,7 +37,8 @@ import { RecipeRatingListComponent } from './components/recipe-rating-list/recip
         trash,
         chevronDown,
         xCircle,
-        photograph
+        photograph,
+        x,
       }
     )
   ]

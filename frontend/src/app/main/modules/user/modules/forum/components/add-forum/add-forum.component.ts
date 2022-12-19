@@ -48,10 +48,6 @@ export class AddForumComponent implements OnInit {
     } 
   }
 
-  resetForm(form: FormGroup){
-    form.reset();
-  }
-
   openResultDialog(success:boolean,description:string,link:string){
     const dialogRef = this.dialog.open(ResultDialogComponent,{
       data:{

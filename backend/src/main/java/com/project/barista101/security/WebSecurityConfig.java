@@ -56,9 +56,9 @@ public class WebSecurityConfig {
             // .httpBasic().disable();
 			.exceptionHandling().authenticationEntryPoint(authEntryPoint).and()
             .authorizeRequests()
+            .antMatchers("/api/**/profile-img/**").permitAll()
+            .antMatchers("/api/**/thumbnail/**").permitAll()
             .antMatchers("/api/auth/**").permitAll()
-            .antMatchers("**/profile-img/**").permitAll()
-            .antMatchers("**/thumbnail/**").permitAll()
             .anyRequest().authenticated()
             .and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

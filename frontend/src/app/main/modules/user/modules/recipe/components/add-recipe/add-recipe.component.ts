@@ -155,6 +155,7 @@ export class AddRecipeComponent implements OnInit {
 
   resetForm(form: FormGroup){
     form.reset();
+    this.thumbnail = null;
   }
 
   openResultDialog(success:boolean,description:string,link:string){

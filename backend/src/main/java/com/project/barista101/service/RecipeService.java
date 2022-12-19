@@ -21,6 +21,7 @@ import com.project.barista101.payload.request.RecipeRequest;
 import com.project.barista101.repository.AccountRepository;
 import com.project.barista101.repository.RecipeCategoryRepository;
 import com.project.barista101.repository.RecipeRepository;
+import com.project.barista101.utils.ProfileImageUtils;
 
 import lombok.AllArgsConstructor;
 
@@ -101,7 +102,7 @@ public class RecipeService {
                 File defaultImg = new File("src/main/resources/image/recipe.jpg");
                 image = FileUtils.readFileToByteArray(defaultImg);
             } else {
-                image = file.getBytes();
+                image = ProfileImageUtils.cropImageSquare(file);
             }
 
             String encodedString = Base64.getEncoder().encodeToString(image);
