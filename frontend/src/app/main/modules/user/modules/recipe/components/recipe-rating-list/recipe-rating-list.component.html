@@ -1,1 +1,57 @@
-<p>recipe-rating-list works!</p>
+<div class="container tracking-wide divide-y divide-gray-300">
+    <div class="w-full px-4 py-2 bg-white">
+        <span class="font-medium text-sm">{{recipeRatings.length}} Ratings</span>
+    </div>
+    <div class="w-full flex flex-row space-x-3 p-4 bg-white">
+        <div class="flex flex-row items-start justify-center">
+            <img [src]="profileImgUrl+accountId" class="object-cover w-12 h-12 rounded-full">
+        </div>
+        <form [formGroup]="recipeRatingForm" (ngSubmit)="addRecipeRating()" class="w-full flex flex-col space-y-2">
+            <div class="inline-flex space-x-1">
+                <label for="body" class="text-sm">Rating:</label>
+                <input type="range">
+            </div>
+            <div>
+                <label for="body" class="sr-only">Review</label>
+                <textarea type="text" placeholder="Leave a review" class="input-text text-sm" formControlName="body"></textarea>
+            </div>
+            <div class="flex items-center justify-end">
+                <button type="submit" class="button-primary">Post</button>
+            </div>
+        </form>
+    </div>
+    <div class="w-full flex flex-col divide-y divide-gray-300">
+        <div *ngFor="let recipeRating of recipeRatings">
+            <div class="w-full grid grid-cols-6 gap-2 p-4 bg-white sm:grid-cols-10">
+                <div class="col-span-1 flex flex-row items-start justify-center">
+                    <img [src]="profileImgUrl+recipeRating.author.id" alt="Profile Image" class="object-cover w-12 h-12 rounded-full">
+                </div>
+                <div class="col-span-5 flex flex-col space-y-1 sm:col-span-9">
+                    <div class="relative flex flex-row items-start justify-between">
+                        <div class="flex flex-col">
+                            <div class="flex flex-row items-center space-x-2">
+                                <span class="font-medium text-sm">{{recipeRating.author.fullname}}</span>
+                                <span class="text-xs text-gray-400 before:content-['•']"> {{recipeRating.author.username}}</span>
+                            </div>
+                            <span class="text-xs text-gray-400">{{recipeRating.createdAt | date:'d MMM y, h:mm a'}}</span>
+                        </div>
+                        <button (click)="toggleDropdown($event)" class="p-1 rounded-full transition ease-in-out duration-200 active:bg-gray-100">
+                            <hero-icon name="dots-horizontal" type="outline" class="w-4 h-4 text-inherit"></hero-icon>
+                        </button>
+                        <ng-container *ngIf="showDropdown">
+                            <div class="absolute top-7 right-0 z-10 w-32 rounded-md text-gray-900 bg-white drop-shadow-lg divide-y-2">
+                                <button (click)="openDeleteDialog()" class="w-full flex items-center space-x-1 p-2 font-medium transition ease-in-out duration-200 hover:bg-gray-100 active:bg-gray-100">
+                                    <hero-icon name="trash" type="outline" class="w-5 h-5 text-inherit"></hero-icon>
+                                    <span class="text-sm">Delete</span>
+                                </button>
+                            </div>
+                        </ng-container>
+                    </div>
+                    <div class="">
+                        <div class="text-sm text-justify" [innerHTML]="recipeRating.body"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

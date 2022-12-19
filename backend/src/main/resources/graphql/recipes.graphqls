@@ -10,7 +10,7 @@ type Recipes{
     notes:String
     thumbnail:String
     createdAt:DateTime
-    rating:String
+    rating:Float
 }
 
 extend type Query{

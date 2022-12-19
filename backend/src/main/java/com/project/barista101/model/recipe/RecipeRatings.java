@@ -1,5 +1,6 @@
 package com.project.barista101.model.recipe;
 
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 import javax.persistence.Entity;
@@ -41,4 +42,6 @@ public class RecipeRatings {
 
     @Lob
     private String body;
+
+    private OffsetDateTime createdAt;
 }

@@ -59,6 +59,8 @@ public class WebSecurityConfig {
             .antMatchers("/api/**/profile-img/**").permitAll()
             .antMatchers("/api/**/thumbnail/**").permitAll()
             .antMatchers("/api/auth/**").permitAll()
+            .antMatchers("/graphiql", "/vendor/**").permitAll()
+            .antMatchers("/api/graphql").permitAll()
             .anyRequest().authenticated()
             .and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

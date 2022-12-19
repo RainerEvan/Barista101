@@ -9,8 +9,12 @@
                 <h1 *ngIf="recipe" class="font-semibold text-xl">{{recipe.title}}</h1>
                 <span *ngIf="recipe" class="text-sm text-gray-600">by {{recipe.author.fullname}}</span>
                 <div *ngIf="recipe" class="inline-flex items-center space-x-1 py-2">
-                    <span class="font-semibold text-xs">{{recipe.rating ?? '0'}}</span>
-                    <hero-icon *ngFor="let i of [0,1,2,3,4]" name="star" type="solid" class="w-4 h-4 text-yellow-400 fill-yellow-400"></hero-icon>
+                    <span class="font-semibold text-xs">{{recipe.rating}}</span>
+                    <div class="w-fit flex items-center">
+                        <div class="inline-flex items-center overflow-hidden" [style.width.%]="3.2*20">
+                            <hero-icon *ngFor="let rate of [0,1,2,3,4]" name="star" type="solid" class="w-4 h-4 text-yellow-400 fill-yellow-400"></hero-icon>
+                        </div>
+                    </div>
                 </div>
             </div>
             <button (click)="toggleDropdown($event)" class="p-1 rounded-full transition ease-in-out duration-200 active:bg-gray-100">
@@ -55,4 +59,5 @@
             <p class="text-sm text-justify text-brown">{{recipe.notes}}</p>
         </div>
     </div>
+    <app-recipe-rating-list></app-recipe-rating-list>
 </div>

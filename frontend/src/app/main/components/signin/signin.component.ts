@@ -11,6 +11,7 @@ import { AuthService } from '../../services/auth/auth.service';
 export class SigninComponent implements OnInit {
 
   signinForm: FormGroup;
+  loading:boolean = false;
   showError: boolean = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private formBuilder: FormBuilder) {
@@ -42,13 +43,17 @@ export class SigninComponent implements OnInit {
     if(this.signinForm.valid){
       const formData = this.signinForm.value;
 
+      this.loading = true;
+
       this.authService.signin(formData).subscribe({
         next: () => {
+          this.loading = false;
           const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
           this.router.navigateByUrl(returnUrl);
         },
         error: (error: any) => {
           console.log(error);
+          this.loading = false;
         }
       });
     }

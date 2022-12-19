@@ -16,7 +16,7 @@ public class RecipeResolver implements GraphQLResolver<Recipes>{
     @Autowired
     private final RecipeRatingService recipeRatingService;
 
-    public String getRating(Recipes recipe){
+    public double getRating(Recipes recipe){
         return recipeRatingService.calculateRatingForRecipe(recipe.getId());
     }
 }

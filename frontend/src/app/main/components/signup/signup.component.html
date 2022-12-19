@@ -5,37 +5,27 @@
             <h2 class="mt-4 text-center text-3xl font-bold tracking-tight">Sign Up</h2>
         </div>
 
-        <form class="mt-2 space-y-6">
+        <form [formGroup]="signupForm" (ngSubmit)="signup()" class="mt-2 space-y-6">
             <div class="space-y-4 rounded-md shadow-sm">
                 <div>
                     <label for="email" class="sr-only">Email address</label>
-                    <input name="email" type="email" autocomplete="email" required
-                        class="input-text"
-                        placeholder="Email Address">
+                    <input name="email" type="email" autocomplete="email" class="input-text" placeholder="Email Address" formControlName="email">
                 </div>
                 <div>
                     <label for="fullname" class="sr-only">Full Name</label>
-                    <input name="fullname" type="text" autocomplete="text" required
-                        class="input-text"
-                        placeholder="Full Name">
+                    <input name="fullname" type="text" autocomplete="text" class="input-text" placeholder="Full Name" formControlName="fullname">
                 </div>
                 <div>
                     <label for="username" class="sr-only">Username</label>
-                    <input name="username" type="text" autocomplete="text" required
-                        class="input-text"
-                        placeholder="Username">
+                    <input name="username" type="text" autocomplete="text" class="input-text" placeholder="Username" formControlName="username">
                 </div>
                 <div>
                     <label for="password" class="sr-only">Password</label>
-                    <input name="password" type="password" autocomplete="password" required
-                        class="input-text"
-                        placeholder="Password">
+                    <input name="password" type="password" autocomplete="password" class="input-text" placeholder="Password" formControlName="password">
                 </div>
                 <div>
                     <label for="confirmPassword" class="sr-only">Confirm Password</label>
-                    <input name="confirmPassword" type="password" autocomplete="password" required
-                        class="relative block w-full appearance-none rounded-md border border-gray-400 px-3 py-2 placeholder-gray-500 focus:z-10 focus:border-gray-700 focus:outline-none focus:ring-gray-700 focus:shadow-sm sm:text-sm"
-                        placeholder="Confirm Password">
+                    <input name="confirmPassword" type="password" autocomplete="password" class="input-text" placeholder="Confirm Password" formControlName="confirmPassword">
                 </div>
             </div>
 
@@ -47,8 +37,11 @@
         <div class="flex items-center justify-center">
             <div class="text-sm">
                 <span>Already have an account? </span>
-                <a routerLink="/signin" class="font-medium text-blue-400 hover:text-blue-600">Sign In</a>
+                <a routerLink="/signin" class="font-medium text-blue-500 hover:text-blue-600">Sign In</a>
             </div>
         </div>
     </div>
 </div>
+<ng-container *ngIf="loading">
+    <app-loading-dialog label="Signing up"></app-loading-dialog>
+</ng-container>

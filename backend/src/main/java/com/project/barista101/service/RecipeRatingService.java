@@ -2,6 +2,7 @@ package com.project.barista101.service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,7 +37,7 @@ public class RecipeRatingService {
         Recipes recipe = recipeRepository.findById(recipeId)
             .orElseThrow(() -> new IllegalStateException("Recipe with current id cannot be found"));
 
-        return recipeRatingRepository.findAllByRecipe(recipe);
+        return recipeRatingRepository.findAllByRecipeOrderByCreatedAtDesc(recipe);
     }
 
     @Transactional
@@ -52,6 +53,7 @@ public class RecipeRatingService {
         recipeRating.setAccount(account);
         recipeRating.setRating(recipeRatingRequest.getRating());
         recipeRating.setBody(recipeRatingRequest.getBody());
+        recipeRating.setCreatedAt(OffsetDateTime.now());
 
         return recipeRatingRepository.save(recipeRating);
     }
@@ -65,15 +67,15 @@ public class RecipeRatingService {
     }
 
     @Transactional
-    public String calculateRatingForRecipe(UUID recipeId){
+    public double calculateRatingForRecipe(UUID recipeId){
         List<RecipeRatings> recipeRatings = getAllRatingsForRecipe(recipeId);
 
         double totalRating = 0;
 
         for(RecipeRatings recipeRating:recipeRatings){
-            double rating = recipeRating.getRating();
+            double rate = recipeRating.getRating();
 
-            totalRating += rating;
+            totalRating += rate;
         }
 
         double percentage = 0;
@@ -82,11 +84,9 @@ public class RecipeRatingService {
             percentage = totalRating/recipeRatings.size();
         }
 
-        BigDecimal bd = new BigDecimal(Double.toString(percentage));
-        bd = bd.setScale(1, RoundingMode.HALF_UP);
+        BigDecimal rating = new BigDecimal(Double.toString(percentage));
+        rating = rating.setScale(1, RoundingMode.HALF_UP);
 
-        String finalRate = bd.toString();
-
-        return finalRate;
+        return rating.doubleValue();
     }
 }

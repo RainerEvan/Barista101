@@ -15,6 +15,7 @@ import { HeroIconModule } from 'ng-heroicon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './main/utils/jwt-interceptor/jwt.interceptor';
 import { ErrorInterceptor } from './main/utils/error-interceptor/error.interceptor';
+import { SharedModule } from './main/modules/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ErrorInterceptor } from './main/utils/error-interceptor/error.intercept
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedModule,
     HeroIconModule.forRoot(
       {},
       {

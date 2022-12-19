@@ -31,6 +31,10 @@ export class AuthService {
     );
   }
 
+  public signup(formData: any): Observable<any>{
+    return this.http.post(API_URL+'/signup',formData);
+  }
+
   public signout(){
     sessionStorage.removeItem('account');
     this.accountSubject.next(null);

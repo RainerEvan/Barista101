@@ -55,29 +55,6 @@ public class EnrollmentService {
     }
 
     @Transactional
-    public double calculateProgress(UUID enrollmentId){
-        Enrollments enrollment = getEnrollment(enrollmentId);
-
-        double totalDone = 0;
-        
-        JSONArray moduleStatus = new JSONArray(enrollment.getModuleStatus());
-
-        for(int i=0;i<moduleStatus.length();i++){
-            JSONObject module = moduleStatus.getJSONObject(i);
-            if(module.getBoolean("done")){
-                totalDone += 1;
-            }
-        }
-
-        double percentage = (totalDone / moduleStatus.length()) * 100;
-
-        BigDecimal progress = new BigDecimal(Double.toString(percentage));
-        progress = progress.setScale(0, RoundingMode.HALF_UP);
-
-        return progress.doubleValue();
-    }
-
-    @Transactional
     public Enrollments addEnrollment(EnrollmentRequest enrollmentRequest){
         Accounts account = accountRepository.findById(enrollmentRequest.getAccountId())
             .orElseThrow(() -> new IllegalStateException("Account with current id cannot be found"));
@@ -127,5 +104,28 @@ public class EnrollmentService {
         enrollment.setModuleStatus(moduleStatus.toString());
 
         return enrollmentRepository.save(enrollment);
+    }
+
+    @Transactional
+    public double calculateProgress(UUID enrollmentId){
+        Enrollments enrollment = getEnrollment(enrollmentId);
+
+        double totalDone = 0;
+        
+        JSONArray moduleStatus = new JSONArray(enrollment.getModuleStatus());
+
+        for(int i=0;i<moduleStatus.length();i++){
+            JSONObject module = moduleStatus.getJSONObject(i);
+            if(module.getBoolean("done")){
+                totalDone += 1;
+            }
+        }
+
+        double percentage = (totalDone / moduleStatus.length()) * 100;
+
+        BigDecimal progress = new BigDecimal(Double.toString(percentage));
+        progress = progress.setScale(0, RoundingMode.HALF_UP);
+
+        return progress.doubleValue();
     }
 }

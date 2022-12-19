@@ -13,6 +13,7 @@ import { ForumService } from 'src/app/main/services/forum/forum.service';
 export class AddForumComponent implements OnInit {
 
   forumForm:FormGroup;
+  loading:boolean = false;
   isForumFormSubmitted:boolean = false;
 
   constructor(public dialog:Dialog, private authService:AuthService, private forumService:ForumService, private formBuilder:FormBuilder) {}
@@ -33,14 +34,18 @@ export class AddForumComponent implements OnInit {
     if(this.forumForm.valid){
       const formData = this.forumForm.value;
 
+      this.loading = true;
+
       this.forumService.addForum(formData).subscribe({
         next: (result: any) => {
           console.log(result);
+          this.loading = false;
           this.isForumFormSubmitted = true;
           this.openResultDialog(this.isForumFormSubmitted,"Thread has been created","./forum");
         },
         error: (error: any) => {
           console.log(error);
+          this.loading = false;
           this.isForumFormSubmitted = false;
           this.openResultDialog(this.isForumFormSubmitted,"There was a problem",null);
         }

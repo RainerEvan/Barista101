@@ -16,6 +16,7 @@ export class EditProfileComponent implements OnInit {
 
   account:Accounts;
   accountForm:FormGroup;
+  loading:boolean = false;
   isAccountFormSubmitted:boolean = false;
   profileImg:any;
   imageUrl:any;
@@ -46,15 +47,19 @@ export class EditProfileComponent implements OnInit {
       formData.append('image',this.profileImg);
       formData.append('accountId', new Blob([JSON.stringify(accountId)], {type:"application/json"}));
       formData.append('account', new Blob([JSON.stringify(account)], {type:"application/json"}));
+      
+      this.loading = true;
 
       this.accountService.editAccount(formData).subscribe({
         next: (result: any) => {
           console.log(result);
+          this.loading = false;
           this.isAccountFormSubmitted = true;
           this.openResultDialog(this.isAccountFormSubmitted,"Profile has been updated","./profile");
         },
         error: (error: any) => {
           console.log(error);
+          this.loading = false;
           this.isAccountFormSubmitted = false;
           this.openResultDialog(this.isAccountFormSubmitted,"There was a problem",null);
         }

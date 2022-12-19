@@ -13,5 +13,5 @@ export type Recipes = {
     notes:string;
     thumbnail:string;
     createdAt:Date;
-    rating:string;
+    rating:number;
 }

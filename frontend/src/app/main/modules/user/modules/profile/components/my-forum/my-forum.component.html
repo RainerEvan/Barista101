@@ -20,4 +20,9 @@
             <div *ngIf="loading" class="w-full h-40 bg-gray-200 animate-pulse"></div>
         </ng-container>
     </div>
+    <ng-container *ngIf="forums.length == 0">
+        <div class="w-full h-64 flex items-center justify-center p-8">
+            <span class="text-sm text-gray-400">You have not created any threads yet</span>
+        </div>
+    </ng-container>
 </div>

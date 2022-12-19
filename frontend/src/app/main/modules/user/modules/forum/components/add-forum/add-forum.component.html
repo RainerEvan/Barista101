@@ -20,3 +20,6 @@
         </div>
     </form>
 </div>
+<ng-container *ngIf="loading">
+    <app-loading-dialog label="Creating thread"></app-loading-dialog>
+</ng-container>

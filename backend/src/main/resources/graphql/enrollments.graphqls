@@ -5,7 +5,7 @@ type Enrollments{
     startDate:DateTime
     endDate:DateTime
     moduleStatus:String
-    progress:Int
+    progress:Float
 }
 
 extend type Query{

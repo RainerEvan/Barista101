@@ -84,12 +84,9 @@ export class AddRecipeComponent implements OnInit {
   }
 
   public getAllRecipeCategories(){
-    this.loading = true;
-    
     this.recipeCategoryService.getAllRecipeCategories().subscribe({
       next:(response:RecipeCategories[])=>{
         this.categories = response;
-        this.loading = false;
       },
       error:(error:any)=>{
         console.log(error);
@@ -138,14 +135,18 @@ export class AddRecipeComponent implements OnInit {
       formData.append('image',this.thumbnail);
       formData.append('recipe', new Blob([JSON.stringify(recipe)], {type:"application/json"}));
 
+      this.loading = true;
+
       this.recipeService.addRecipe(formData).subscribe({
         next: (result: any) => {
           console.log(result);
+          this.loading = false;
           this.isRecipeFormSubmitted = true;
           this.openResultDialog(this.isRecipeFormSubmitted,"Recipe has been created","./recipe");
         },
         error: (error: any) => {
           console.log(error);
+          this.loading = false;
           this.isRecipeFormSubmitted = false;
           this.openResultDialog(this.isRecipeFormSubmitted,"There was a problem",null);
         }

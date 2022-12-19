@@ -24,8 +24,11 @@
         <div class="flex items-center justify-center">
             <div class="text-sm">
                 <span>Don't have an account? </span>
-                <a routerLink="/signup" class="font-medium text-blue-400 hover:text-blue-600">Sign Up</a>
+                <a routerLink="/signup" class="font-medium text-blue-500 hover:text-blue-600">Sign Up</a>
             </div>
         </div>
     </div>
 </div>
+<ng-container *ngIf="loading">
+    <app-loading-dialog label="Signing in"></app-loading-dialog>
+</ng-container>

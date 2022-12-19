@@ -13,7 +13,7 @@
                 <div class="absolute -bottom-2.5 w-full flex justify-center">
                     <div class="w-16 inline-flex items-center justify-center space-x-1 rounded-full p-1 bg-black text-white">
                         <hero-icon name="star" type="solid" class="w-4 h-4 text-yellow-400 fill-yellow-400"></hero-icon>
-                        <span class="text-xs">{{recipe.rating ?? '0'}}</span>
+                        <span class="text-xs">{{recipe.rating}}</span>
                     </div>
                 </div>
             </div>
@@ -23,7 +23,7 @@
         </ng-container>
         <ng-container *ngFor="let i of [0,1]">
             <div *ngIf="recipes.length == 0" class="w-40 h-40 bg-gray-200 rounded-xl flex items-center justify-center">
-                <span class="font-medium text-sm text-gray-400">No recipe yet</span>
+                <span class="text-sm text-gray-400">No recipe yet</span>
             </div>
         </ng-container>
     </div>

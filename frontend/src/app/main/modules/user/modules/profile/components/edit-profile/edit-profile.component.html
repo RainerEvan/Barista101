@@ -30,3 +30,6 @@
         </div>
     </form>
 </div>
+<ng-container *ngIf="loading">
+    <app-loading-dialog label="Updating profile"></app-loading-dialog>
+</ng-container>
