@@ -1,7 +1,7 @@
 <div class="container p-4">
     <div class="flex flex-row justify-between">
         <h1 class="font-bold text-3xl">Recipe</h1>
-        <a routerLink="./add" class="button-primary flex flex-row items-center space-x-1">
+        <a [routerLink]="['./add']" class="button-primary flex flex-row items-center space-x-1">
             <hero-icon name="plus" type="solid" class="w-3 h-3 text-white fill-white"></hero-icon>
             <span class="text-xs">Add Recipe</span>
         </a>

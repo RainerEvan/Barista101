@@ -37,8 +37,8 @@ export class AddForumComponent implements OnInit {
       this.loading = true;
 
       this.forumService.addForum(formData).subscribe({
-        next: (result: any) => {
-          console.log(result);
+        next: (response: any) => {
+          console.log(response);
           this.loading = false;
           this.isForumFormSubmitted = true;
           this.openResultDialog(this.isForumFormSubmitted,"Thread has been created","./forum");

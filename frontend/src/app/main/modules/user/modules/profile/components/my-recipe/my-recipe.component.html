@@ -1,5 +1,5 @@
 <div class="container tracking-wide flex flex-col space-y-4 p-4">
-    <a *ngFor="let recipe of recipes" routerLink="../../recipe/detail/{{recipe.id}}" class="grid grid-cols-5 items-center shadow-md rounded-lg bg-white hover:shadow-lg hover:-translate-y-0.5 focus:scale-95">
+    <a *ngFor="let recipe of recipes" [routerLink]="['../../recipe/detail/',recipe.id]" class="grid grid-cols-5 items-center shadow-md rounded-lg bg-white hover:shadow-lg hover:-translate-y-0.5 focus:scale-95">
         <div class="col-span-1 p-1 sm:p-2">
             <img [src]="thumbnailUrl+recipe.id" alt="recipe Thumbnail" class="object-cover aspect-square rounded-lg">
         </div>

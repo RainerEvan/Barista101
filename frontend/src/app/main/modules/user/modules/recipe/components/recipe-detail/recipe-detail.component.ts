@@ -27,10 +27,10 @@ export class RecipeDetailComponent implements OnInit {
   constructor(public dialog:Dialog, private router:Router, private route:ActivatedRoute,private recipeService:RecipeService) { }
 
   ngOnInit(): void {
-    this.getrecipe();
+    this.getRecipe();
   }
 
-  public getrecipe(){
+  public getRecipe(){
     const recipeId = this.route.snapshot.paramMap.get('id');
 
     this.loading = true;

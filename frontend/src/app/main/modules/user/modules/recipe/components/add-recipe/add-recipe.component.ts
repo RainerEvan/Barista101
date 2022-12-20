@@ -138,8 +138,8 @@ export class AddRecipeComponent implements OnInit {
       this.loading = true;
 
       this.recipeService.addRecipe(formData).subscribe({
-        next: (result: any) => {
-          console.log(result);
+        next: (response: any) => {
+          console.log(response);
           this.loading = false;
           this.isRecipeFormSubmitted = true;
           this.openResultDialog(this.isRecipeFormSubmitted,"Recipe has been created","./recipe");

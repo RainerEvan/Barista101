@@ -1,9 +1,10 @@
 import { Dialog } from '@angular/cdk/dialog';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Contents } from 'src/app/main/models/contents';
 import { Modules } from 'src/app/main/models/modules';
 import { CompleteDialogComponent } from 'src/app/main/modules/shared/components/complete-dialog/complete-dialog.component';
+import { EnrollmentService } from 'src/app/main/services/enrollment/enrollment.service';
 import { ModuleService } from 'src/app/main/services/module/module.service';
 
 @Component({
@@ -13,13 +14,14 @@ import { ModuleService } from 'src/app/main/services/module/module.service';
 })
 export class ModuleContentComponent implements OnInit {
 
+  @Input("enrollmentId") enrollmentId:string = "";
   module:Modules;
   contents:Contents[] = [];
   currentContent:Contents;
   currentPage:number = 0;
   loading:boolean = false;
 
-  constructor(public dialog:Dialog, private route:ActivatedRoute, private moduleService:ModuleService) { }
+  constructor(public dialog:Dialog, private route:ActivatedRoute, private moduleService:ModuleService, private enrollmentService:EnrollmentService) { }
 
   ngOnInit(): void {
     this.getModule();
@@ -46,8 +48,25 @@ export class ModuleContentComponent implements OnInit {
     }
   }
 
-  finish(){
-    const dialogRef = this.dialog.open(CompleteDialogComponent,{
+  finishModule(){
+    const formData = new FormData();
+
+    formData.append('enrollmentId', new Blob([JSON.stringify(this.enrollmentId)], {type:"application/json"}));
+    formData.append('moduleId', new Blob([JSON.stringify(this.module.id)], {type:"application/json"}));
+
+    this.enrollmentService.finishModule(formData).subscribe({
+      next:(response:any)=>{
+        console.log(response);
+        this.openCompleteDialog();
+      },
+      error:(error:any)=>{
+        console.log(error);
+      }
+    });
+  }
+
+  openCompleteDialog(){
+    this.dialog.open(CompleteDialogComponent,{
       data:{
         title:this.module?.title,
         courseId:this.module?.course.id

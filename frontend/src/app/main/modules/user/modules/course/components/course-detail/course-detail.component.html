@@ -21,9 +21,9 @@
                 </div>
                 <div class="w-full">
                     <div class="bg-gray-400 rounded-full h-1">
-                        <div class="bg-white h-full rounded-full" style="width: 45%"></div>
+                        <div *ngIf="enrollment" class="bg-white h-full rounded-full" [style.width.%]="enrollment.progress"></div>
                     </div>
-                    <span class="font-medium text-xs">45% Completed</span>
+                    <span class="font-medium text-xs">{{enrollment ? enrollment.progress:0}}% Completed</span>
                 </div>
             </div>
         </div>

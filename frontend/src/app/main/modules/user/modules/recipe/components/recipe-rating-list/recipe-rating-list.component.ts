@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { RecipeRatings } from 'src/app/main/models/reciperatings';
@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
 })
 export class RecipeRatingListComponent implements OnInit {
 
+  @Output() updateRating = new EventEmitter<boolean>();
   recipeRatingForm:FormGroup;
   stars:boolean[] = [];
   isRecipeRatingFormSubmitted:boolean = false;
@@ -64,10 +65,11 @@ export class RecipeRatingListComponent implements OnInit {
       const formData = this.recipeRatingForm.value;
 
       this.recipeRatingService.addRecipeRating(formData).subscribe({
-        next: (result: any) => {
-          console.log(result);
+        next: (response: any) => {
+          console.log(response);
           this.isRecipeRatingFormSubmitted = true;
           this.generateRecipeRatingForm();
+          this.updateRating.emit(this.isRecipeRatingFormSubmitted);
           this.getAllRatingsForRecipe();
         },
         error: (error: any) => {

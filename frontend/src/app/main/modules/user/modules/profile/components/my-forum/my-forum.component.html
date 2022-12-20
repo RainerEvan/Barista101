@@ -1,6 +1,6 @@
 <div class="container">
     <div class="flex flex-col space-y-2 divide-y divide-gray-300 border-y">
-        <a *ngFor="let forum of forums" routerLink="../../forum/detail/{{forum.id}}" class="w-full flex flex-col space-y-2 p-4 bg-white tracking-wide focus:bg-gray-100">
+        <a *ngFor="let forum of forums" [routerLink]="['../../forum/detail/',forum.id]" class="w-full flex flex-col space-y-2 p-4 bg-white tracking-wide focus:bg-gray-100">
             <div>
                 <h2 class="font-semibold text-lg">{{forum.title}}</h2>
             </div>

@@ -37,6 +37,33 @@ export class EnrollmentService {
       .valueChanges.pipe(map((result)=>result.data.getAllEnrollmentsForAccount));
   }
 
+  public getEnrollmentForCourseAndAccount(courseId: string,accountId: string): Observable<Enrollments>{
+    return this.apollo.watchQuery<any>({
+      query: gql`
+        query getEnrollmentForCourseAndAccount($courseId:ID!,$accountId:ID!){
+          getEnrollmentForCourseAndAccount(courseId: $courseId,accountId: $accountId){
+            id
+            account{
+              id
+            }
+            course{
+              id
+            }
+            startDate
+            endDate
+            moduleStatus
+            progress
+          }
+        }
+      `, 
+      variables: {
+        courseId: courseId,
+        accountId: accountId,
+      },
+    })
+      .valueChanges.pipe(map((result)=>result.data.getEnrollmentForCourseAndAccount));
+  }
+
   public getEnrollment(enrollmentId: string): Observable<Enrollments>{
     return this.apollo.watchQuery<any>({
       query: gql`
@@ -63,11 +90,11 @@ export class EnrollmentService {
       .valueChanges.pipe(map((result)=>result.data.getEnrollment));
   }
 
-  public addErollment(formData: FormData): Observable<any>{
+  public addEnrollment(formData: any): Observable<any>{
     return this.http.post(API_URL+'/add',formData);
   }
 
   public finishModule(formData: FormData): Observable<any>{
-    return this.http.post(API_URL+'/finish-module',formData);
+    return this.http.put(API_URL+'/finish-module',formData);
   }
 }

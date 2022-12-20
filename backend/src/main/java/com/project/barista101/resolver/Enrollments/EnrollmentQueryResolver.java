@@ -23,6 +23,10 @@ public class EnrollmentQueryResolver implements GraphQLQueryResolver{
         return enrollmentService.getAllEnrollmentsForAccount(accountId);
     }
 
+    public Enrollments getEnrollmentForCourseAndAccount(UUID courseId, UUID accountId){
+        return enrollmentService.getEnrollmentForCourseAndAccount(courseId,accountId);
+    }
+
     public Enrollments getEnrollment(UUID enrollmentId){
         return enrollmentService.getEnrollment(enrollmentId);
     }

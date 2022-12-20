@@ -17,7 +17,7 @@ export class CourseDetailComponent implements OnInit {
   loading:boolean = false;
   thumbnailUrl=environment.apiUrl+"/course/thumbnail/";
 
-  constructor(public dialog:Dialog, private route:ActivatedRoute,private courseService:CourseService) { }
+  constructor(public dialog:Dialog, private route:ActivatedRoute, private courseService:CourseService) { }
 
   ngOnInit(): void {
     this.getCourse();

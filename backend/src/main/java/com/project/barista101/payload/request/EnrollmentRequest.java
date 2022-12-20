@@ -8,6 +8,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class EnrollmentRequest {
-    private UUID accountId;
     private UUID courseId;
+    private UUID accountId;
 }

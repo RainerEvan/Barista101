@@ -51,8 +51,8 @@ export class EditProfileComponent implements OnInit {
       this.loading = true;
 
       this.accountService.editAccount(formData).subscribe({
-        next: (result: any) => {
-          console.log(result);
+        next: (response: any) => {
+          console.log(response);
           this.loading = false;
           this.isAccountFormSubmitted = true;
           this.openResultDialog(this.isAccountFormSubmitted,"Profile has been updated","./profile");

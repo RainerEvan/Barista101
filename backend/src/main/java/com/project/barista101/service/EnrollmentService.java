@@ -24,9 +24,7 @@ import com.project.barista101.repository.EnrollmentRepository;
 import com.project.barista101.repository.ModuleRepository;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Service
 @AllArgsConstructor
 public class EnrollmentService {
@@ -49,6 +47,17 @@ public class EnrollmentService {
     }
 
     @Transactional
+    public Enrollments getEnrollmentForCourseAndAccount(UUID courseId, UUID accountId){
+        Courses course = courseRepository.findById(courseId)
+            .orElseThrow(() -> new IllegalStateException("Course with current id cannot be found"));
+
+        Accounts account = accountRepository.findById(accountId)
+            .orElseThrow(() -> new IllegalStateException("Account with current id cannot be found"));
+
+        return enrollmentRepository.findByCourseAndAccount(course, account);
+    }
+
+    @Transactional
     public Enrollments getEnrollment(UUID enrollmentId){
         return enrollmentRepository.findById(enrollmentId)
             .orElseThrow(() -> new IllegalStateException("Enrollment with current id cannot be found"));
@@ -56,11 +65,11 @@ public class EnrollmentService {
 
     @Transactional
     public Enrollments addEnrollment(EnrollmentRequest enrollmentRequest){
-        Accounts account = accountRepository.findById(enrollmentRequest.getAccountId())
-            .orElseThrow(() -> new IllegalStateException("Account with current id cannot be found"));
-
         Courses course = courseRepository.findById(enrollmentRequest.getCourseId())
             .orElseThrow(() -> new IllegalStateException("Course with current id cannot be found"));
+
+        Accounts account = accountRepository.findById(enrollmentRequest.getAccountId())
+            .orElseThrow(() -> new IllegalStateException("Account with current id cannot be found"));
 
         Enrollments enrollment = new Enrollments();
         enrollment.setAccount(account);
@@ -96,8 +105,6 @@ public class EnrollmentService {
             if(module.getString("moduleId").equals(moduleId.toString())){
                 module.put("done", true);
             }
-            log.info("Module Id {}: {}",i+1,module.get("moduleId"));
-            log.info("Module Id with {} is equals {}",moduleId,module.getString("moduleId").equals(moduleId.toString()));
             moduleStatus.put(i,module);
         }
 

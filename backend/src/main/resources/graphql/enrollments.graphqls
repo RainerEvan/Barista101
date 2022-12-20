@@ -10,5 +10,6 @@ type Enrollments{
 
 extend type Query{
     getAllEnrollmentsForAccount(accountId:ID!):[Enrollments]
+    getEnrollmentForCourseAndAccount(courseId:ID!,accountId:ID!):Enrollments
     getEnrollment(enrollmentId:ID!):Enrollments
 }

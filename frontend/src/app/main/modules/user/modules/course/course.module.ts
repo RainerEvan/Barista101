@@ -8,6 +8,7 @@ import { bookOpen, HeroIconModule, informationCircle, play } from 'ng-heroicon';
 import { ModuleListComponent } from './components/module-list/module-list.component';
 import { ModuleContentComponent } from './components/module-content/module-content.component';
 import { SharedModule } from '../../../shared/shared.module';
+import { CourseProgressComponent } from './components/course-progress/course-progress.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { SharedModule } from '../../../shared/shared.module';
     CourseDetailComponent,
     ModuleListComponent,
     ModuleContentComponent,
+    CourseProgressComponent,
   ],
   imports: [
     CommonModule,
