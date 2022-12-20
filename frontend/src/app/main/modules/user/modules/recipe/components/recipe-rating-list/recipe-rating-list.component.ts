@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment';
 export class RecipeRatingListComponent implements OnInit {
 
   recipeRatingForm:FormGroup;
+  stars:boolean[] = [];
   isRecipeRatingFormSubmitted:boolean = false;
   recipeRatings:RecipeRatings[] = [];
   loading:boolean = false;
@@ -24,15 +25,18 @@ export class RecipeRatingListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllRatingsForRecipe();
-    this.generaterecipeRatingForm();
+    this.generateRecipeRatingForm();
   }
 
-  generaterecipeRatingForm(){
+  generateRecipeRatingForm(){
     const recipeId = this.route.snapshot.paramMap.get('id');
+
+    this.stars = Array(5).fill(false);
 
     this.recipeRatingForm = this.formBuilder.group({
       recipeId: [recipeId],
       accountId: [this.accountId],
+      rating: [0, [Validators.required]],
       body: [null, [Validators.required]],
     });
   }
@@ -55,16 +59,15 @@ export class RecipeRatingListComponent implements OnInit {
     }
   }
 
-  public addRecipeRating(): void{
+  public addRecipeRating(){
     if(this.recipeRatingForm.valid){
       const formData = this.recipeRatingForm.value;
-
-      console.log(formData);
 
       this.recipeRatingService.addRecipeRating(formData).subscribe({
         next: (result: any) => {
           console.log(result);
           this.isRecipeRatingFormSubmitted = true;
+          this.generateRecipeRatingForm();
           this.getAllRatingsForRecipe();
         },
         error: (error: any) => {
@@ -75,4 +78,8 @@ export class RecipeRatingListComponent implements OnInit {
     } 
   }
 
+  rate(rating:number){
+    this.recipeRatingForm.controls["rating"].setValue(rating);
+    this.stars = this.stars.map((_,i) => rating > i);
+  }
 }

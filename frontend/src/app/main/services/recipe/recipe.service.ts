@@ -30,6 +30,7 @@ export class RecipeService {
             }
             title
             rating
+            thumbnail
           }
         }
       `, 

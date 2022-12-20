@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Courses } from 'src/app/main/models/courses';
 import { Enrollments } from 'src/app/main/models/enrollments';
 import { AuthService } from 'src/app/main/services/auth/auth.service';
@@ -22,6 +21,7 @@ export class CourseListComponent implements OnInit {
   constructor(private authService:AuthService, private courseService:CourseService, private enrollmentService:EnrollmentService) { }
 
   ngOnInit(): void {
+    console.log(this.thumbnailUrl);
     this.getAllCourses();
   }
 

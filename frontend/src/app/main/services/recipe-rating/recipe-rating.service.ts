@@ -41,7 +41,7 @@ export class RecipeRatingService {
       .valueChanges.pipe(map((result)=>result.data.getAllRatingsForRecipe));
   }
   
-  public addRecipeRating(formData: FormData): Observable<any>{
+  public addRecipeRating(formData: any): Observable<any>{
     return this.http.post(API_URL+'/add',formData);
   }
 }

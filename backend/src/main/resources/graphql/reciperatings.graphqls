@@ -4,6 +4,7 @@ type RecipeRatings{
     account:Accounts
     rating:Int
     body:String
+    createdAt:DateTime
 }
 
 extend type Query{

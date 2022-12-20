@@ -7,4 +7,5 @@ export type RecipeRatings = {
     account:Accounts;
     rating:number;
     body:string;
+    createdAt:Date;
 }

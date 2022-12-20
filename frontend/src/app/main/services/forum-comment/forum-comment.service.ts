@@ -40,7 +40,7 @@ export class ForumCommentService {
       .valueChanges.pipe(map((result)=>result.data.getAllCommentsForForum));
   }
 
-  public addForumComment(formData: FormData): Observable<any>{
+  public addForumComment(formData: any): Observable<any>{
     return this.http.post(API_URL+'/add',formData);
   }
 

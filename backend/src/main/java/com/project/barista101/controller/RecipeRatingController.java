@@ -20,7 +20,7 @@ import com.project.barista101.utils.ResponseHandler;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/api/recipe-Rating")
+@RequestMapping("/api/recipe-rating")
 @AllArgsConstructor
 public class RecipeRatingController {
     @Autowired

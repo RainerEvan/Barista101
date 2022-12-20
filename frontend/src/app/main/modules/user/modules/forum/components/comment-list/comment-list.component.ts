@@ -55,16 +55,15 @@ export class CommentListComponent implements OnInit {
     }
   }
 
-  public addForumComment(): void{
+  public addForumComment(){
     if(this.forumCommentForm.valid){
       const formData = this.forumCommentForm.value;
-
-      console.log(formData);
 
       this.forumCommentService.addForumComment(formData).subscribe({
         next: (result: any) => {
           console.log(result);
           this.isForumCommentFormSubmitted = true;
+          this.generateForumCommentForm();
           this.getAllCommentsForForum();
         },
         error: (error: any) => {

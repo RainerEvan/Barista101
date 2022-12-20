@@ -1,18 +1,21 @@
 <app-back-navigation label="Recipe"></app-back-navigation>
 <div class="container tracking-wide">
-    <div class="w-full h-80 shadow-sm">
-        <img *ngIf="recipe" [src]="thumbnailUrl+recipe.id" alt="Recipe Thumbnail" class="object-cover w-full h-full">
+    <div *ngIf="recipe" class="w-full h-80 shadow-sm">
+        <img [src]="thumbnailUrl+recipe.id" alt="Recipe Thumbnail" class="object-cover w-full h-full">
     </div>
-    <div class="space-y-4 p-4">
+    <div *ngIf="recipe" class="space-y-4 p-4 border-b border-b-gray-300 bg-white">
         <div class="relative flex flex-row items-start justify-between space-x-1 pb-2">
             <div class="flex flex-col space-y-0.5">
-                <h1 *ngIf="recipe" class="font-semibold text-xl">{{recipe.title}}</h1>
-                <span *ngIf="recipe" class="text-sm text-gray-600">by {{recipe.author.fullname}}</span>
-                <div *ngIf="recipe" class="inline-flex items-center space-x-1 py-2">
+                <h1 class="font-semibold text-xl">{{recipe.title}}</h1>
+                <span class="text-sm text-gray-600">by {{recipe.author.fullname}}</span>
+                <div class="inline-flex items-center space-x-1 py-2">
                     <span class="font-semibold text-xs">{{recipe.rating}}</span>
-                    <div class="w-fit flex items-center">
-                        <div class="inline-flex items-center overflow-hidden" [style.width.%]="3.2*20">
+                    <div class="relative w-fit inline-flex items-center">
+                        <div class="absolute inline-flex items-center overflow-hidden" [style.width.%]="recipe.rating*20">
                             <hero-icon *ngFor="let rate of [0,1,2,3,4]" name="star" type="solid" class="w-4 h-4 text-yellow-400 fill-yellow-400"></hero-icon>
+                        </div>
+                        <div class="inline-flex items-center">
+                            <hero-icon *ngFor="let rate of [0,1,2,3,4]" name="star" type="solid" class="w-4 h-4 text-gray-300 fill-gray-300"></hero-icon>
                         </div>
                     </div>
                 </div>
@@ -31,23 +34,23 @@
         </div>
         <div class="space-y-0.5">
             <h2 class="font-semibold">Description</h2>
-            <p *ngIf="recipe" class="text-sm text-justify text-gray-600">{{recipe.description}}</p>
+            <p class="text-sm text-justify text-gray-600">{{recipe.description}}</p>
         </div>
         <div class="space-y-0.5">
             <h2 class="font-semibold">Equipment</h2>
-            <ul *ngIf="recipe" class="pl-4 list-disc list-outside text-sm text-gray-600">
+            <ul class="pl-4 list-disc list-outside text-sm text-gray-600">
                 <li *ngFor="let equipment of equipments">{{equipment.item}}</li>
             </ul>
         </div>
         <div class="space-y-0.5">
             <h2 class="font-semibold">Ingredients</h2>
-            <ul *ngIf="recipe" class="pl-4 list-disc list-outside text-sm text-gray-600">
+            <ul class="pl-4 list-disc list-outside text-sm text-gray-600">
                 <li *ngFor="let ingredient of ingredients">{{ingredient.item}}</li>
             </ul>
         </div>
         <div class="space-y-0.5">
             <h2 class="font-semibold">Instructions</h2>
-            <ul *ngIf="recipe" class="space-y-0.5 pl-4 list-disc list-outside text-sm text-gray-600">
+            <ul class="space-y-0.5 pl-4 list-disc list-outside text-sm text-gray-600">
                 <li *ngFor="let instruction of instructions; let i = index">
                     <span class="font-semibold">STEP {{i+1}}: </span>
                     <span class="text-justify">{{instruction.item}}</span>
@@ -59,5 +62,11 @@
             <p class="text-sm text-justify text-brown">{{recipe.notes}}</p>
         </div>
     </div>
+    <ng-container *ngIf="loading">
+        <div class="w-full h-80 bg-gray-200 animate-pulse"></div>
+        <div class="p-4">
+            <div class="w-full h-80 bg-gray-200 animate-pulse"></div>
+        </div>
+    </ng-container>
     <app-recipe-rating-list></app-recipe-rating-list>
 </div>
