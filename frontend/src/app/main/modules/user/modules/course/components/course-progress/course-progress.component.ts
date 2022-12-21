@@ -49,8 +49,7 @@ export class CourseProgressComponent implements OnInit {
 
     this.enrollmentService.addEnrollment({courseId,accountId}).subscribe({
       next:(response:any)=>{
-        console.log(response);
-        this.getEnrollmentForCourseAndAccount();
+        this.enrollmentService.startCourse(response.data);
       },
       error:(error:any)=>{
         console.log(error);
@@ -59,8 +58,11 @@ export class CourseProgressComponent implements OnInit {
   }
 
   startCourse()  {
-    if(!this.enrollment){
+    if(this.enrollment === null){
       this.addEnrollment();
+    }
+    else{
+      this.enrollmentService.startCourse(this.enrollment.id);
     }
     this.router.navigate(['./',this.course.id],{relativeTo:this.route});
   }

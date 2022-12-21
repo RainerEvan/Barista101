@@ -14,7 +14,6 @@ import { ModuleService } from 'src/app/main/services/module/module.service';
 })
 export class ModuleContentComponent implements OnInit {
 
-  @Input("enrollmentId") enrollmentId:string = "";
   module:Modules;
   contents:Contents[] = [];
   currentContent:Contents;
@@ -49,14 +48,15 @@ export class ModuleContentComponent implements OnInit {
   }
 
   finishModule(){
+    const enrollmentId = this.enrollmentService.currEnrollment;
+
     const formData = new FormData();
 
-    formData.append('enrollmentId', new Blob([JSON.stringify(this.enrollmentId)], {type:"application/json"}));
+    formData.append('enrollmentId', new Blob([JSON.stringify(enrollmentId)], {type:"application/json"}));
     formData.append('moduleId', new Blob([JSON.stringify(this.module.id)], {type:"application/json"}));
 
     this.enrollmentService.finishModule(formData).subscribe({
       next:(response:any)=>{
-        console.log(response);
         this.openCompleteDialog();
       },
       error:(error:any)=>{

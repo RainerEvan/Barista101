@@ -54,8 +54,11 @@ public class StartAppConfig {
             role2.setName(ERoles.USER);
             roleRepository.save(role2);
             
-            SignupRequest signupRequest = new SignupRequest("rainerevan@gmail.com", "Rainer Evan", "rainerevan", "pass123");
-            Accounts account = accountService.addAccount(signupRequest);
+            SignupRequest signupRequest1 = new SignupRequest("rainerevan@gmail.com", "Rainer Evan", "rainerevan", "pass123");
+            Accounts account = accountService.addAccount(signupRequest1);
+
+            SignupRequest signupRequest2 = new SignupRequest("maman@gmail.com", "Maman Johnson", "maman", "pass123");
+            Accounts account2 = accountService.addAccount(signupRequest2);
 
             CourseRequest courseRequest1 = new CourseRequest("Beans", "Learn about the coffee beans and how they are being an important factor for your cup of coffee");
             Courses course1 = courseService.addCourse(null, courseRequest1);
@@ -78,10 +81,10 @@ public class StartAppConfig {
             ModuleRequest moduleRequest3 = new ModuleRequest(course1.getId(), "Roasting");
             Modules module3 = moduleService.addModule(null, moduleRequest3);
 
-            ForumRequest forumRequest1 = new ForumRequest(account.getId(), "Tips For Making Cold Brew Coffee", "<p>Cold brew is simply coffee that has been brewed with cold rather than hot water and usually involves a long steeping process—anywhere between 12-24 hours. In terms of flavor, cold brew is generally characterized as smooth, low-acid, and heavier than its hot brewed counterparts.<br><br>Although cold brew has been around for centuries, it’s really in the last ten years that it’s become a staple on coffee shops menus and recognizable by most coffee drinkers</p>");
+            ForumRequest forumRequest1 = new ForumRequest(account.getId(),"<p>Cold brew is simply coffee that has been brewed with cold rather than hot water and usually involves a long steeping process—anywhere between 12-24 hours. In terms of flavor, cold brew is generally characterized as smooth, low-acid, and heavier than its hot brewed counterparts.<br><br>Although cold brew has been around for centuries, it’s really in the last ten years that it’s become a staple on coffee shops menus and recognizable by most coffee drinkers</p>");
             Forums forum1 = forumService.addForum(forumRequest1);
            
-            ForumRequest forumRequest2 = new ForumRequest(account.getId(), "The Best Coffee in Bali", "<p>Most coffee plants are grown around what’s known as ‘the bean belt’, an area around the equator between the tropics of Capricorn and Cancer. It’s here that’s home to the coffee capitals of the world such as Brazil, Vietnam, Colombia, Indonesia and Ethiopia, as these are the locations with the perfect conditions for coffee plants to thrive.</p><br><p>Interestingly, the location of where coffee beans are grown can alter the taste. Things such as climate, elevation and even soil type can impact the flavour of the coffee the beans produce.</p>");
+            ForumRequest forumRequest2 = new ForumRequest(account.getId(),"<p>Most coffee plants are grown around what’s known as ‘the bean belt’, an area around the equator between the tropics of Capricorn and Cancer. It’s here that’s home to the coffee capitals of the world such as Brazil, Vietnam, Colombia, Indonesia and Ethiopia, as these are the locations with the perfect conditions for coffee plants to thrive.</p><br><p>Interestingly, the location of where coffee beans are grown can alter the taste. Things such as climate, elevation and even soil type can impact the flavour of the coffee the beans produce.</p>");
             Forums forum2 = forumService.addForum(forumRequest2);
 
             ForumCommentRequest forumCommentRequest1 = new ForumCommentRequest(forum2.getId(), account.getId(), "Agreed, what a great information about coffee in Indonesia");
@@ -105,12 +108,6 @@ public class StartAppConfig {
 
             RecipeRatingRequest recipeRatingRequest1 = new RecipeRatingRequest(recipe3.getId(), account.getId(), 5, "This is a great recipe");
             RecipeRatings recipeRating1 = recipeRatingService.addRecipeRating(recipeRatingRequest1);
-
-            RecipeRatingRequest recipeRatingRequest2 = new RecipeRatingRequest(recipe3.getId(), account.getId(), 4, "Not bad for a mocktail");
-            RecipeRatings recipeRating2 = recipeRatingService.addRecipeRating(recipeRatingRequest2);
-
-            RecipeRatingRequest recipeRatingRequest3 = new RecipeRatingRequest(recipe3.getId(), account.getId(), 4, "Great recipe here");
-            RecipeRatings recipeRating3 = recipeRatingService.addRecipeRating(recipeRatingRequest3);
 
             NotificationRequest notificationRequest1 = new NotificationRequest(account.getId(), "Congratulations you have completed the module", "");
             Notifications notification1 = notificationService.addNotification(notificationRequest1);

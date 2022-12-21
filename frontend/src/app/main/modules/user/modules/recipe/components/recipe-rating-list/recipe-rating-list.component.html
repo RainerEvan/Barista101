@@ -2,7 +2,7 @@
     <div class="w-full px-4 py-2 bg-white">
         <span class="font-medium text-sm">({{recipeRatings.length}}) Ratings</span>
     </div>
-    <div class="w-full grid grid-cols-6 gap-2 p-4 bg-white sm:grid-cols-10">
+    <div *ngIf="!isRecipeRated" class="w-full grid grid-cols-6 gap-2 p-4 bg-white sm:grid-cols-10">
         <div class="col-span-1 flex flex-row items-start justify-center">
             <img [src]="profileImgUrl+accountId" class="object-cover w-12 h-12 rounded-full">
         </div>

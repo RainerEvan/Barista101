@@ -7,10 +7,6 @@
     </div>
     <form [formGroup]="forumForm" (ngSubmit)="addForum()" class="flex flex-col space-y-4 my-3 tracking-wide">
         <div class="space-y-1">
-            <label for="title" class="font-medium">Title*</label>
-            <input type="text" placeholder="Enter title" class="input-text" formControlName="title">
-        </div>
-        <div class="space-y-1">
             <label for="body" class="font-medium">Body*</label>
             <textarea rows="10" placeholder="Enter thread content" class="input-text" formControlName="body"></textarea>
         </div>

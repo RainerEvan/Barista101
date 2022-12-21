@@ -25,7 +25,6 @@ export class ForumService {
               fullname
               username
             }
-            title
             body
             createdAt
           }
@@ -46,7 +45,6 @@ export class ForumService {
               fullname
               username
             }
-            title
             body
             createdAt
           }
@@ -70,7 +68,6 @@ export class ForumService {
               fullname
               username
             }
-            title
             body
             createdAt
           }

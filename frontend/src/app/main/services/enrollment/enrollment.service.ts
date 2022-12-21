@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Enrollments } from '../../models/enrollments';
 
@@ -12,7 +12,20 @@ const API_URL = environment.apiUrl + "/enrollment";
 })
 export class EnrollmentService {
 
-  constructor(private http: HttpClient, private apollo: Apollo) { }
+  private enrollmentSubject: BehaviorSubject<string>;
+
+  constructor(private http: HttpClient, private apollo: Apollo) { 
+    this.enrollmentSubject = new BehaviorSubject<string>(sessionStorage.getItem('enrollment'));
+  }
+
+  public get currEnrollment(): string {
+    return this.enrollmentSubject.value;
+  }
+
+  public startCourse(enrollmentId:string){
+    sessionStorage.setItem('enrollment', enrollmentId);
+    this.enrollmentSubject.next(enrollmentId);
+  }
 
   public getAllEnrollmentsForAccount(accountId: string): Observable<Enrollments[]>{
     return this.apollo.watchQuery<any>({
@@ -20,12 +33,6 @@ export class EnrollmentService {
         query getAllEnrollmentsForAccount($accountId:ID!){
           getAllEnrollmentsForAccount(accountId: $accountId){
             id
-            account{
-              id
-            }
-            course{
-              id
-            }
             progress
           }
         }
@@ -43,12 +50,6 @@ export class EnrollmentService {
         query getEnrollmentForCourseAndAccount($courseId:ID!,$accountId:ID!){
           getEnrollmentForCourseAndAccount(courseId: $courseId,accountId: $accountId){
             id
-            account{
-              id
-            }
-            course{
-              id
-            }
             startDate
             endDate
             moduleStatus
@@ -70,12 +71,6 @@ export class EnrollmentService {
         query getEnrollment($enrollmentId:ID!){
           getEnrollment(enrollmentId: $enrollmentId){
             id
-            account{
-              id
-            }
-            course{
-              id
-            }
             startDate
             endDate
             moduleStatus

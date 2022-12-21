@@ -17,6 +17,7 @@ export class RecipeRatingListComponent implements OnInit {
   recipeRatingForm:FormGroup;
   stars:boolean[] = [];
   isRecipeRatingFormSubmitted:boolean = false;
+  isRecipeRated:boolean = false;
   recipeRatings:RecipeRatings[] = [];
   loading:boolean = false;
   profileImgUrl=environment.apiUrl+"/account/profile-img/";
@@ -52,6 +53,9 @@ export class RecipeRatingListComponent implements OnInit {
         next:(response:RecipeRatings[])=>{
           this.recipeRatings = response;
           this.loading = false;
+          if(this.recipeRatings.some(rating => this.accountId.match(rating.account.id))){
+            this.isRecipeRated = true;
+          }
         },
         error:(error:any)=>{
             console.log(error);

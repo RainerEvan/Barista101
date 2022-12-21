@@ -32,7 +32,7 @@ public class EnrollmentController {
         try{
             Enrollments enrollment = enrollmentService.addEnrollment(enrollmentRequest);
 
-            return ResponseHandler.generateResponse("Enrollment has been added successfully!", HttpStatus.OK, enrollment);
+            return ResponseHandler.generateResponse("Enrollment has been added successfully!", HttpStatus.OK, enrollment.getId());
 
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);
@@ -44,7 +44,7 @@ public class EnrollmentController {
         try{
             Enrollments enrollment = enrollmentService.finishModule(enrollmentId, moduleId);
 
-            return ResponseHandler.generateResponse("Enrollment has been added successfully!", HttpStatus.OK, enrollment);
+            return ResponseHandler.generateResponse("Enrollment has been updated successfully!", HttpStatus.OK, enrollment.getId());
 
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);

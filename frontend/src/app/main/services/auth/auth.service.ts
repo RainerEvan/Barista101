@@ -37,6 +37,7 @@ export class AuthService {
 
   public signout(){
     sessionStorage.removeItem('account');
+    sessionStorage.removeItem('enrollment');
     this.accountSubject.next(null);
     this.router.navigate(['/signin']);
   }

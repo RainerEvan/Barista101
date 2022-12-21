@@ -52,7 +52,6 @@ public class ForumService {
 
         Forums forum = new Forums();
         forum.setAuthor(account);
-        forum.setTitle(forumRequest.getTitle());
         forum.setBody(forumRequest.getBody());
         forum.setCreatedAt(OffsetDateTime.now());
 

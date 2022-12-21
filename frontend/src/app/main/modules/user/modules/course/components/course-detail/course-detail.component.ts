@@ -5,6 +5,8 @@ import { CourseService } from 'src/app/main/services/course/course.service';
 import { environment } from 'src/environments/environment';
 import { Dialog } from '@angular/cdk/dialog';
 import { DescriptionDialogComponent } from 'src/app/main/modules/shared/components/description-dialog/description-dialog.component';
+import { EnrollmentService } from 'src/app/main/services/enrollment/enrollment.service';
+import { Enrollments } from 'src/app/main/models/enrollments';
 
 @Component({
   selector: 'app-course-detail',
@@ -14,13 +16,15 @@ import { DescriptionDialogComponent } from 'src/app/main/modules/shared/componen
 export class CourseDetailComponent implements OnInit {
 
   course:Courses;
+  enrollment:Enrollments;
   loading:boolean = false;
   thumbnailUrl=environment.apiUrl+"/course/thumbnail/";
 
-  constructor(public dialog:Dialog, private route:ActivatedRoute, private courseService:CourseService) { }
+  constructor(public dialog:Dialog, private route:ActivatedRoute, private courseService:CourseService, private enrollmentService:EnrollmentService) { }
 
   ngOnInit(): void {
     this.getCourse();
+    this.getEnrollment();
   }
 
   public getCourse(){
@@ -32,6 +36,24 @@ export class CourseDetailComponent implements OnInit {
       this.courseService.getCourse(courseId).subscribe({
         next:(response:Courses)=>{
           this.course = response;
+          this.loading = false;
+        },
+        error:(error:any)=>{
+            console.log(error);
+        }
+      });
+    }
+  }
+
+  public getEnrollment(){
+    const enrollmentId = this.enrollmentService.currEnrollment;
+
+    this.loading = true;
+    
+    if(enrollmentId){
+      this.enrollmentService.getEnrollment(enrollmentId).subscribe({
+        next:(response:Enrollments)=>{
+          this.enrollment = response;
           this.loading = false;
         },
         error:(error:any)=>{

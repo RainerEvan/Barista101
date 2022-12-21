@@ -25,7 +25,6 @@ export class AddForumComponent implements OnInit {
   generateForumForm(){
     this.forumForm = this.formBuilder.group({
       accountId: [this.authService.accountValue.accountId],
-      title: [null, [Validators.required]],
       body: [null, [Validators.required]],
     });
   }
