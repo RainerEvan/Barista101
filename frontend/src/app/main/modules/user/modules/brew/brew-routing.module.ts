@@ -9,7 +9,7 @@ const routes: Routes = [
     component: BrewListComponent,
   },
   {
-    path: ':id',
+    path: 'detail/:id',
     component: BrewDetailComponent,
   },
 ];
