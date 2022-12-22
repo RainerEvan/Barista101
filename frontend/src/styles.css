@@ -10,11 +10,11 @@ body{
 }
 
 .input-text{
-    @apply block w-full text-sm text-inherit rounded-md border border-gray-400 px-3 py-2 placeholder-gray-500 focus:z-10 focus:border-gray-700 focus:outline-none focus:shadow-sm disabled:border-gray-300 disabled:bg-gray-100 disabled:text-gray-400;
+    @apply block w-full text-sm text-inherit rounded-md border border-gray-400 px-3 py-2 placeholder-gray-500 focus:z-10 focus:border-gray-700 focus:outline-none focus:shadow-md disabled:border-gray-300 disabled:bg-gray-100 disabled:text-gray-400;
 }
 
 .input-image{
-    @apply relative rounded-md border border-gray-400 text-gray-500 focus:z-10 focus:border-gray-700 focus:outline-none focus:shadow-sm sm:text-sm;
+    @apply relative rounded-md border border-gray-400 text-gray-500 focus:z-10 focus:border-gray-700 focus:outline-none focus:shadow-md;
 }
 
 .button-primary{
