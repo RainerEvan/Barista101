@@ -1,46 +1,54 @@
 <app-back-navigation label="Brew"></app-back-navigation>
 <div class="container tracking-wide">
-    <div class="space-y-6 p-4">
-        <div class="inline-flex items-center space-x-4 p-2 bg-white">
+    <div class="flex flex-col items-center space-y-6 p-4">
+        <div class="inline-flex items-center space-x-4 p-2">
             <div class="flex items-center justify-center">
-                <div class="w-20 h-20 p-3 rounded-xl bg-orange-100 drop-shadow-md">
+                <div class="w-20 h-20 p-3 rounded-xl bg-orange-100 shadow-md">
                     <img src="assets/icons/aeropress.png" alt="Icons" class="w-full h-full">
                 </div>
             </div>
-            <div class="flex flex-col space-y-1">
+            <div class="flex flex-col">
                 <span class="font-semibold text-lg">Aero Press</span>
                 <span class="text-sm">Brewing aero press is going to be really simple and fast</span>
             </div>
         </div>
-        <div class="flex items-center justify-center">
-            <div class="relative w-full max-w-sm aspect-square p-10 rounded-full bg-gray-100 border-4 border-gray-300">
-                <div class="absolute top-2 inset-x-0 flex justify-center">
-                    <hero-icon name="chevron-double-up" type="solid" class="w-6 h-6 text-inherit fill-inherit"></hero-icon>
-                </div>
-                <div class="w-full aspect-square p-6 rounded-full bg-gray-300">
-                    <div class="w-full h-full grid grid-rows-2 divide-y-2 divide-gray-800 text-center">
-                        <div class="grid grid-cols-2 divide-x-2 divide-gray-800">
-                            <div class="flex flex-col items-center justify-end py-4">
-                                <span class="font-semibold text-sm">COFFEE</span>
-                                <span class="text-sm">15 gr</span>
-                            </div>
-                            <div class="flex flex-col items-center justify-end py-4">
-                                <span class="font-semibold text-sm">WATER</span>
-                                <span class="text-sm">225 gr</span>
-                            </div>
+        <button [routerLink]="['../../dose']" class="relative w-full max-w-sm aspect-square flex items-center justify-center p-10 rounded-full bg-orange-100 border-4 border-orange-200 focus:scale-95">
+            <div class="absolute top-2 inset-x-0 flex justify-center">
+                <hero-icon name="chevron-double-up" type="solid" class="w-6 h-6 text-brown fill-brown"></hero-icon>
+            </div>
+            <div class="w-full aspect-square p-6 rounded-full bg-orange-200">
+                <div class="w-full h-full grid grid-rows-2 divide-y-2 divide-brown text-center">
+                    <div class="grid grid-cols-2 divide-x-2 divide-brown">
+                        <div class="flex flex-col items-center justify-end space-y-1 py-4">
+                            <span class="font-semibold text-sm">COFFEE</span>
+                            <span class="text-sm">12 gr</span>
                         </div>
-                        <div class="grid grid-cols-2 divide-x-2 divide-gray-800">
-                            <div class="flex flex-col items-center justify-start py-4">
-                                <span class="font-semibold text-sm">GRIND SIZE</span>
-                                <span class="text-sm">Medium</span>
-                            </div>
-                            <div class="flex flex-col items-center justify-start py-4">
-                                <span class="font-semibold text-sm">BREW TIME</span>
-                                <span class="text-sm">02:00</span>
-                            </div>
+                        <div class="flex flex-col items-center justify-end space-y-1 py-4">
+                            <span class="font-semibold text-sm">WATER</span>
+                            <span class="text-sm">200 gr</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 divide-x-2 divide-brown">
+                        <div class="flex flex-col items-center justify-start space-y-1 py-4">
+                            <span class="font-semibold text-sm">GRIND SIZE</span>
+                            <span class="text-sm">Medium</span>
+                        </div>
+                        <div class="flex flex-col items-center justify-start space-y-1 py-4">
+                            <span class="font-semibold text-sm">BREW TIME</span>
+                            <span class="text-sm">01:30</span>
                         </div>
                     </div>
                 </div>
+            </div>
+        </button>
+        <div class="w-full max-w-md flex flex-col items-center justify-center space-y-6">
+            <span class="font-medium text-sm">TAP AMOUNTS TO CHANGE DOSE</span>
+            <button class="focus:scale-95">
+                <hero-icon name="play" type="solid" class="w-20 h-20 text-brown fill-brown"></hero-icon>
+            </button>
+            <div class="w-full flex flex-row items-center justify-evenly space-x-4">
+                <button class="w-full button-tertiary">Preparations</button>
+                <button class="w-full button-tertiary">Steps</button>
             </div>
         </div>
     </div>

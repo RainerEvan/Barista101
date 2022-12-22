@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BrewListComponent } from './components/brew-list/brew-list.component';
 import { BrewDetailComponent } from './components/brew-detail/brew-detail.component';
+import { EditDoseComponent } from './components/edit-dose/edit-dose.component';
+import { PreparationsComponent } from './components/preparations/preparations.component';
+import { StepsComponent } from './components/steps/steps.component';
 
 const routes: Routes = [
   {
@@ -11,6 +14,18 @@ const routes: Routes = [
   {
     path: 'detail/:id',
     component: BrewDetailComponent,
+  },
+  {
+    path: 'dose',
+    component: EditDoseComponent,
+  },
+  {
+    path: 'preparations',
+    component: PreparationsComponent,
+  },
+  {
+    path: 'steps',
+    component: StepsComponent,
   },
 ];
 

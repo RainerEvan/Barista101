@@ -1,20 +1,18 @@
 <app-back-navigation label="Module"></app-back-navigation>
-<div *ngIf="currentContent" class="container p-2 tracking-wide">
-    <div class="relative bg-orange-100 rounded-t-lg">
-        <div class="absolute flex items-center top-3 right-3 z-10 px-3 py-1.5 rounded-full shadow-md bg-gray-800">
+<div *ngIf="currentContent" class="container p-6 bg-orange-100 tracking-wide">
+    <div class="flex justify-end">
+        <div class="flex items-center px-3 py-1.5 rounded-full shadow-md bg-brown">
             <span class="text-xs text-white">{{currentPage+1}} of {{contents.length}} Pages</span>
         </div>
-        <div class="block pt-14 px-6">
-            <h1 class="font-semibold text-xl">{{currentContent.title}}</h1>
-            <div class="text-justify py-3" [innerHTML]="currentContent?.body"></div>
-        </div>
     </div>
-    <div class="bg-orange-100 rounded-b-lg">
-        <div class="flex flex-row items-center justify-evenly space-x-4 p-6">
-            <button [disabled]="currentPage == 0" (click)="previousPage()" class="button-primary w-full">Back</button>
-            <button *ngIf="currentPage != (contents.length-1)" (click)="nextPage()" class="button-primary w-full">Next</button>
-            <button *ngIf="currentPage == (contents.length-1)" (click)="finishModule()" class="button-primary w-full">Finish</button>
-        </div>
+    <div class="flex flex-col space-y-2 py-4">
+        <h1 class="font-semibold text-lg">{{currentContent.title}}</h1>
+        <div class="text-justify text-sm" [innerHTML]="currentContent?.body"></div>
+    </div>
+    <div class="flex flex-row items-center justify-evenly space-x-4">
+        <button [disabled]="currentPage == 0" (click)="previousPage()" class="button-primary w-full">Back</button>
+        <button *ngIf="currentPage != (contents.length-1)" (click)="nextPage()" class="button-primary w-full">Next</button>
+        <button *ngIf="currentPage == (contents.length-1)" (click)="finishModule()" class="button-primary w-full">Finish</button>
     </div>
 </div>
 

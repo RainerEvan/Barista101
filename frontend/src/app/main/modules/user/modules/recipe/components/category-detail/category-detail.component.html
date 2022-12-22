@@ -5,7 +5,7 @@
         <div *ngIf="loading1" class="w-1/2 h-6 bg-gray-200 rounded-xl animate-pulse"></div>
     </div>
     <div class="grid grid-cols-2 gap-4 my-3 sm:grid-cols-3 md:grid-cols-4">
-        <a *ngFor="let recipe of recipes" [routerLink]="['../../detail/',recipe.id]" class="relative w-full h-40 drop-shadow-sm hover:shadow-lg focus:scale-95">
+        <a *ngFor="let recipe of recipes" [routerLink]="['../../detail/',recipe.id]" class="relative w-full h-40 shadow-md hover:shadow-lg focus:scale-95">
             <div class="w-full h-full overflow-clip rounded-xl">
                 <img [src]="thumbnailUrl+recipe.id" alt="Course Thumbnail" class="absolute object-cover w-full h-full rounded-xl">
                 <div class="absolute w-full h-full bg-gradient-to-t from-black/75 to-transparent rounded-xl"></div>

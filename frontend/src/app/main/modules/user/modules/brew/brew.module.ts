@@ -5,21 +5,31 @@ import { BrewRoutingModule } from './brew-routing.module';
 import { BrewListComponent } from './components/brew-list/brew-list.component';
 import { BrewDetailComponent } from './components/brew-detail/brew-detail.component';
 import { SharedModule } from '../../../shared/shared.module';
-import { chevronDoubleUp, HeroIconModule } from 'ng-heroicon';
+import { chevronDoubleUp, HeroIconModule, play } from 'ng-heroicon';
+import { EditDoseComponent } from './components/edit-dose/edit-dose.component';
+import { PreparationsComponent } from './components/preparations/preparations.component';
+import { StepsComponent } from './components/steps/steps.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     BrewListComponent,
-    BrewDetailComponent
+    BrewDetailComponent,
+    EditDoseComponent,
+    PreparationsComponent,
+    StepsComponent
   ],
   imports: [
     CommonModule,
     BrewRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     SharedModule,
     HeroIconModule.withIcons(
       {
-        chevronDoubleUp
+        chevronDoubleUp,
+        play
       }
     )
   ]
