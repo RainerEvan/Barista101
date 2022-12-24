@@ -1,5 +1,7 @@
 package com.project.barista101.payload.request;
 
+import com.project.barista101.data.ERoles;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -10,4 +12,5 @@ public class SignupRequest {
     private String fullname;
     private String username;
     private String password;
+    private ERoles role;
 }

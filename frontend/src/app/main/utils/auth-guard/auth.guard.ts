@@ -15,7 +15,12 @@ export class AuthGuard implements CanActivate {
 
     if(account){
         if (route.data['role'] && route.data['role'].indexOf(account.role) === -1) {
-          this.router.navigate(['/']);
+          if(account.role.match('USER')){
+            this.router.navigate(['/']);
+          }
+          else if(account.role.match('ADMIN')){
+            this.router.navigate(['/admin']);
+          }
           return false;
         }
 

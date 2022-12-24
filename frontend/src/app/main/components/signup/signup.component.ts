@@ -31,6 +31,7 @@ export class SignupComponent implements OnInit {
       username: [null, [Validators.required]],
       password: [null, [Validators.required, Validators.minLength(6)]],
       confirmPassword: [null, [Validators.required, Validators.minLength(6)]],
+      role: ['USER',[Validators.required]]
     });
   }
 

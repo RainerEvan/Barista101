@@ -48,7 +48,17 @@ export class SigninComponent implements OnInit {
       this.authService.signin(formData).subscribe({
         next: () => {
           this.loading = false;
-          const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+          const role = this.authService.accountValue.role;
+          console.log(role);
+          var returnUrl = "";
+
+          if(role.match('USER')){
+            returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+          } 
+          else if(role.match('ADMIN')){
+            returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/admin';
+          }
+
           this.router.navigateByUrl(returnUrl);
         },
         error: (error: any) => {

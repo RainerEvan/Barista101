@@ -62,8 +62,8 @@ public class AccountService {
             throw new IllegalStateException("Account with current email already exists: "+email);
         }
 
-        Roles role = roleRepository.findByName(ERoles.USER)
-            .orElseThrow(() -> new IllegalStateException("Role with current name cannot be found: "+ERoles.USER));
+        Roles role = roleRepository.findByName(accountRequest.getRole())
+            .orElseThrow(() -> new IllegalStateException("Role with current name cannot be found: "+accountRequest.getRole()));
 
         Accounts account = new Accounts();
         account.setUsername(username);

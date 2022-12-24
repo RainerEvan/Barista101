@@ -6,7 +6,7 @@
             <span class="text-sm">Add Module</span>
         </button>
     </div>
-    <div class="bg-gray-800 rounded-md p-1 my-4 text-center text-white">{{modules.length}} Modules</div>
+    <div class="bg-brown rounded-md p-1 my-4 text-center text-white">{{modules.length}} Modules</div>
     <ul class="container flex flex-col space-y-4 px-4">
         <li *ngFor="let module of modules" class="grid grid-cols-8 border rounded-md bg-white shadow-md hover:shadow-lg hover:-translate-y-0.5">
             <a routerLink="../module/{{module.id}}" class="col-span-7 flex items-center">

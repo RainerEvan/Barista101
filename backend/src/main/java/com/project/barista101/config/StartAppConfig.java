@@ -54,11 +54,14 @@ public class StartAppConfig {
             role2.setName(ERoles.USER);
             roleRepository.save(role2);
             
-            SignupRequest signupRequest1 = new SignupRequest("rainerevan@gmail.com", "Rainer Evan", "rainerevan", "pass123");
+            SignupRequest signupRequest1 = new SignupRequest("rainerevan@gmail.com", "Rainer Evan", "rainerevan", "pass123",ERoles.USER);
             Accounts account = accountService.addAccount(signupRequest1);
 
-            SignupRequest signupRequest2 = new SignupRequest("maman@gmail.com", "Maman Johnson", "maman", "pass123");
+            SignupRequest signupRequest2 = new SignupRequest("maman@gmail.com", "Maman Johnson", "maman", "pass123",ERoles.USER);
             Accounts account2 = accountService.addAccount(signupRequest2);
+
+            SignupRequest signupRequest3 = new SignupRequest("admin@gmail.com", "Admin", "admin", "pass123",ERoles.ADMIN);
+            Accounts account3 = accountService.addAccount(signupRequest3);
 
             CourseRequest courseRequest1 = new CourseRequest("Beans", "Learn about the coffee beans and how they are being an important factor for your cup of coffee");
             Courses course1 = courseService.addCourse(null, courseRequest1);
@@ -77,9 +80,21 @@ public class StartAppConfig {
 
             ModuleRequest moduleRequest2 = new ModuleRequest(course1.getId(), "Post Processing");
             Modules module2 = moduleService.addModule(null, moduleRequest2);
+
+            ContentRequest contentRequest4 = new ContentRequest(module2.getId(), "Where do coffee beans come from?", "<p>Coffee beans come from the coffee plant, a bush-like plant which can get very tall (coffee farmers will usually keep them trimmed to around 5ft to keep them manageable). On these coffee plants, bunches of cherries grow and inside these you’ll find two coffee beans, Arabica and Robusta coffee</p>");
+            Contents content4 = contentService.addContent(contentRequest4);
+
+            ContentRequest contentRequest5 = new ContentRequest(module2.getId(), "When is the coffee plant is ready?","<p>On average, it takes around one year for the coffee plant to begin to produce fragrant, white flowers, then up to four years later before it begins to bear fruit. It will be around 10 years for the coffee plants to begin producing coffee beans on a commercial level, which are the ones of the most value to the farmers. The general lifespan of the coffee plant will be between 30 to 40 years but they can live much longer depending on the care given!</p><br><p>Once they're ripe and ready for picking they'll turn red in colour, but it takes a keen eye to know when the berries are ready for harvest as picking too early or too late can have a huge impact on the final taste.</p>");
+            Contents content5 = contentService.addContent(contentRequest5);
             
             ModuleRequest moduleRequest3 = new ModuleRequest(course1.getId(), "Roasting");
             Modules module3 = moduleService.addModule(null, moduleRequest3);
+
+            ContentRequest contentRequest6 = new ContentRequest(module3.getId(), "Where do coffee beans come from?", "<p>Coffee beans come from the coffee plant, a bush-like plant which can get very tall (coffee farmers will usually keep them trimmed to around 5ft to keep them manageable). On these coffee plants, bunches of cherries grow and inside these you’ll find two coffee beans, Arabica and Robusta coffee</p>");
+            Contents content6 = contentService.addContent(contentRequest6);
+
+            ContentRequest contentRequest7 = new ContentRequest(module3.getId(), "When is the coffee plant is ready?","<p>On average, it takes around one year for the coffee plant to begin to produce fragrant, white flowers, then up to four years later before it begins to bear fruit. It will be around 10 years for the coffee plants to begin producing coffee beans on a commercial level, which are the ones of the most value to the farmers. The general lifespan of the coffee plant will be between 30 to 40 years but they can live much longer depending on the care given!</p><br><p>Once they're ripe and ready for picking they'll turn red in colour, but it takes a keen eye to know when the berries are ready for harvest as picking too early or too late can have a huge impact on the final taste.</p>");
+            Contents content7 = contentService.addContent(contentRequest7);
 
             ForumRequest forumRequest1 = new ForumRequest(account.getId(),"<p>Cold brew is simply coffee that has been brewed with cold rather than hot water and usually involves a long steeping process—anywhere between 12-24 hours. In terms of flavor, cold brew is generally characterized as smooth, low-acid, and heavier than its hot brewed counterparts.<br><br>Although cold brew has been around for centuries, it’s really in the last ten years that it’s become a staple on coffee shops menus and recognizable by most coffee drinkers</p>");
             Forums forum1 = forumService.addForum(forumRequest1);

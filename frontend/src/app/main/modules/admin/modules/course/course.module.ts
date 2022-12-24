@@ -5,7 +5,7 @@ import { CourseRoutingModule } from './course-routing.module';
 import { CourseListComponent } from './components/course-list/course-list.component';
 import { CourseDetailComponent } from './components/course-detail/course-detail.component';
 import { ModuleListComponent } from './components/module-list/module-list.component';
-import { camera, cloudUpload, HeroIconModule, pencil, photograph, plus, x } from 'ng-heroicon';
+import { HeroIconModule, pencil, photograph, plus} from 'ng-heroicon';
 import { ModuleDetailComponent } from './components/module-detail/module-detail.component';
 import { ContentListComponent } from './components/content-list/content-list.component';
 import { ContentDetailComponent } from './components/content-detail/content-detail.component';

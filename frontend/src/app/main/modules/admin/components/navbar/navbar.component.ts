@@ -1,4 +1,7 @@
+import { Dialog } from '@angular/cdk/dialog';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/main/services/auth/auth.service';
+import { ConfirmationDialogComponent } from '../../../shared/components/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +17,7 @@ export class NavbarComponent implements OnInit {
 
   showDropdown:boolean = false;
 
-  constructor() {
+  constructor(public dialog:Dialog, private authService:AuthService) {
     this.menus = [
       {
         label: 'Course',
@@ -49,6 +52,21 @@ export class NavbarComponent implements OnInit {
 
   onClick(){
     this.showDropdown = false;
+  }
+
+  openSignoutDialog(){
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data:{
+        title:"Signout",
+        description:"Are you sure you want to signout?"
+      }
+    });
+
+    dialogRef.closed.subscribe((confirm) => {
+      if(confirm){
+        this.authService.signout();
+      }
+    });
   }
 
 }
