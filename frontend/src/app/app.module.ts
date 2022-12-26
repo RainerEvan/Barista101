@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './main/utils/jwt-interceptor/jwt.interceptor';
 import { ErrorInterceptor } from './main/utils/error-interceptor/error.interceptor';
 import { SharedModule } from './main/modules/shared/shared.module';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,9 @@ import { SharedModule } from './main/modules/shared/shared.module';
     },
     { 
       provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true 
+    },
+    {
+      provide: LocationStrategy, useClass:HashLocationStrategy
     },
   ],
   bootstrap: [AppComponent]
