@@ -12,7 +12,7 @@ export class SigninComponent implements OnInit {
 
   signinForm: FormGroup;
   loading:boolean = false;
-  showError: boolean = false;
+  showPassword: boolean = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private formBuilder: FormBuilder) {
     if(this.authService.accountValue){
@@ -49,7 +49,6 @@ export class SigninComponent implements OnInit {
         next: () => {
           this.loading = false;
           const role = this.authService.accountValue.role;
-          console.log(role);
           var returnUrl = "";
 
           if(role.match('USER')){
@@ -69,4 +68,7 @@ export class SigninComponent implements OnInit {
     }
   }
 
+  togglePassword(){
+    this.showPassword = !this.showPassword;
+  }
 }

@@ -56,7 +56,7 @@ export class ModuleContentComponent implements OnInit {
     formData.append('moduleId', new Blob([JSON.stringify(this.module.id)], {type:"application/json"}));
 
     this.enrollmentService.finishModule(formData).subscribe({
-      next:(response:any)=>{
+      next:()=>{
         this.openCompleteDialog();
       },
       error:(error:any)=>{

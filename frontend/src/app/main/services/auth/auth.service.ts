@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthDetails } from '../../models/authdetails';
+import { EnrollmentService } from '../enrollment/enrollment.service';
 
 const API_URL = environment.apiUrl + "/auth";
 
@@ -14,7 +15,7 @@ export class AuthService {
 
   private accountSubject: BehaviorSubject<AuthDetails>;
 
-  constructor(private router: Router, private http: HttpClient) { 
+  constructor(private router: Router, private http: HttpClient, private enrollmentService:EnrollmentService) { 
     this.accountSubject = new BehaviorSubject<AuthDetails>(JSON.parse(sessionStorage.getItem('account')));
   }
 
@@ -37,8 +38,8 @@ export class AuthService {
 
   public signout(){
     sessionStorage.removeItem('account');
-    sessionStorage.removeItem('enrollment');
     this.accountSubject.next(null);
+    this.enrollmentService.endCourse();
     this.router.navigate(['/signin']);
   }
 }

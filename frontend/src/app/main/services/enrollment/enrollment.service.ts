@@ -27,6 +27,11 @@ export class EnrollmentService {
     this.enrollmentSubject.next(enrollmentId);
   }
 
+  public endCourse(){
+    sessionStorage.removeItem('enrollment');
+    this.enrollmentSubject.next(null);
+  }
+
   public getAllEnrollmentsForAccount(accountId: string): Observable<Enrollments[]>{
     return this.apollo.watchQuery<any>({
       query: gql`

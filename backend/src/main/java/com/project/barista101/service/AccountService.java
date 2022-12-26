@@ -15,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.barista101.data.ERoles;
 import com.project.barista101.model.account.Accounts;
 import com.project.barista101.model.account.Roles;
 import com.project.barista101.payload.request.ChangePasswordRequest;
@@ -98,6 +97,10 @@ public class AccountService {
     public void changePassword(ChangePasswordRequest changePasswordRequest){
         
         Accounts account = getAccount(changePasswordRequest.getAccountId());
+
+        if(!passwordEncoder.matches(changePasswordRequest.getCurrPassword(), account.getPassword())){
+            throw new IllegalStateException("The current password is not correct");
+        }
 
         if(changePasswordRequest.getNewPassword() != null && changePasswordRequest.getNewPassword().length() > 0){
             account.setPassword(passwordEncoder.encode(changePasswordRequest.getNewPassword()));

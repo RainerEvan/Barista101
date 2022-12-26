@@ -121,7 +121,7 @@ public class StartAppConfig {
             RecipeRequest recipeRequest3 = new RecipeRequest(category1.getId(), account.getId(), "Whiskey Sour", "The whiskey sour is a mixed drink containing whiskey, lemon juice, sugar, and optionally, a dash of egg white or few droplets of vegan foamer. It is a type of sour, a mixed drink with a base spirit, citrus juice, and a sweetener.", "[{\"item\":\"Glass\"},{\"item\":\"Shaker\"},{\"item\":\"Spoon\"}]", "[{\"item\":\"Whiskey\"},{\"item\":\"Lemon Juice\"},{\"item\":\"Soda Water\"}]", "[{\"item\":\"Pour 30 ml of whiskey into the shaker\"},{\"item\":\"Squeeze 20 ml of lemon and add the juice into the shaker\"},{\"item\":\"Add 5 pcs of ice cubes into the shaker\"}]", "Try adding more ice cube to get the chills.");
             Recipes recipe3 = recipeService.addRecipe(null, recipeRequest3);
 
-            RecipeRatingRequest recipeRatingRequest1 = new RecipeRatingRequest(recipe3.getId(), account.getId(), 5, "This is a great recipe");
+            RecipeRatingRequest recipeRatingRequest1 = new RecipeRatingRequest(recipe3.getId(), account2.getId(), 5, "This is a great recipe");
             RecipeRatings recipeRating1 = recipeRatingService.addRecipeRating(recipeRatingRequest1);
 
             NotificationRequest notificationRequest1 = new NotificationRequest(account.getId(), "Congratulations you have completed the module", "");

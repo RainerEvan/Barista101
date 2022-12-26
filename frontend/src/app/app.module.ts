@@ -11,7 +11,7 @@ import { environment } from '../environments/environment';
 import { SignupComponent } from './main/components/signup/signup.component';
 import { SigninComponent } from './main/components/signin/signin.component';
 import { NotFoundComponent } from './main/components/not-found/not-found.component';
-import { HeroIconModule } from 'ng-heroicon';
+import { HeroIconModule, eye, eyeOff } from 'ng-heroicon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './main/utils/jwt-interceptor/jwt.interceptor';
 import { ErrorInterceptor } from './main/utils/error-interceptor/error.interceptor';
@@ -34,7 +34,10 @@ import { SharedModule } from './main/modules/shared/shared.module';
     ReactiveFormsModule,
     SharedModule,
     HeroIconModule.forRoot(
-      {},
+      {
+        eye,
+        eyeOff
+      },
       {
         defaultHostDisplay:'block',
         attachDefaultDimensionsIfNoneFound:true

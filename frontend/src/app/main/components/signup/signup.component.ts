@@ -12,7 +12,7 @@ export class SignupComponent implements OnInit {
 
   signupForm: FormGroup;
   loading:boolean = false;
-  showError: boolean = false;
+  showPassword: boolean = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private formBuilder: FormBuilder) {
     if(this.authService.accountValue){
@@ -35,6 +35,15 @@ export class SignupComponent implements OnInit {
     });
   }
 
+  get email(){
+    return this.signupForm.get('email');
+  }
+  get fullname(){
+    return this.signupForm.get('fullname');
+  }
+  get username(){
+    return this.signupForm.get('username');
+  }
   get password(){
     return this.signupForm.get('password');
   }
@@ -78,4 +87,7 @@ export class SignupComponent implements OnInit {
     });
   }
 
+  togglePassword(){
+    this.showPassword = !this.showPassword;
+  }
 }

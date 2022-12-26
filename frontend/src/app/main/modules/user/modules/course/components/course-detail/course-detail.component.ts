@@ -24,7 +24,6 @@ export class CourseDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCourse();
-    this.getEnrollment();
   }
 
   public getCourse(){
@@ -36,6 +35,7 @@ export class CourseDetailComponent implements OnInit {
       this.courseService.getCourse(courseId).subscribe({
         next:(response:Courses)=>{
           this.course = response;
+          this.getEnrollment();
           this.loading = false;
         },
         error:(error:any)=>{
@@ -48,13 +48,10 @@ export class CourseDetailComponent implements OnInit {
   public getEnrollment(){
     const enrollmentId = this.enrollmentService.currEnrollment;
 
-    this.loading = true;
-    
     if(enrollmentId){
       this.enrollmentService.getEnrollment(enrollmentId).subscribe({
         next:(response:Enrollments)=>{
           this.enrollment = response;
-          this.loading = false;
         },
         error:(error:any)=>{
             console.log(error);

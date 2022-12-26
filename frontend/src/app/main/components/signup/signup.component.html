@@ -19,13 +19,19 @@
                     <label for="username" class="sr-only">Username</label>
                     <input name="username" type="text" autocomplete="text" class="input-text" placeholder="Username" formControlName="username">
                 </div>
-                <div>
+                <div class="relative">
                     <label for="password" class="sr-only">Password</label>
-                    <input name="password" type="password" autocomplete="password" class="input-text" placeholder="Password" formControlName="password">
+                    <input name="password" [type]="showPassword ? 'text':'password'" autocomplete="current-password" class="input-text" placeholder="Enter password" formControlName="password">
+                    <button (click)="togglePassword()" type="button" class="absolute top-2 right-3 cursor-pointer">
+                        <hero-icon [name]="showPassword ? 'eye-off':'eye'" type="outline" class="w-5 h-5 text-inherit"></hero-icon>
+                    </button>
                 </div>
-                <div>
+                <div class="relative">
                     <label for="confirmPassword" class="sr-only">Confirm Password</label>
-                    <input name="confirmPassword" type="password" autocomplete="password" class="input-text" placeholder="Confirm Password" formControlName="confirmPassword">
+                    <input name="confirmPassword" [type]="showPassword ? 'text':'password'" autocomplete="current-password" class="input-text" placeholder="Confirm Password" formControlName="confirmPassword">
+                    <button (click)="togglePassword()" type="button" class="absolute top-2 right-3 cursor-pointer">
+                        <hero-icon [name]="showPassword ? 'eye-off':'eye'" type="outline" class="w-5 h-5 text-inherit"></hero-icon>
+                    </button>
                 </div>
             </div>
 

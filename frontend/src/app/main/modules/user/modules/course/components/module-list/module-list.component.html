@@ -1,17 +1,17 @@
 <div class="container tracking-wide flex flex-col space-y-4 p-4">
-    <a *ngFor="let module of modules" [routerLink]="['../module/',module.id]" class="grid grid-cols-5 items-center shadow-md rounded-lg bg-white hover:shadow-lg hover:-translate-y-0.5 focus:scale-95">
+    <a *ngFor="let module of modules;let i = index" [routerLink]="['../module/',module.id]" class="grid grid-cols-5 items-center shadow-md rounded-lg bg-white hover:shadow-lg hover:-translate-y-0.5 focus:scale-95">
         <div class="col-span-1 p-1 sm:p-2">
             <img [src]="thumbnailUrl+module.id" alt="Module Thumbnail" class="object-cover aspect-square rounded-lg">
         </div>
         <div class="col-span-3 p-2">
             <div class="flex flex-col justify-between space-y-1">
                 <span class="font-medium text-sm sm:text-base">{{module.title}}</span>
-                <span class="text-xs sm:text-sm">Click to start learning</span>
+                <span *ngIf="moduleStatus[i]" class="italic text-xs sm:text-sm">{{moduleStatus[i].done ? 'Completed':'Click to start learning'}}</span>
             </div>
         </div>
         <div class="col-span-1 p-2">
             <div class="w-full flex items-center justify-center">
-                <hero-icon name="play" type="solid" class="w-8 h-8 text-brown fill-brown"></hero-icon>
+                <hero-icon *ngIf="moduleStatus[i]" [name]="moduleStatus[i].done ? 'check-circle':'play'" type="solid" class="w-8 h-8" [class]="moduleStatus[i].done ? 'text-orange-300 fill-orange-300':'text-brown fill-brown'"></hero-icon>
             </div>
         </div>
     </a>
