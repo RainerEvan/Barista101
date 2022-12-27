@@ -32,8 +32,8 @@ export class HeaderComponent implements OnInit {
   openSignoutDialog(){
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data:{
-        title:"Signout",
-        description:"Are you sure you want to signout?"
+        title:"Sign Out",
+        description:"Are you sure you want to sign out?"
       }
     });
 
