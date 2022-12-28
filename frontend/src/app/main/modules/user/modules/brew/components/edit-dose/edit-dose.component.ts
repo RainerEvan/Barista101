@@ -26,19 +26,19 @@ export class EditDoseComponent implements OnInit {
     });
   }
 
-  increment(name:string, max:number){
+  increment(name:string, max:number, step:number){
     const control = this.doseForm.controls[name];
 
-    if(control.value + 1 <= max){
-      control.setValue(control.value + 1);
+    if(control.value + step <= max){
+      control.setValue(control.value + step);
     }
   }
 
-  decrement(name:string){
+  decrement(name:string, step:number){
     const control = this.doseForm.controls[name];
 
-    if(control.value - 1 > 0){
-      control.setValue(control.value - 1);
+    if(control.value - step > 0){
+      control.setValue(control.value - step);
     }
   }
 

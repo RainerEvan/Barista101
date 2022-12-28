@@ -7,17 +7,17 @@
         <div class="inline-flex items-center justify-between space-x-1 py-2">
             <label for="coffee" class="font-medium text-sm">Coffee (gr)</label>
             <div class="w-auto inline-flex">
-                <button (click)="decrement('coffee')" class="px-4 py-1 font-medium text-white rounded-l-lg bg-brown">-</button>
+                <button (click)="decrement('coffee',1)" class="px-4 py-1 font-medium text-white rounded-l-lg bg-brown">-</button>
                 <input type="number" class="w-12 px-2 py-1 text-sm text-center hide-button bg-brown/5 focus:z-10 focus:outline-none disabled:bg-gray-100 disabled:text-gray-400" formControlName="coffee">
-                <button (click)="increment('coffee',5)" class="px-4 py-1 font-medium text-white rounded-r-lg bg-brown">+</button>
+                <button (click)="increment('coffee',5,1)" class="px-4 py-1 font-medium text-white rounded-r-lg bg-brown">+</button>
             </div>
         </div>
         <div class="inline-flex items-center justify-between space-x-1 py-2">
             <label for="ratio" class="font-medium text-sm">Ratio</label>
             <div class="w-auto inline-flex">
-                <button (click)="decrement('ratio')" class="px-4 py-1 font-medium text-white rounded-l-lg bg-brown">-</button>
+                <button (click)="decrement('ratio',0.5)" class="px-4 py-1 font-medium text-white rounded-l-lg bg-brown">-</button>
                 <input type="number" class="w-12 px-2 py-1 text-sm text-center hide-button bg-brown/5 focus:z-10 focus:outline-none disabled:bg-gray-100 disabled:text-gray-400" formControlName="ratio">
-                <button (click)="increment('ratio',20)" class="px-4 py-1 font-medium text-white rounded-r-lg bg-brown">+</button>
+                <button (click)="increment('ratio',20,0.5)" class="px-4 py-1 font-medium text-white rounded-r-lg bg-brown">+</button>
             </div>
         </div>
         <div class="flex items-center justify-evenly space-x-4 py-4">
