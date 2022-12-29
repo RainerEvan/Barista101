@@ -12,8 +12,12 @@ export class EditDoseComponent implements OnInit {
   doseForm:FormGroup;
   loading:boolean = false;
   isDoseFormSubmitted:boolean = false;
+  cups:number = 1;
+  ratios:any;
 
-  constructor(private brewService:BrewService, private formBuilder:FormBuilder) { }
+  constructor(private brewService:BrewService, private formBuilder:FormBuilder) {
+    this.ratios = Array.from({length:30}, (v,k)=>k+1);
+  }
 
   ngOnInit(): void {
     this.generateDoseForm();
@@ -21,24 +25,23 @@ export class EditDoseComponent implements OnInit {
 
   generateDoseForm(){
     this.doseForm = this.formBuilder.group({
-      coffee: [1, [Validators.required, Validators.min(1), Validators.max(5)]],
-      ratio: [1, [Validators.required, Validators.min(1), Validators.max(20)]],
+      coffee: [15, [Validators.required, Validators.min(1), Validators.max(50)]],
+      water: [225, [Validators.required, Validators.min(10), Validators.max(1500)]],
+      ratio: [15, [Validators.required, Validators.min(1), Validators.max(30)]],
     });
   }
 
-  increment(name:string, max:number, step:number){
-    const control = this.doseForm.controls[name];
-
-    if(control.value + step <= max){
-      control.setValue(control.value + step);
+  increment(){
+    if(this.cups + 1 <= 5){
+      this.cups += 1;
+      this.doseForm.controls['coffee'].setValue(this.doseForm.controls['coffee'].value + this.doseForm.controls['coffee'].value);
     }
   }
 
-  decrement(name:string, step:number){
-    const control = this.doseForm.controls[name];
-
-    if(control.value - step > 0){
-      control.setValue(control.value - step);
+  decrement(){
+    if(this.cups -1 > 0){
+      this.doseForm.controls['coffee'].setValue(this.doseForm.controls['coffee'].value / this.cups);
+      this.cups -= 1;
     }
   }
 

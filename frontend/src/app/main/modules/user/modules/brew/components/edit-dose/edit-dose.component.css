@@ -1,3 +1,7 @@
 .hide-button::-webkit-inner-spin-button,::-webkit-outer-spin-button {
   @apply hidden;
 }
+
+.form-input{
+  @apply px-3 py-2 text-sm text-right appearance-none focus:z-10 focus:outline-brown disabled:bg-gray-100 disabled:text-gray-400;
+}
