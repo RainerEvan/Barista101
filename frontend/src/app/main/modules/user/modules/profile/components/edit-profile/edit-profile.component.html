@@ -1,6 +1,6 @@
 <div class="container w-full h-full p-4 bg-white">
-    <div class="relative flex items-center justify-center">
-        <h1 class="font-bold text-2xl">Edit Profile</h1>
+    <div class="flex items-center justify-center">
+        <h1 class="font-bold text-3xl">Edit Profile</h1>
     </div>
     <form [formGroup]="accountForm" (ngSubmit)="editAccount()" class="flex flex-col space-y-4 tracking-wide">
         <div class="flex items-center justify-center py-4">
@@ -25,8 +25,8 @@
             <input type="text" placeholder="Enter email" class="input-text" formControlName="email">
         </div>
         <div class="flex flex-col items-center justify-center space-y-3 py-12">
-            <button type="submit" class="w-2/3 button-primary">Save</button>
-            <a routerLink=".." class="w-2/3 button-secondary">Cancel</a>
+            <button type="submit" class="w-3/4 button-primary">Save</button>
+            <a routerLink=".." class="w-3/4 button-secondary">Cancel</a>
         </div>
     </form>
 </div>

@@ -7,7 +7,7 @@
         <form [formGroup]="courseForm" (ngSubmit)="addCourse()" class="flex flex-col space-y-4">
             <div class="space-y-1">
                 <label for="thumbnail" class="font-medium">Thumbnail</label>
-                <div draggable="true" (click)="fileInput.click()" class="input-image h-40 text-gray-500 bg-gray-50 cursor-pointer">
+                <div draggable="true" (click)="fileInput.click()" class="input-image h-40 bg-gray-50 cursor-pointer">
                     <img *ngIf="thumbnail" [src]="imageUrl" class="object-cover w-full h-full rounded-md">
                     <div *ngIf="!thumbnail" class="w-full h-full flex flex-col items-center justify-center space-y-1"> 
                         <hero-icon name="photograph" type="outline" class="w-6 h-6 text-inherit"></hero-icon>

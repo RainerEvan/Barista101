@@ -5,7 +5,7 @@ import { BrewRoutingModule } from './brew-routing.module';
 import { BrewListComponent } from './components/brew-list/brew-list.component';
 import { BrewDetailComponent } from './components/brew-detail/brew-detail.component';
 import { SharedModule } from '../../../shared/shared.module';
-import { chevronDoubleUp, HeroIconModule, play } from 'ng-heroicon';
+import { chevronDoubleUp, check, HeroIconModule, minus, play, plus } from 'ng-heroicon';
 import { EditDoseComponent } from './components/edit-dose/edit-dose.component';
 import { PreparationsComponent } from './components/preparations/preparations.component';
 import { StepsComponent } from './components/steps/steps.component';
@@ -29,7 +29,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HeroIconModule.withIcons(
       {
         chevronDoubleUp,
-        play
+        play,
+        plus,
+        minus,
+        check
       }
     )
   ]

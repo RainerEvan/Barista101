@@ -1,7 +1,7 @@
-.hide-button::-webkit-inner-spin-button,::-webkit-outer-spin-button {
+.hide-button::-webkit-inner-spin-button,::-webkit-outer-spin-button,::-webkit-calendar-picker-indicator  {
   @apply hidden;
 }
 
 .form-input{
-  @apply px-3 py-2 text-sm text-right appearance-none focus:z-10 focus:outline-brown disabled:bg-gray-100 disabled:text-gray-400;
+  @apply px-2 py-1 text-sm text-right appearance-none rounded-md border border-transparent focus:z-10 focus:bg-white focus:border-gray-700 focus:outline-none disabled:bg-white;
 }
