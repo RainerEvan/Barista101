@@ -24,7 +24,7 @@
             </div>
             <div class="inline-flex items-center justify-between space-x-1 py-3">
                 <label for="ratio" class="font-medium text-sm">Ratio</label>
-                <select class="w-16 form-input" (change)="onChangeRatio($event)" formControlName="ratio">
+                <select class="w-16 form-input cursor-pointer" (change)="onChangeRatio($event)" formControlName="ratio">
                     <option *ngFor="let number of ratios" [value]="number" class="text-inherit text-sm">1 : {{number}}</option>
                 </select>
             </div>
@@ -36,17 +36,19 @@
 
         <h1 class="font-bold text-xl">Grind Size</h1>
         <ul class="flex flex-col divide-y-2 my-3">
-            <li *ngFor="let grind of grindSizes" class="w-full flex items-center justify-between space-x-6 py-3">
-                <label [for]="grind.value" class="flex flex-col">
-                    <span class="font-semibold">{{grind.name}}</span>
-                    <p class="text-sm text-justify">{{grind.description}}</p>
+            <li *ngFor="let grind of grindSizes" class="w-full py-3">
+                <label [for]="grind.value" class="flex items-center justify-between space-x-6 cursor-pointer">
+                    <div class="flex flex-col">
+                        <span class="font-semibold">{{grind.name}}</span>
+                        <p class="text-sm text-justify">{{grind.description}}</p>
+                    </div>
+                    <div class="pr-2">
+                        <input type="radio" [id]="grind.value" [value]="grind.value" class="hidden peer" formControlName="grindSize">
+                        <div class="aspect-square flex items-center justify-center p-1 font-medium text-sm text-center border-2 border-brown rounded-full peer-checked:text-white peer-checked:bg-brown cursor-pointer">
+                            <hero-icon name="check" type="solid" class="w-4 h-4 text-white fill-white"></hero-icon>
+                        </div>
+                    </div>
                 </label>
-                <div class="pr-2">
-                    <input type="radio" [id]="grind.value" [value]="grind.value" class="hidden peer" formControlName="grindSize">
-                    <label [for]="grind.value" class="aspect-square flex items-center justify-center p-1 font-medium text-sm text-center border-2 border-brown rounded-full peer-checked:text-white peer-checked:bg-brown cursor-pointer">
-                        <hero-icon name="check" type="solid" class="w-4 h-4 text-white fill-white"></hero-icon>
-                    </label>
-                </div>
             </li>
         </ul>
         <div class="flex items-center justify-evenly space-x-4 py-3">

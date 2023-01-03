@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BrewService } from 'src/app/main/services/brew/brew.service';
 
 @Component({
@@ -19,7 +20,7 @@ export class EditDoseComponent implements OnInit {
   time:number = 0;
   grindSizes:any;
 
-  constructor(private brewService:BrewService, private formBuilder:FormBuilder) {
+  constructor(private router:Router, private brewService:BrewService, private formBuilder:FormBuilder) {
     this.ratios = Array.from({length:30}, (v,k)=>k+1);
 
     this.grindSizes = [
@@ -30,7 +31,7 @@ export class EditDoseComponent implements OnInit {
       },
       {
         name:"Medium",
-        description:"Pour Over, Machine Drip, Siphon",
+        description:"Pour Over, Machine Drip, Siphon, Aero Press",
         value:"medium"
       },
       {
@@ -87,8 +88,9 @@ export class EditDoseComponent implements OnInit {
     const coffee = event.target.value;
 
     if(coffee > 0){
-      this.coffeeVal = coffee;
-      this.water.setValue(coffee * this.ratio.value);
+      this.coffeeVal = coffee * 1;
+      this.waterVal = coffee * this.ratio.value;
+      this.water.setValue(this.waterVal);
     }
   }
 
@@ -96,7 +98,7 @@ export class EditDoseComponent implements OnInit {
     const water = event.target.value;
 
     if(water > 0){
-      this.waterVal = water;
+      this.waterVal = water * 1;
       this.ratio.setValue(Math.floor(water / this.coffee.value));
     }
   }
@@ -111,6 +113,5 @@ export class EditDoseComponent implements OnInit {
   }
 
   editDose(){
-
   }
 }

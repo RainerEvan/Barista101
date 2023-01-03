@@ -5,6 +5,7 @@ import { BrewDetailComponent } from './components/brew-detail/brew-detail.compon
 import { EditDoseComponent } from './components/edit-dose/edit-dose.component';
 import { PreparationsComponent } from './components/preparations/preparations.component';
 import { StepsComponent } from './components/steps/steps.component';
+import { SimulationComponent } from './components/simulation/simulation.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'steps',
     component: StepsComponent,
+  },
+  {
+    path: 'simulation',
+    component: SimulationComponent,
   },
 ];
 

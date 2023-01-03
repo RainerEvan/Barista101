@@ -5,11 +5,12 @@ import { BrewRoutingModule } from './brew-routing.module';
 import { BrewListComponent } from './components/brew-list/brew-list.component';
 import { BrewDetailComponent } from './components/brew-detail/brew-detail.component';
 import { SharedModule } from '../../../shared/shared.module';
-import { chevronDoubleUp, check, HeroIconModule, minus, play, plus } from 'ng-heroicon';
+import { chevronDoubleUp, check, HeroIconModule, minus, play, plus, rewind, fastForward, pause } from 'ng-heroicon';
 import { EditDoseComponent } from './components/edit-dose/edit-dose.component';
 import { PreparationsComponent } from './components/preparations/preparations.component';
 import { StepsComponent } from './components/steps/steps.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SimulationComponent } from './components/simulation/simulation.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrewDetailComponent,
     EditDoseComponent,
     PreparationsComponent,
-    StepsComponent
+    StepsComponent,
+    SimulationComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         play,
         plus,
         minus,
-        check
+        check,
+        rewind,
+        fastForward,
+        pause
       }
     )
   ]
