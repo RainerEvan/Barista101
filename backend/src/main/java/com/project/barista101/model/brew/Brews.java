@@ -31,7 +31,9 @@ public class Brews {
     @Lob
     private String description;
 
-    private Integer coffeeGram;
+    private Integer coffee;
+
+    private Integer water;
 
     private Integer ratio;
 
