@@ -24,7 +24,7 @@ public class ForumQueryResolver implements GraphQLQueryResolver{
     }
 
     public Forums getForum(UUID forumId){
-        return forumService.getforum(forumId);
+        return forumService.getForum(forumId);
     }
     
     public List<Forums> getAllForumsForAccount(UUID accountId){

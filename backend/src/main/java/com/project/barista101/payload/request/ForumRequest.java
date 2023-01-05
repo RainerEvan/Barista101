@@ -9,5 +9,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class ForumRequest {
     private UUID accountId;
+    private String title;
     private String body;
 }

@@ -12,6 +12,7 @@ export class ForumListComponent implements OnInit {
 
   forums:Forums[] = [];
   loading:boolean = false;
+  thumbnailUrl=environment.apiUrl+"/forum/thumbnail/";
   profileImgUrl=environment.apiUrl+"/account/profile-img/";
 
   constructor(private forumService:ForumService) { }

@@ -1,5 +1,6 @@
 import { Dialog } from '@angular/cdk/dialog';
-import { Component, OnInit } from '@angular/core';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ResultDialogComponent } from 'src/app/main/modules/shared/components/result-dialog/result-dialog.component';
 import { AuthService } from 'src/app/main/services/auth/auth.service';
@@ -15,6 +16,9 @@ export class AddForumComponent implements OnInit {
   forumForm:FormGroup;
   loading:boolean = false;
   isForumFormSubmitted:boolean = false;
+  thumbnail:any;
+  imageUrl:any;
+  @ViewChild('autotextarea') autosize: CdkTextareaAutosize;
 
   constructor(public dialog:Dialog, private authService:AuthService, private forumService:ForumService, private formBuilder:FormBuilder) {}
 
@@ -25,13 +29,18 @@ export class AddForumComponent implements OnInit {
   generateForumForm(){
     this.forumForm = this.formBuilder.group({
       accountId: [this.authService.accountValue.accountId],
-      body: [null, [Validators.required]],
+      title: [null, [Validators.required]],
+      body: [null],
     });
   }
 
   public addForum(): void{
     if(this.forumForm.valid){
-      const formData = this.forumForm.value;
+      const formData = new FormData();
+      const forum = this.forumForm.value;
+
+      formData.append('image',this.thumbnail);
+      formData.append('forum',new Blob([JSON.stringify(forum)], {type:"application/json"}));
 
       this.loading = true;
 
@@ -50,6 +59,26 @@ export class AddForumComponent implements OnInit {
         }
       });
     } 
+  }
+
+  onSelectFile(event:any){
+    if(event.target.files.length > 0){
+      this.thumbnail = event.target.files[0];
+      this.previewImage(this.thumbnail);
+    }
+  }
+
+  previewImage(image:any){
+    var reader = new FileReader();
+    reader.readAsDataURL(image);
+    reader.onload = (_event) => {
+      this.imageUrl = reader.result;
+    }
+  }
+
+  resetForm(form: FormGroup){
+    form.reset();
+    this.thumbnail = null;
   }
 
   openResultDialog(success:boolean,description:string,link:string){

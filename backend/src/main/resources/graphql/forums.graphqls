@@ -1,7 +1,9 @@
 type Forums{
     id:ID!
     author:Accounts
+    title:String
     body:String
+    thumbnail:String
     createdAt:DateTime
 }
 

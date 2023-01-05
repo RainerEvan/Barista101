@@ -34,8 +34,13 @@ public class Forums {
     @JoinColumn(name = "account_id")
     private Accounts author;
 
+    private String title;
+
     @Lob
     private String body;
+
+    @Lob
+    private String thumbnail;
 
     private OffsetDateTime createdAt;
 }

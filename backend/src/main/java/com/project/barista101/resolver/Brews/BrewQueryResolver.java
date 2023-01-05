@@ -19,11 +19,11 @@ public class BrewQueryResolver implements GraphQLQueryResolver{
     @Autowired
     private final BrewService brewService;
 
-    public List<Brews> getAllbrews(){
+    public List<Brews> getAllBrews(){
         return brewService.getAllBrews();
     }
 
-    public Brews getbrew(UUID brewId){
+    public Brews getBrew(UUID brewId){
         return brewService.getBrew(brewId);
     }
 }

@@ -25,7 +25,9 @@ export class ForumService {
               fullname
               username
             }
+            title
             body
+            thumbnail
             createdAt
           }
         }
@@ -45,7 +47,9 @@ export class ForumService {
               fullname
               username
             }
+            title
             body
+            thumbnail
             createdAt
           }
         }
@@ -68,7 +72,9 @@ export class ForumService {
               fullname
               username
             }
+            title
             body
+            thumbnail
             createdAt
           }
         }
