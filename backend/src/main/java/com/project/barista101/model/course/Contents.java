@@ -37,5 +37,8 @@ public class Contents {
     @Lob
     private String body;
 
+    @Lob
+    private String thumbnail;
+
     private OffsetDateTime createdAt;
 }

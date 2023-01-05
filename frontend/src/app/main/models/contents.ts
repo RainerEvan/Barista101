@@ -5,5 +5,6 @@ export type Contents = {
     module:Modules;
     title:string;
     body:string;
+    thumbnail:string;
     createdAt:Date;
 }

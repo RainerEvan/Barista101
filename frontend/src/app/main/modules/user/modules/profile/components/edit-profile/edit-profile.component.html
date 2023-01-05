@@ -1,4 +1,4 @@
-<div class="container w-full h-full p-4 bg-white">
+<div class="container p-4 bg-white">
     <div class="flex items-center justify-center">
         <h1 class="font-bold text-3xl">Edit Profile</h1>
     </div>
@@ -24,9 +24,16 @@
             <label for="email" class="font-medium">Email</label>
             <input type="text" placeholder="Enter email" class="input-text" formControlName="email">
         </div>
+        <div class="space-y-1">
+            <label for="password" class="font-medium">Change Password</label>
+            <button type="button" [routerLink]="['../change-password']" class="relative w-full">
+                <input type="password" readonly="true" placeholder="Enter password" value="1234567890" class="input-text read-only:shadow-none read-only:border-gray-400">
+                <hero-icon name="pencil-alt" type="outline" class="absolute top-2.5 right-3 w-4 h-4 text-inherit pointer-events-none"></hero-icon>
+            </button>
+        </div>
         <div class="flex flex-col items-center justify-center space-y-3 py-12">
             <button type="submit" class="w-3/4 button-primary">Save</button>
-            <a routerLink=".." class="w-3/4 button-secondary">Cancel</a>
+            <button type="button" [routerLink]="['..']" class="w-3/4 button-secondary">Cancel</button>
         </div>
     </form>
 </div>

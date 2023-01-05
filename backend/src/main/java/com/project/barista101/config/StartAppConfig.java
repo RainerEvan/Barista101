@@ -70,31 +70,31 @@ public class StartAppConfig {
             Modules module1 = moduleService.addModule(null, moduleRequest1);
 
             ContentRequest contentRequest1 = new ContentRequest(module1.getId(), "Where do coffee beans come from?", "<p>Coffee beans come from the coffee plant, a bush-like plant which can get very tall (coffee farmers will usually keep them trimmed to around 5ft to keep them manageable). On these coffee plants, bunches of cherries grow and inside these you’ll find two coffee beans, Arabica and Robusta coffee</p>");
-            Contents content1 = contentService.addContent(contentRequest1);
+            Contents content1 = contentService.addContent(null, contentRequest1);
 
             ContentRequest contentRequest2 = new ContentRequest(module1.getId(), "When is the coffee plant is ready?","<p>On average, it takes around one year for the coffee plant to begin to produce fragrant, white flowers, then up to four years later before it begins to bear fruit. It will be around 10 years for the coffee plants to begin producing coffee beans on a commercial level, which are the ones of the most value to the farmers. The general lifespan of the coffee plant will be between 30 to 40 years but they can live much longer depending on the care given!</p><br><p>Once they're ripe and ready for picking they'll turn red in colour, but it takes a keen eye to know when the berries are ready for harvest as picking too early or too late can have a huge impact on the final taste.</p>");
-            Contents content2 = contentService.addContent(contentRequest2);
+            Contents content2 = contentService.addContent(null, contentRequest2);
 
             ContentRequest contentRequest3 = new ContentRequest(module1.getId(), "Where is coffee grown?", "<p>Most coffee plants are grown around what’s known as ‘the bean belt’, an area around the equator between the tropics of Capricorn and Cancer. It’s here that’s home to the coffee capitals of the world such as Brazil, Vietnam, Colombia, Indonesia and Ethiopia, as these are the locations with the perfect conditions for coffee plants to thrive.</p><br><p>Interestingly, the location of where coffee beans are grown can alter the taste. Things such as climate, elevation and even soil type can impact the flavour of the coffee the beans produce.</p>");
-            Contents content3 = contentService.addContent(contentRequest3);
+            Contents content3 = contentService.addContent(null, contentRequest3);
 
             ModuleRequest moduleRequest2 = new ModuleRequest(course1.getId(), "Post Processing");
             Modules module2 = moduleService.addModule(null, moduleRequest2);
 
             ContentRequest contentRequest4 = new ContentRequest(module2.getId(), "Where do coffee beans come from?", "<p>Coffee beans come from the coffee plant, a bush-like plant which can get very tall (coffee farmers will usually keep them trimmed to around 5ft to keep them manageable). On these coffee plants, bunches of cherries grow and inside these you’ll find two coffee beans, Arabica and Robusta coffee</p>");
-            Contents content4 = contentService.addContent(contentRequest4);
+            Contents content4 = contentService.addContent(null, contentRequest4);
 
             ContentRequest contentRequest5 = new ContentRequest(module2.getId(), "When is the coffee plant is ready?","<p>On average, it takes around one year for the coffee plant to begin to produce fragrant, white flowers, then up to four years later before it begins to bear fruit. It will be around 10 years for the coffee plants to begin producing coffee beans on a commercial level, which are the ones of the most value to the farmers. The general lifespan of the coffee plant will be between 30 to 40 years but they can live much longer depending on the care given!</p><br><p>Once they're ripe and ready for picking they'll turn red in colour, but it takes a keen eye to know when the berries are ready for harvest as picking too early or too late can have a huge impact on the final taste.</p>");
-            Contents content5 = contentService.addContent(contentRequest5);
+            Contents content5 = contentService.addContent(null, contentRequest5);
             
             ModuleRequest moduleRequest3 = new ModuleRequest(course1.getId(), "Roasting");
             Modules module3 = moduleService.addModule(null, moduleRequest3);
 
             ContentRequest contentRequest6 = new ContentRequest(module3.getId(), "Where do coffee beans come from?", "<p>Coffee beans come from the coffee plant, a bush-like plant which can get very tall (coffee farmers will usually keep them trimmed to around 5ft to keep them manageable). On these coffee plants, bunches of cherries grow and inside these you’ll find two coffee beans, Arabica and Robusta coffee</p>");
-            Contents content6 = contentService.addContent(contentRequest6);
+            Contents content6 = contentService.addContent(null, contentRequest6);
 
             ContentRequest contentRequest7 = new ContentRequest(module3.getId(), "When is the coffee plant is ready?","<p>On average, it takes around one year for the coffee plant to begin to produce fragrant, white flowers, then up to four years later before it begins to bear fruit. It will be around 10 years for the coffee plants to begin producing coffee beans on a commercial level, which are the ones of the most value to the farmers. The general lifespan of the coffee plant will be between 30 to 40 years but they can live much longer depending on the care given!</p><br><p>Once they're ripe and ready for picking they'll turn red in colour, but it takes a keen eye to know when the berries are ready for harvest as picking too early or too late can have a huge impact on the final taste.</p>");
-            Contents content7 = contentService.addContent(contentRequest7);
+            Contents content7 = contentService.addContent(null, contentRequest7);
 
             ForumRequest forumRequest1 = new ForumRequest(account.getId(),"The Magic of Cold Brew","<p>Cold brew is simply coffee that has been brewed with cold rather than hot water and usually involves a long steeping process—anywhere between 12-24 hours. In terms of flavor, cold brew is generally characterized as smooth, low-acid, and heavier than its hot brewed counterparts.<br><br>Although cold brew has been around for centuries, it’s really in the last ten years that it’s become a staple on coffee shops menus and recognizable by most coffee drinkers</p>");
             Forums forum1 = forumService.addForum(null,forumRequest1);

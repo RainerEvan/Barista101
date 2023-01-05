@@ -7,7 +7,7 @@ import { MyForumComponent } from './components/my-forum/my-forum.component';
 import { MyRecipeComponent } from './components/my-recipe/my-recipe.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
-import { camera, chatAlt2, clipboardList, HeroIconModule, star } from 'ng-heroicon';
+import { camera, chatAlt2, clipboardList, HeroIconModule, pencilAlt, star } from 'ng-heroicon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../../shared/shared.module';
 
@@ -31,7 +31,8 @@ import { SharedModule } from '../../../shared/shared.module';
         chatAlt2,
         clipboardList,
         star,
-        camera
+        camera,
+        pencilAlt
       }
     )
   ]

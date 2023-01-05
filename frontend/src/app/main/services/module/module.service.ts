@@ -50,6 +50,7 @@ export class ModuleService {
               id
               title
               body
+              thumbnail
             }
           }
         }

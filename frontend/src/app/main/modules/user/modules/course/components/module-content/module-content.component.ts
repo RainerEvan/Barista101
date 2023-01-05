@@ -6,6 +6,7 @@ import { Modules } from 'src/app/main/models/modules';
 import { CompleteDialogComponent } from 'src/app/main/modules/shared/components/complete-dialog/complete-dialog.component';
 import { EnrollmentService } from 'src/app/main/services/enrollment/enrollment.service';
 import { ModuleService } from 'src/app/main/services/module/module.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-module-content',
@@ -19,6 +20,7 @@ export class ModuleContentComponent implements OnInit {
   currentContent:Contents;
   currentPage:number = 0;
   loading:boolean = false;
+  thumbnailUrl=environment.apiUrl+"/content/thumbnail/";
 
   constructor(public dialog:Dialog, private route:ActivatedRoute, private moduleService:ModuleService, private enrollmentService:EnrollmentService) { }
 

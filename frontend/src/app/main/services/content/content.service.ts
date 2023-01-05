@@ -22,6 +22,7 @@ export class ContentService {
             id
             title
             body
+            thumbnail
             createdAt
           }
         }
@@ -41,6 +42,7 @@ export class ContentService {
             id
             title
             body
+            thumbnail
             createdAt
           }
         }

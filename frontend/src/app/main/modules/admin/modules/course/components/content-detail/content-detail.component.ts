@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Contents } from 'src/app/main/models/contents';
 import { ContentService } from 'src/app/main/services/content/content.service';
+import { environment } from 'src/environments/environment';
 import { EditContentComponent } from '../edit-content/edit-content.component';
 
 @Component({
@@ -14,6 +15,7 @@ export class ContentDetailComponent implements OnInit {
 
   content:Contents;
   loading:boolean = false;
+  thumbnailUrl=environment.apiUrl+"/content/thumbnail/";
 
   constructor(public dialog:Dialog, private route:ActivatedRoute,private contentService:ContentService) { }
 

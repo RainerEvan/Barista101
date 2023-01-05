@@ -1,6 +1,8 @@
 package com.project.barista101.service;
 
+import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
 
@@ -8,6 +10,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.barista101.model.course.Contents;
 import com.project.barista101.model.course.Modules;
@@ -41,7 +44,7 @@ public class ContentService {
     }
 
     @Transactional
-    public Contents addContent(ContentRequest contentRequest){
+    public Contents addContent(MultipartFile file, ContentRequest contentRequest){
         Modules module = moduleRepository.findById(contentRequest.getModuleId())
             .orElseThrow(() -> new IllegalStateException("Module with current id cannot be found"));
 
@@ -51,11 +54,15 @@ public class ContentService {
         content.setBody(contentRequest.getBody());
         content.setCreatedAt(OffsetDateTime.now());
 
+        if(file != null){
+            content.setThumbnail(addImage(file));
+        }
+
         return contentRepository.save(content);
     }
 
     @Transactional
-    public Contents editContent(UUID contentId, ContentRequest contentRequest){
+    public Contents editContent(MultipartFile file, UUID contentId, ContentRequest contentRequest){
         Contents content = getContent(contentId);
 
         if(contentRequest.getTitle() != null){
@@ -64,6 +71,10 @@ public class ContentService {
 
         if(contentRequest.getBody() != null){
             content.setBody(contentRequest.getBody());
+        }
+
+        if(file != null){
+            content.setThumbnail(addImage(file));
         }
 
         return contentRepository.save(content);
@@ -75,5 +86,29 @@ public class ContentService {
             .orElseThrow(() -> new IllegalStateException("Content with current id cannot be found"));
 
         contentRepository.delete(content);
+    }
+
+    public String addImage(MultipartFile file){
+        try{
+            byte[] image = new byte[0];
+            
+            image = file.getBytes();
+
+            String encodedString = Base64.getEncoder().encodeToString(image);
+
+            return encodedString;
+            
+        } catch (IOException exception){
+            throw new IllegalStateException("Could not add the current file", exception);
+        }
+    }
+
+    public byte[] getThumbnail(UUID contentId){
+
+        Contents content = getContent(contentId);
+
+        byte[] decodedBytes = Base64.getDecoder().decode(content.getThumbnail());
+
+        return decodedBytes;
     }
 }

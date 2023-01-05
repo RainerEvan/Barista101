@@ -10,7 +10,7 @@
             <span *ngIf="account" class="text-sm text-gray-600">{{account.username}}</span>
             <div *ngIf="loading" class="w-24 h-4 bg-gray-200 rounded-lg animate-pulse"></div>
         </div>
-        <button [routerLink]="['./edit']" [state]="account" [disabled]="loading" class="w-full button-primary">Edit Profile</button>       
+        <button type="button" [routerLink]="['./edit']" [state]="account" [disabled]="loading" class="w-full button-primary">Edit Profile</button>       
     </div>
     <div class="w-full inline-flex shadow-sm">
         <a [routerLink]="['./my-forum']" routerLinkActive="active" class="w-full flex items-center justify-center p-2 border-b border-gray-300 transition ease-in-out duration-200">
