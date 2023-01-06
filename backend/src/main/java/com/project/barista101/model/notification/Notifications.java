@@ -41,6 +41,4 @@ public class Notifications {
     private String data;
 
     private OffsetDateTime createdAt;
-
-    private Boolean isRead;
 }

@@ -7,7 +7,7 @@
             <div (click)="fileInput.click()" class="relative w-20 h-20 cursor-pointer">
                 <img *ngIf="imageUrl" [src]="imageUrl" alt="Profile Image" class="object-cover w-full h-full rounded-full border border-gray-300">
                 <input #fileInput accept="image/*" type="file" class="hidden" (change)="onSelectFile($event)"/>
-                <div class="absolute -bottom-1 right-0 w-7 h-7 flex items-center justify-center p-1 rounded-full bg-red-800">
+                <div class="absolute -bottom-1 right-0 w-7 h-7 flex items-center justify-center p-1 rounded-full bg-brown">
                     <hero-icon name="camera" type="outline" class="w-5 h-5 text-white"></hero-icon>
                 </div>
             </div>

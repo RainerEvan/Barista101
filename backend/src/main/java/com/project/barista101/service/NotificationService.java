@@ -1,25 +1,41 @@
 package com.project.barista101.service;
 
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.client.ClientHttpRequestInterceptor;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.project.barista101.model.account.Accounts;
 import com.project.barista101.model.notification.Notifications;
 import com.project.barista101.payload.request.NotificationRequest;
 import com.project.barista101.repository.AccountRepository;
 import com.project.barista101.repository.NotificationRepository;
+import com.project.barista101.utils.HeaderRequestInterceptor;
 
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
 public class NotificationService {
+
+    @Value("${fcm.firebaseServerKey}")
+    private String firebaseServerKey;
+
+    @Value("${fcm.firebaseApiUrl}")
+    private String firebaseApiUrl;
     
     @Autowired
     private final NotificationRepository notificationRepository;
@@ -54,14 +70,40 @@ public class NotificationService {
         return notificationRepository.save(notification);
     }
 
+    @Async
     @Transactional
-    public void readNotification(UUID notificationId){
-        Notifications notification = notificationRepository.findById(notificationId)
-            .orElseThrow(() -> new IllegalStateException("Notification with current id cannot be found"));
+    public String sendPushNotification(Notifications notificationObject){
+        String result="";
 
-        if(!notification.getIsRead()){
-            notification.setIsRead(true);
-            notificationRepository.save(notification);
-        }
+        // List<String> fcmTokens = fcmSubscriptionRepository.findAllByAccount(notificationObject.getReceiver()).stream()
+        //     .map(subs -> subs.getToken())
+        //     .collect(Collectors.toList());
+
+        // for(String fcmToken : fcmTokens){
+        //     JSONObject json = new JSONObject();
+
+        //     try {
+        //         json.put("to", fcmToken);
+                
+        //         JSONObject notification = new JSONObject();
+        //         notification.put("title", "New ");
+        //         notification.put("body", notificationObject.getBody());
+        //         notification.put("click_action", "/");
+
+        //         json.put("notification", notification);
+        //     } catch (JSONException e1) {
+        //         e1.printStackTrace();
+        //     }
+    
+        //     RestTemplate restTemplate = new RestTemplate();
+        //     ArrayList<ClientHttpRequestInterceptor> interceptors = new ArrayList<>();
+        //     interceptors.add(new HeaderRequestInterceptor("Authorization", "key="+firebaseServerKey));
+        //     interceptors.add(new HeaderRequestInterceptor("Content-Type", "application/json"));
+        //     restTemplate.setInterceptors(interceptors);
+        //     HttpEntity<String> request = new HttpEntity<>(json.toString());
+        //     result = restTemplate.postForObject(firebaseApiUrl, request, String.class);
+        // }
+        
+        return result;
     }
 }

@@ -14,7 +14,7 @@
         <div *ngIf="thumbnail">
             <img [src]="imageUrl" class="w-full h-full rounded-lg">
         </div>
-        <div class="inline-flex items-center justify-end space-x-4 py-2">
+        <div class="inline-flex items-center justify-between space-x-4 py-2">
             <button type="button" (click)="fileInput.click()" class="w-fit cursor-pointer">
                 <hero-icon name="photograph" type="outline" class="w-6 h-6 text-brown"></hero-icon>
                 <input #fileInput accept="image/*" type="file" class="hidden" (change)="onSelectFile($event)"/>

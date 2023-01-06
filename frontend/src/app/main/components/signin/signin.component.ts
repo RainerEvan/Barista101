@@ -1,6 +1,8 @@
+import { Dialog } from '@angular/cdk/dialog';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ResultDialogComponent } from '../../modules/shared/components/result-dialog/result-dialog.component';
 import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
@@ -14,7 +16,7 @@ export class SigninComponent implements OnInit {
   loading:boolean = false;
   showPassword: boolean = false;
 
-  constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private formBuilder: FormBuilder) {
+  constructor(public dialog:Dialog, private route: ActivatedRoute, private router: Router, private authService: AuthService, private formBuilder: FormBuilder) {
     if(this.authService.accountValue){
       this.router.navigate(['/']);
     }
@@ -63,9 +65,19 @@ export class SigninComponent implements OnInit {
         error: (error: any) => {
           console.log(error);
           this.loading = false;
+          this.openResultDialog(false,error.message);
         }
       });
     }
+  }
+
+  openResultDialog(success:boolean,description:string){
+    const dialogRef = this.dialog.open(ResultDialogComponent,{
+      data:{
+        success:success,
+        description:description,
+      }
+    });
   }
 
   togglePassword(){

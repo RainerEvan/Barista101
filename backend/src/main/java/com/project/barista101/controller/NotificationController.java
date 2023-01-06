@@ -32,22 +32,13 @@ public class NotificationController {
         try{
             Notifications notification = notificationService.addNotification(notificationRequest);
 
-            return ResponseHandler.generateResponse("Notification has been added successfully!", HttpStatus.OK, notification);
+            String push = notificationService.sendPushNotification(notification);
+
+            return ResponseHandler.generateResponse("Notification has been added successfully!", HttpStatus.OK, notification + push);
 
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);
         }
     }
 
-    @DeleteMapping(path = "/read")
-    public ResponseEntity<Object> readNotification(@RequestParam("notificationId") UUID notificationId){
-        try{
-            notificationService.readNotification(notificationId);
-
-            return ResponseHandler.generateResponse("Notification has been deleted successfully!", HttpStatus.OK, null);
-
-        } catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);
-        }
-    }
 }
