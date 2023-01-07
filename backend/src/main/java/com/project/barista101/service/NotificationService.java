@@ -22,13 +22,14 @@ import com.project.barista101.model.account.Accounts;
 import com.project.barista101.model.notification.Notifications;
 import com.project.barista101.payload.request.NotificationRequest;
 import com.project.barista101.repository.AccountRepository;
+import com.project.barista101.repository.FcmSubscriptionRepository;
 import com.project.barista101.repository.NotificationRepository;
 import com.project.barista101.utils.HeaderRequestInterceptor;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class NotificationService {
 
     @Value("${fcm.firebaseServerKey}")
@@ -41,6 +42,8 @@ public class NotificationService {
     private final NotificationRepository notificationRepository;
     @Autowired
     private final AccountRepository accountRepository;
+    @Autowired
+    private final FcmSubscriptionRepository fcmSubscriptionRepository;
 
     @Transactional
     public List<Notifications> getAllNotificationsForAccount(UUID accountId){
@@ -75,34 +78,34 @@ public class NotificationService {
     public String sendPushNotification(Notifications notificationObject){
         String result="";
 
-        // List<String> fcmTokens = fcmSubscriptionRepository.findAllByAccount(notificationObject.getReceiver()).stream()
-        //     .map(subs -> subs.getToken())
-        //     .collect(Collectors.toList());
+        List<String> fcmTokens = fcmSubscriptionRepository.findAllByAccount(notificationObject.getReceiver()).stream()
+            .map(subs -> subs.getToken())
+            .collect(Collectors.toList());
 
-        // for(String fcmToken : fcmTokens){
-        //     JSONObject json = new JSONObject();
+        for(String fcmToken : fcmTokens){
+            JSONObject json = new JSONObject();
 
-        //     try {
-        //         json.put("to", fcmToken);
+            try {
+                json.put("to", fcmToken);
                 
-        //         JSONObject notification = new JSONObject();
-        //         notification.put("title", "New ");
-        //         notification.put("body", notificationObject.getBody());
-        //         notification.put("click_action", "/");
+                JSONObject notification = new JSONObject();
+                notification.put("title", "New Notification");
+                notification.put("body", notificationObject.getBody());
+                notification.put("click_action", "/");
 
-        //         json.put("notification", notification);
-        //     } catch (JSONException e1) {
-        //         e1.printStackTrace();
-        //     }
+                json.put("notification", notification);
+            } catch (JSONException e1) {
+                e1.printStackTrace();
+            }
     
-        //     RestTemplate restTemplate = new RestTemplate();
-        //     ArrayList<ClientHttpRequestInterceptor> interceptors = new ArrayList<>();
-        //     interceptors.add(new HeaderRequestInterceptor("Authorization", "key="+firebaseServerKey));
-        //     interceptors.add(new HeaderRequestInterceptor("Content-Type", "application/json"));
-        //     restTemplate.setInterceptors(interceptors);
-        //     HttpEntity<String> request = new HttpEntity<>(json.toString());
-        //     result = restTemplate.postForObject(firebaseApiUrl, request, String.class);
-        // }
+            RestTemplate restTemplate = new RestTemplate();
+            ArrayList<ClientHttpRequestInterceptor> interceptors = new ArrayList<>();
+            interceptors.add(new HeaderRequestInterceptor("Authorization", "key="+firebaseServerKey));
+            interceptors.add(new HeaderRequestInterceptor("Content-Type", "application/json"));
+            restTemplate.setInterceptors(interceptors);
+            HttpEntity<String> request = new HttpEntity<>(json.toString());
+            result = restTemplate.postForObject(firebaseApiUrl, request, String.class);
+        }
         
         return result;
     }

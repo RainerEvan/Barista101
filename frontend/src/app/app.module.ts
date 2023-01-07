@@ -16,6 +16,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './main/utils/jwt-interceptor/jwt.interceptor';
 import { ErrorInterceptor } from './main/utils/error-interceptor/error.interceptor';
 import { SharedModule } from './main/modules/shared/shared.module';
+import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
+import { AngularFireModule } from '@angular/fire/compat/';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
@@ -34,6 +36,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    AngularFireMessagingModule,
+    AngularFireModule.initializeApp(environment.firebase),
     HeroIconModule.forRoot(
       {
         eye,

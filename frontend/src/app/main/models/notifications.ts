@@ -6,5 +6,4 @@ export type Notifications = {
     body:string;
     data:string;
     createdAt:Date;
-    isRead:boolean;
 }

@@ -27,7 +27,6 @@ export class NotificationService {
             body
             data
             createdAt
-            isRead
           }
         }
       `, 

@@ -4,7 +4,6 @@ type Notifications{
     body:String
     data:String
     createdAt:DateTime
-    isRead:Boolean
 }
 
 extend type Query{
