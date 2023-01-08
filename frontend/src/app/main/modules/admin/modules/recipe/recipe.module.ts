@@ -6,7 +6,7 @@ import { CategoryListComponent } from './components/category-list/category-list.
 import { RecipeListComponent } from './components/recipe-list/recipe-list.component';
 import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.component';
 import { SharedModule } from '../../../shared/shared.module';
-import { dotsHorizontal, HeroIconModule, star } from 'ng-heroicon';
+import { dotsHorizontal, HeroIconModule, star, trash } from 'ng-heroicon';
 
 
 @NgModule({
@@ -22,7 +22,8 @@ import { dotsHorizontal, HeroIconModule, star } from 'ng-heroicon';
     HeroIconModule.withIcons(
       {
         dotsHorizontal,
-        star
+        star,
+        trash
       }
     )
   ]

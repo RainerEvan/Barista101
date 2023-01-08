@@ -1,8 +1,8 @@
-<div class="container p-4 bg-white">
-    <div class="flex items-center justify-center">
-        <h1 class="font-bold text-3xl">Edit Profile</h1>
+<div class="container p-4">
+    <div class="w-full">
+        <h1 class="font-bold text-3xl text-center">Edit Profile</h1>
     </div>
-    <form [formGroup]="accountForm" (ngSubmit)="editAccount()" class="flex flex-col space-y-4 tracking-wide">
+    <form [formGroup]="accountForm" (ngSubmit)="editAccount()" class="w-full max-w-md mx-auto flex flex-col space-y-4 tracking-wide">
         <div class="flex items-center justify-center py-4">
             <div (click)="fileInput.click()" class="relative w-20 h-20 cursor-pointer">
                 <img *ngIf="imageUrl" [src]="imageUrl" alt="Profile Image" class="object-cover w-full h-full rounded-full border border-gray-300">
@@ -27,13 +27,13 @@
         <div class="space-y-1">
             <label for="password" class="font-medium">Change Password</label>
             <button type="button" [routerLink]="['../change-password']" class="relative w-full">
-                <input type="password" readonly="true" placeholder="Enter password" value="1234567890" class="input-text read-only:shadow-none read-only:border-gray-400">
+                <input type="password" readonly="true" placeholder="Enter password" value="1234567890" class="input-text cursor-pointer read-only:shadow-none read-only:border-gray-400">
                 <hero-icon name="pencil-alt" type="outline" class="absolute top-2.5 right-3 w-4 h-4 text-inherit pointer-events-none"></hero-icon>
             </button>
         </div>
-        <div class="flex flex-col items-center justify-center space-y-3 py-12">
-            <button type="submit" class="w-3/4 button-primary">Save</button>
-            <button type="button" [routerLink]="['..']" class="w-3/4 button-secondary">Cancel</button>
+        <div class="flex flex-col items-center justify-center space-y-2 pt-12 sm:flex-row sm:space-x-4 sm:space-y-0">
+            <button type="submit" class="w-full button-primary">Save</button>
+            <button type="button" [routerLink]="['..']" class="w-full button-secondary">Cancel</button>
         </div>
     </form>
 </div>

@@ -50,7 +50,7 @@ public class RecipeRatingService {
 
         RecipeRatings recipeRating = new RecipeRatings();
         recipeRating.setRecipe(recipe);
-        recipeRating.setAccount(account);
+        recipeRating.setAuthor(account);
         recipeRating.setRating(recipeRatingRequest.getRating());
         recipeRating.setBody(recipeRatingRequest.getBody());
         recipeRating.setCreatedAt(OffsetDateTime.now());

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Forums } from 'src/app/main/models/forums';
 import { ConfirmationDialogComponent } from 'src/app/main/modules/shared/components/confirmation-dialog/confirmation-dialog.component';
+import { AuthService } from 'src/app/main/services/auth/auth.service';
 import { ForumService } from 'src/app/main/services/forum/forum.service';
 import { environment } from 'src/environments/environment';
 
@@ -21,8 +22,9 @@ export class ForumDetailComponent implements OnInit {
   thumbnailUrl=environment.apiUrl+"/forum/thumbnail/";
   profileImgUrl=environment.apiUrl+"/account/profile-img/";
   showDropdown:boolean = false;
+  accountId = this.authService.accountValue.accountId;
 
-  constructor(public dialog:Dialog, private router:Router, private route:ActivatedRoute,private forumService:ForumService) { }
+  constructor(public dialog:Dialog, private router:Router, private route:ActivatedRoute, private authService:AuthService, private forumService:ForumService) { }
 
   ngOnInit(): void {
     this.getForum();

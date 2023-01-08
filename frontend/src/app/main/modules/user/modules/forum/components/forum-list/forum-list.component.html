@@ -1,12 +1,11 @@
 <div class="container">
-    <div class="flex flex-row justify-between p-4">
+    <div class="sticky flex flex-row justify-between p-4">
         <h1 class="font-bold text-3xl">Forum</h1>
-        <a [routerLink]="['./add']" class="button-primary flex flex-row items-center space-x-1">
-            <hero-icon name="plus" type="solid" class="w-3 h-3 text-white fill-white"></hero-icon>
-            <span class="text-xs">Add Thread</span>
+        <a [routerLink]="['./add']" class="fixed right-6 bottom-20 bg-brown p-3 rounded-full shadow-md transition ease-in-out duration-200 hover:scale-105 active:scale-95">
+            <hero-icon name="plus" type="outline" class="w-6 h-6 text-white"></hero-icon>
         </a>
     </div>
-    <div class="flex flex-col space-y-2 divide-y divide-gray-300 border-y">
+    <div class="flex flex-col space-y-2 divide-y divide-gray-300">
         <a *ngFor="let forum of forums" [routerLink]="['./detail/',forum.id]" class="w-full flex flex-col space-y-3 p-4 bg-white tracking-wide focus:bg-gray-100">
             <div class="flex flex-row items-center justify-start space-x-2">
                 <img [src]="profileImgUrl+forum.author.id" alt="Profile Image" class="object-cover w-12 h-12 rounded-full">

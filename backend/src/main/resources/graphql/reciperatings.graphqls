@@ -1,7 +1,7 @@
 type RecipeRatings{
     id:ID!
     recipe:Recipes
-    account:Accounts
+    author:Accounts
     rating:Int
     body:String
     createdAt:DateTime

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { checkCircle, chevronLeft, HeroIconModule, logout, star, userCircle, x, xCircle } from 'ng-heroicon';
+import { academicCap, checkCircle, chevronLeft, HeroIconModule, logout, userCircle, x, xCircle } from 'ng-heroicon';
 import { DialogModule } from '@angular/cdk/dialog';
 import { DescriptionDialogComponent } from './components/description-dialog/description-dialog.component';
 import { CompleteDialogComponent } from './components/complete-dialog/complete-dialog.component';
@@ -28,7 +28,7 @@ import { LoadingDialogComponent } from './components/loading-dialog/loading-dial
         logout,
         x,
         xCircle,
-        star,
+        academicCap,
         chevronLeft
       }
     )

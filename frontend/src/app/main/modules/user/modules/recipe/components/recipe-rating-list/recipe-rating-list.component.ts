@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { RecipeRatings } from 'src/app/main/models/reciperatings';
 import { AuthService } from 'src/app/main/services/auth/auth.service';
+import { NotificationService } from 'src/app/main/services/notification/notification.service';
 import { RecipeRatingService } from 'src/app/main/services/recipe-rating/recipe-rating.service';
 import { environment } from 'src/environments/environment';
 
@@ -23,7 +24,7 @@ export class RecipeRatingListComponent implements OnInit {
   profileImgUrl=environment.apiUrl+"/account/profile-img/";
   accountId = this.authService.accountValue.accountId;
 
-  constructor(private route:ActivatedRoute, private authService:AuthService, private recipeRatingService:RecipeRatingService, private formBuilder:FormBuilder) { }
+  constructor(private route:ActivatedRoute, private authService:AuthService, private recipeRatingService:RecipeRatingService, private notificationService:NotificationService, private formBuilder:FormBuilder) { }
 
   ngOnInit(): void {
     this.getAllRatingsForRecipe();
@@ -53,7 +54,7 @@ export class RecipeRatingListComponent implements OnInit {
         next:(response:RecipeRatings[])=>{
           this.recipeRatings = response;
           this.loading = false;
-          if(this.recipeRatings.some(rating => this.accountId.match(rating.account.id))){
+          if(this.recipeRatings.some(rating => this.accountId.match(rating.author.id))){
             this.isRecipeRated = true;
           }
         },
@@ -65,8 +66,15 @@ export class RecipeRatingListComponent implements OnInit {
   }
 
   public addRecipeRating(){
+    const recipeId = this.route.snapshot.paramMap.get('id');
+
     if(this.recipeRatingForm.valid){
       const formData = this.recipeRatingForm.value;
+
+      const notificationData = {
+        link:`../recipe/detail/${recipeId}`,
+        icon:2
+      }
 
       this.recipeRatingService.addRecipeRating(formData).subscribe({
         next: (response: any) => {
@@ -75,6 +83,7 @@ export class RecipeRatingListComponent implements OnInit {
           this.generateRecipeRatingForm();
           this.updateRating.emit(this.isRecipeRatingFormSubmitted);
           this.getAllRatingsForRecipe();
+          this.notificationService.addNotification(response.data.author.id,`<b>${this.authService.accountValue.username}</b> has rated your recipe, check it out`,JSON.stringify(notificationData));
         },
         error: (error: any) => {
           console.log(error);

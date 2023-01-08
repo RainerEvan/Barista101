@@ -37,7 +37,20 @@ export class NotificationService {
       .valueChanges.pipe(map((result)=>result.data.getAllNotificationsForAccount));
   }
 
-  public addNotification(formData: FormData): Observable<any>{
-    return this.http.post(API_URL+'/add',formData);
+  public addNotification(receiverId:string, body:string, data:string){
+    const formData = {
+      receiverId: receiverId,
+      body: body,
+      data: data
+    }
+
+    this.http.post(API_URL+'/add',formData).subscribe({
+      next:(response:any)=>{
+        console.log(response);
+      },
+      error:(error:any)=>{
+        console.log(error);
+      }
+    });
   }
 }

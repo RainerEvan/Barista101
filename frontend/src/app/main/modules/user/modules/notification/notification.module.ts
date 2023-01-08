@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { NotificationRoutingModule } from './notification-routing.module';
 import { NotificationListComponent } from './components/notification-list/notification-list.component';
-import { HeroIconModule, star } from 'ng-heroicon';
+import { academicCap, badgeCheck, chatAlt, HeroIconModule, star } from 'ng-heroicon';
 
 
 @NgModule({
@@ -15,7 +15,10 @@ import { HeroIconModule, star } from 'ng-heroicon';
     NotificationRoutingModule,
     HeroIconModule.withIcons(
       {
+        badgeCheck,
         star,
+        chatAlt,
+        academicCap
       }
     )
   ]

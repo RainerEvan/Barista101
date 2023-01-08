@@ -23,7 +23,7 @@ export class RecipeRatingService {
             recipe{
               id
             }
-            account{
+            author{
               id
               fullname
               username

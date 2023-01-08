@@ -36,7 +36,7 @@ public class RecipeRatings {
 
     @ManyToOne
     @JoinColumn(name = "account_id")
-    private Accounts account;
+    private Accounts author;
 
     private Integer rating;
 

@@ -4,7 +4,7 @@ import { Recipes } from "./recipes";
 export type RecipeRatings = {
     id:string;
     recipe:Recipes;
-    account:Accounts;
+    author:Accounts;
     rating:number;
     body:string;
     createdAt:Date;

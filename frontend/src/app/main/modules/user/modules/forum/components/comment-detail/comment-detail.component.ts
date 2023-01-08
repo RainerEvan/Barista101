@@ -2,6 +2,7 @@ import { Dialog } from '@angular/cdk/dialog';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ForumComments } from 'src/app/main/models/forumcomments';
 import { ConfirmationDialogComponent } from 'src/app/main/modules/shared/components/confirmation-dialog/confirmation-dialog.component';
+import { AuthService } from 'src/app/main/services/auth/auth.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -18,8 +19,9 @@ export class CommentDetailComponent implements OnInit {
   @Output() commentId = new EventEmitter<string>();
   profileImgUrl=environment.apiUrl+"/account/profile-img/";
   showDropdown:boolean = false;
+  accountId = this.authService.accountValue.accountId;
 
-  constructor(public dialog:Dialog) { }
+  constructor(public dialog:Dialog, private authService:AuthService) { }
 
   ngOnInit(): void {
   }

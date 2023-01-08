@@ -1,5 +1,5 @@
 <div class="container tracking-wide divide-y divide-gray-300">
-    <div class="w-full px-4 py-2 bg-white">
+    <div class="w-full px-4 py-2 bg-white border-t border-gray-300">
         <span class="font-medium text-sm">({{recipeRatings.length}}) Ratings</span>
     </div>
     <div *ngIf="!isRecipeRated" class="w-full grid grid-cols-6 gap-2 p-4 bg-white sm:grid-cols-10">
@@ -34,13 +34,13 @@
         <div *ngFor="let recipeRating of recipeRatings">
             <div class="w-full grid grid-cols-6 gap-2 p-4 bg-white sm:grid-cols-10">
                 <div class="col-span-1 flex flex-row items-start justify-center">
-                    <img [src]="profileImgUrl+recipeRating.account.id" alt="Profile Image" class="object-cover w-12 h-12 rounded-full">
+                    <img [src]="profileImgUrl+recipeRating.author.id" alt="Profile Image" class="object-cover w-12 h-12 rounded-full">
                 </div>
                 <div class="col-span-5 flex flex-col space-y-1 sm:col-span-9">
                     <div class="flex flex-col">
                         <div class="flex flex-row items-center space-x-2">
-                            <span class="font-medium text-sm">{{recipeRating.account.fullname}}</span>
-                            <span class="text-xs text-gray-400 before:content-['•']"> {{recipeRating.account.username}}</span>
+                            <span class="font-medium text-sm">{{recipeRating.author.fullname}}</span>
+                            <span class="text-xs text-gray-400 before:content-['•']"> {{recipeRating.author.username}}</span>
                         </div>
                         <span class="text-xs text-gray-400">{{recipeRating.createdAt | date:'d MMM y, h:mm a'}}</span>
                         <div class="relative w-fit inline-flex items-center pt-1">

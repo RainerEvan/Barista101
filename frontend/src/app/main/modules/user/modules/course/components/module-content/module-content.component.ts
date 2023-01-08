@@ -4,8 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 import { Contents } from 'src/app/main/models/contents';
 import { Modules } from 'src/app/main/models/modules';
 import { CompleteDialogComponent } from 'src/app/main/modules/shared/components/complete-dialog/complete-dialog.component';
+import { AuthService } from 'src/app/main/services/auth/auth.service';
 import { EnrollmentService } from 'src/app/main/services/enrollment/enrollment.service';
 import { ModuleService } from 'src/app/main/services/module/module.service';
+import { NotificationService } from 'src/app/main/services/notification/notification.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -22,7 +24,7 @@ export class ModuleContentComponent implements OnInit {
   loading:boolean = false;
   thumbnailUrl=environment.apiUrl+"/content/thumbnail/";
 
-  constructor(public dialog:Dialog, private route:ActivatedRoute, private moduleService:ModuleService, private enrollmentService:EnrollmentService) { }
+  constructor(public dialog:Dialog, private route:ActivatedRoute, private authService:AuthService,private moduleService:ModuleService, private enrollmentService:EnrollmentService, private notificationService:NotificationService) { }
 
   ngOnInit(): void {
     this.getModule();
@@ -57,8 +59,13 @@ export class ModuleContentComponent implements OnInit {
     formData.append('enrollmentId', new Blob([JSON.stringify(enrollmentId)], {type:"application/json"}));
     formData.append('moduleId', new Blob([JSON.stringify(this.module.id)], {type:"application/json"}));
 
+    const notificationData = {
+      icon:0
+    }
+
     this.enrollmentService.finishModule(formData).subscribe({
       next:()=>{
+        this.notificationService.addNotification(this.authService.accountValue.accountId,`Congratulations you have completed the <b>${this.module.title}</b> module`,JSON.stringify(notificationData));
         this.openCompleteDialog();
       },
       error:(error:any)=>{

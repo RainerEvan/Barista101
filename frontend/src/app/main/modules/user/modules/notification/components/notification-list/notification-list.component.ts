@@ -12,8 +12,24 @@ export class NotificationListComponent implements OnInit {
 
   notifications:Notifications[] = [];
   loading:boolean = false;
+  icons:any;
 
-  constructor(private authService:AuthService, private notificationService:NotificationService) { }
+  constructor(private authService:AuthService, private notificationService:NotificationService) {
+    this.icons = [
+      {
+        name:'academic-cap',
+        style:'text-orange-400 fill-orange-400'
+      },
+      {
+        name:'chat-alt',
+        style:'text-blue-400 fill-blue-400'
+      },
+      {
+        name:'star',
+        style:'text-yellow-400 fill-yellow-400'
+      },
+    ]
+  }
 
   ngOnInit(): void {
     this.getAllNotificationsForAccount();
@@ -33,6 +49,10 @@ export class NotificationListComponent implements OnInit {
         console.log(error);
       }
     });
+  }
+
+  getData(data:string){
+    return JSON.parse(data);
   }
 
 }

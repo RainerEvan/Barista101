@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ForumComments } from 'src/app/main/models/forumcomments';
 import { AuthService } from 'src/app/main/services/auth/auth.service';
 import { ForumCommentService } from 'src/app/main/services/forum-comment/forum-comment.service';
+import { NotificationService } from 'src/app/main/services/notification/notification.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -20,7 +21,7 @@ export class CommentListComponent implements OnInit {
   profileImgUrl=environment.apiUrl+"/account/profile-img/";
   accountId = this.authService.accountValue.accountId;
 
-  constructor(private route:ActivatedRoute, private authService:AuthService,private forumCommentService:ForumCommentService, private formBuilder:FormBuilder) { }
+  constructor(private route:ActivatedRoute, private authService:AuthService,private forumCommentService:ForumCommentService, private notificationService:NotificationService, private formBuilder:FormBuilder) { }
 
   ngOnInit(): void {
     this.getAllCommentsForForum();
@@ -56,8 +57,15 @@ export class CommentListComponent implements OnInit {
   }
 
   public addForumComment(){
+    const forumId = this.route.snapshot.paramMap.get('id');
+
     if(this.forumCommentForm.valid){
       const formData = this.forumCommentForm.value;
+
+      const notificationData = {
+        link:`../forum/detail/${forumId}`,
+        icon:1
+      }
 
       this.forumCommentService.addForumComment(formData).subscribe({
         next: (response: any) => {
@@ -65,6 +73,7 @@ export class CommentListComponent implements OnInit {
           this.isForumCommentFormSubmitted = true;
           this.generateForumCommentForm();
           this.getAllCommentsForForum();
+          this.notificationService.addNotification(response.data.author.id,`<b>${this.authService.accountValue.username}</b> has replied to your thread, check it out`,JSON.stringify(notificationData));
         },
         error: (error: any) => {
           console.log(error);

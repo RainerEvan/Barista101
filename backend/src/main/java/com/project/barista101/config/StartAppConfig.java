@@ -124,8 +124,6 @@ public class StartAppConfig {
             RecipeRatingRequest recipeRatingRequest1 = new RecipeRatingRequest(recipe3.getId(), account2.getId(), 5, "This is a great recipe");
             RecipeRatings recipeRating1 = recipeRatingService.addRecipeRating(recipeRatingRequest1);
 
-            NotificationRequest notificationRequest1 = new NotificationRequest(account.getId(), "Congratulations you have completed the module", "");
-            Notifications notification1 = notificationService.addNotification(notificationRequest1);
         };
     }
 }

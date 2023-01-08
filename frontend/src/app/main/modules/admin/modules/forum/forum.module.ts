@@ -7,7 +7,7 @@ import { ForumDetailComponent } from './components/forum-detail/forum-detail.com
 import { CommentListComponent } from './components/comment-list/comment-list.component';
 import { CommentDetailComponent } from './components/comment-detail/comment-detail.component';
 import { SharedModule } from '../../../shared/shared.module';
-import { dotsHorizontal, HeroIconModule } from 'ng-heroicon';
+import { dotsHorizontal, HeroIconModule, trash } from 'ng-heroicon';
 
 
 @NgModule({
@@ -24,6 +24,7 @@ import { dotsHorizontal, HeroIconModule } from 'ng-heroicon';
     HeroIconModule.withIcons(
       {
         dotsHorizontal,
+        trash
       }
     )
   ]

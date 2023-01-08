@@ -51,7 +51,7 @@ export class ForumDetailComponent implements OnInit {
     this.forumService.deleteForum(forumId).subscribe({
       next:(response:any)=>{
         console.log(response);
-        this.router.navigate(["./forum"]);
+        this.router.navigate([".."]);
       },
       error:(error:any)=>{
         console.log(error);

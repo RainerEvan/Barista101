@@ -1,6 +1,6 @@
 <div class="flex items-center py-3 overflow-x-scroll scroll-smooth hide-scroll-bar">
     <div class="flex flex-nowrap space-x-4">
-        <a *ngFor="let recipe of recipes" [routerLink]="['./detail/',recipe.id]" class="relative w-40 h-40 bg-transparent shadow-md hover:shadow-lg focus:scale-95">
+        <a *ngFor="let recipe of recipes" [routerLink]="['./detail/',recipe.id]" class="relative w-40 h-40 bg-transparent rounded-xl shadow-md hover:shadow-lg focus:scale-95">
             <div class="w-full h-full overflow-clip rounded-xl">
                 <img [src]="thumbnailUrl+recipe.id" alt="Recipe Thumbnail" class="absolute object-cover w-full h-full rounded-xl">
                 <div class="absolute w-full h-full bg-gradient-to-t from-black/75 to-transparent rounded-xl"></div>
@@ -11,7 +11,7 @@
                     </div>
                 </div>
                 <div class="absolute -bottom-2.5 w-full flex justify-center">
-                    <div class="w-16 inline-flex items-center justify-center space-x-1 rounded-full p-1 bg-black text-white">
+                    <div class="w-16 inline-flex items-center justify-center space-x-1 rounded-full p-1 bg-gray-900 text-white">
                         <hero-icon name="star" type="solid" class="w-4 h-4 text-yellow-400 fill-yellow-400"></hero-icon>
                         <span class="text-xs">{{recipe.rating}}</span>
                     </div>

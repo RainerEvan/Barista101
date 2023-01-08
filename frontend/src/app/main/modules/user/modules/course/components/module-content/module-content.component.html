@@ -3,19 +3,26 @@
     <div class="absolute top-4 right-4 flex items-center px-3 py-1.5 rounded-full shadow-md bg-brown">
         <span class="text-sm text-white">{{currentPage+1}} of {{contents.length}} Pages</span>
     </div>
+    <div class="fixed z-10 w-full max-w-screen-sm inset-x-0 bottom-20 mx-auto flex items-center justify-between px-6">
+        <button *ngIf="currentPage != (contents.length-1)" [disabled]="currentPage == 0" (click)="previousPage()" class="bg-brown p-3 rounded-full shadow-md transition ease-in-out duration-200 hover:scale-105 active:scale-95">
+            <hero-icon name="chevron-left" type="outline" class="w-6 h-6 text-white"></hero-icon>
+        </button>
+        <button *ngIf="currentPage != (contents.length-1)" (click)="nextPage()" class="bg-brown p-3 rounded-full shadow-md transition ease-in-out duration-200 hover:scale-105 active:scale-95">
+            <hero-icon name="chevron-right" type="outline" class="w-6 h-6 text-white"></hero-icon>
+        </button>
+        <button *ngIf="currentPage == (contents.length-1)" (click)="finishModule()" class="button-primary w-full">Finish</button>
+    </div>
     <div [class]="currentContent.thumbnail ? '':'py-6'">
         <img *ngIf="currentContent.thumbnail" [src]="thumbnailUrl+currentContent.id" alt="Content Thumbnail" class="w-full h-full">
     </div>
-    <div class="flex flex-col space-y-4 p-6">
-        <div class="flex flex-col space-y-2">
-            <h1 class="font-semibold text-lg">{{currentContent.title}}</h1>
-            <div class="text-justify text-sm" [innerHTML]="currentContent?.body"></div>
-        </div>
-        <div class="flex flex-row items-center justify-evenly space-x-4">
+    <div class="flex flex-col space-y-4 pt-6 pb-24 px-6">
+        <h1 class="font-semibold text-lg">{{currentContent.title}}</h1>
+        <div class="text-justify text-sm" [innerHTML]="currentContent?.body"></div>
+        <!-- <div class="flex flex-row items-center justify-evenly space-x-4">
             <button [disabled]="currentPage == 0" (click)="previousPage()" class="button-primary w-full">Back</button>
             <button *ngIf="currentPage != (contents.length-1)" (click)="nextPage()" class="button-primary w-full">Next</button>
             <button *ngIf="currentPage == (contents.length-1)" (click)="finishModule()" class="button-primary w-full">Finish</button>
-        </div>
+        </div> -->
     </div>
 </div>
 
