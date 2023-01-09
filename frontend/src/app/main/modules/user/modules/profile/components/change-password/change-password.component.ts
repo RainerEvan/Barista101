@@ -42,7 +42,7 @@ export class ChangePasswordComponent implements OnInit {
           console.log(response);
           this.loading = false;
           this.isPasswordFormSubmitted = true;
-          this.openResultDialog(this.isPasswordFormSubmitted,"Password has been updated");
+          this.openResultDialog(this.isPasswordFormSubmitted,"Password has been updated, please sign in again");
         },
         error: (error: any) => {
           console.log(error);

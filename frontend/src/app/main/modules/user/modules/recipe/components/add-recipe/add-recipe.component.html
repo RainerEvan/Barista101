@@ -30,7 +30,7 @@
             <div formArrayName="equipments" class="space-y-3">
                 <div *ngFor="let equipment of equipments.controls; let i = index" class="">
                     <div [formGroup]="equipment" class="w-full inline-flex space-x-2">
-                        <input type="text" placeholder="Enter equipment" class="input-text" formControlName="item">
+                        <input type="text" [placeholder]="'Item '+(i+1)"  class="input-text" formControlName="item">
                         <button (click)="deleteEquipment(i)" type="button" class="flex items-center justify-center rounded-full">
                             <hero-icon name="x-circle" type="solid" class="w-6 h-6 text-brown fill-brown"></hero-icon>
                         </button>
@@ -49,7 +49,7 @@
             <div formArrayName="ingredients" class="space-y-3">
                 <div *ngFor="let ingredient of ingredients.controls; let i = index" class="">
                     <div [formGroup]="ingredient" class="w-full inline-flex space-x-2">
-                        <input type="text" placeholder="Enter ingredient" class="input-text" formControlName="item">
+                        <input type="text" [placeholder]="'Item '+(i+1)" class="input-text" formControlName="item">
                         <button (click)="deleteIngredient(i)" type="button" class="flex items-center justify-center rounded-full">
                             <hero-icon name="x-circle" type="solid" class="w-6 h-6 text-brown fill-brown"></hero-icon>
                         </button>
@@ -68,7 +68,7 @@
             <div formArrayName="instructions" class="space-y-3">
                 <div *ngFor="let instruction of instructions.controls; let i = index" class="">
                     <div [formGroup]="instruction" class="w-full inline-flex space-x-2">
-                        <input type="text" placeholder="Enter instruction" class="input-text" formControlName="item">
+                        <input type="text" [placeholder]="'Step '+(i+1)" class="input-text" formControlName="item">
                         <button (click)="deleteInstruction(i)" type="button" class="flex items-center justify-center rounded-full">
                             <hero-icon name="x-circle" type="solid" class="w-6 h-6 text-brown fill-brown"></hero-icon>
                         </button>

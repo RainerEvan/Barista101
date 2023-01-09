@@ -5,7 +5,7 @@ import { BrewRoutingModule } from './brew-routing.module';
 import { BrewListComponent } from './components/brew-list/brew-list.component';
 import { BrewDetailComponent } from './components/brew-detail/brew-detail.component';
 import { SharedModule } from '../../../shared/shared.module';
-import { chevronDoubleUp, check, HeroIconModule, minus, play, plus, rewind, fastForward, pause } from 'ng-heroicon';
+import { chevronDoubleUp, check, HeroIconModule, minus, play, plus, rewind, fastForward, pause, clock } from 'ng-heroicon';
 import { EditDoseComponent } from './components/edit-dose/edit-dose.component';
 import { PreparationsComponent } from './components/preparations/preparations.component';
 import { StepsComponent } from './components/steps/steps.component';
@@ -37,7 +37,8 @@ import { SimulationComponent } from './components/simulation/simulation.componen
         check,
         rewind,
         fastForward,
-        pause
+        pause,
+        clock
       }
     )
   ]

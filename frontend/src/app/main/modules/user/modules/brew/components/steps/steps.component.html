@@ -1,1 +1,28 @@
-<p>steps works!</p>
+<app-back-navigation label="Brew"></app-back-navigation>
+<div class="container p-4">
+    <div>
+        <h1 class="font-bold text-3xl">Steps</h1>
+    </div>
+    <div class="my-3">
+        <div class="flex flex-col space-y-4 py-3">
+            <div *ngFor="let step of steps; let i = index" class="grid grid-cols-5 items-center shadow-md rounded-lg bg-orange-100 tracking-wide hover:shadow-lg hover:-translate-y-0.5 focus:scale-95 sm:grid-cols-8">
+                <div class="col-span-1 p-2">
+                    <div class="aspect-square flex items-center justify-center rounded-lg bg-orange-200">
+                        <span class="font-medium text-xl">{{i+1}}</span>
+                    </div>
+                </div>
+                <div class="col-span-3 p-2 sm:col-span-6">
+                    <div class="w-full flex items-center">
+                        <span class="text-sm">{{step.desc}}</span>
+                    </div>
+                </div>
+                <div class="col-span-1 p-2">
+                    <div class="w-full flex flex-col items-center justify-center space-y-1">
+                        <hero-icon name="clock" type="outline" class="w-5 h-5 text-brown"></hero-icon>
+                        <span class="text-xs sm:text-sm">{{step.ms * 10 | date:'mm:ss'}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
