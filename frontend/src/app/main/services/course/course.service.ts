@@ -22,6 +22,7 @@ export class CourseService {
             id
             title
             description
+            thumbnail
             createdAt
             modules
           }
@@ -39,6 +40,7 @@ export class CourseService {
             id
             title
             description
+            thumbnail 
             createdAt
             modules
           }
@@ -49,6 +51,10 @@ export class CourseService {
       },
     })
       .valueChanges.pipe(map((result)=>result.data.getCourse));
+  }
+
+  public getThumbnail(thumbnail:string){
+    return 
   }
 
   public addCourse(formData: FormData): Observable<any>{

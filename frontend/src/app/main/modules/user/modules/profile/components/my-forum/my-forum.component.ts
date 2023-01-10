@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Forums } from 'src/app/main/models/forums';
 import { AuthService } from 'src/app/main/services/auth/auth.service';
 import { ForumService } from 'src/app/main/services/forum/forum.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-my-forum',
@@ -13,8 +12,6 @@ export class MyForumComponent implements OnInit {
 
   forums:Forums[] = [];
   loading:boolean = false;
-  thumbnailUrl=environment.apiUrl+"/forum/thumbnail/";
-  profileImgUrl=environment.apiUrl+"/account/profile-img/";
 
   constructor(private authService:AuthService, private forumService:ForumService) { }
 

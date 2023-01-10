@@ -4,7 +4,6 @@ import { RecipeCategories } from 'src/app/main/models/recipecategories';
 import { Recipes } from 'src/app/main/models/recipes';
 import { RecipeCategoryService } from 'src/app/main/services/recipe-category/recipe-category.service';
 import { RecipeService } from 'src/app/main/services/recipe/recipe.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-category-detail',
@@ -17,7 +16,6 @@ export class CategoryDetailComponent implements OnInit {
   recipes:Recipes[] = [];
   loading1:boolean = false;
   loading2:boolean = false;
-  thumbnailUrl=environment.apiUrl+"/recipe/thumbnail/";
 
   constructor(private route:ActivatedRoute, private recipeCategoryService:RecipeCategoryService, private recipeService:RecipeService) { }
 

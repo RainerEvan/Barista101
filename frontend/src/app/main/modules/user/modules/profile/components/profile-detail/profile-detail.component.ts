@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Accounts } from 'src/app/main/models/accounts';
 import { AccountService } from 'src/app/main/services/account/account.service';
 import { AuthService } from 'src/app/main/services/auth/auth.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-profile-detail',
@@ -13,7 +12,6 @@ export class ProfileDetailComponent implements OnInit {
 
   account:Accounts;
   loading:boolean = false;
-  profileImgUrl=environment.apiUrl+"/account/profile-img/";
 
   constructor(private authService:AuthService, private accountService:AccountService) { }
 

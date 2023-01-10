@@ -4,7 +4,6 @@ import { Courses } from 'src/app/main/models/courses';
 import { Enrollments } from 'src/app/main/models/enrollments';
 import { AuthService } from 'src/app/main/services/auth/auth.service';
 import { EnrollmentService } from 'src/app/main/services/enrollment/enrollment.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-course-progress',
@@ -14,7 +13,6 @@ import { environment } from 'src/environments/environment';
 export class CourseProgressComponent implements OnInit {
 
   @Input("course") course:Courses;
-  thumbnailUrl=environment.apiUrl+"/course/thumbnail/";
   enrollment:Enrollments;
   loading:boolean = false;
 

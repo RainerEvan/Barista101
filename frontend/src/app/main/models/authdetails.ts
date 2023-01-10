@@ -5,4 +5,5 @@ export class AuthDetails{
     username: string;
     email: string;
     role: string;
+    profileImg: string;
 } 

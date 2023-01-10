@@ -4,7 +4,6 @@ import { Enrollments } from 'src/app/main/models/enrollments';
 import { Modules } from 'src/app/main/models/modules';
 import { EnrollmentService } from 'src/app/main/services/enrollment/enrollment.service';
 import { ModuleService } from 'src/app/main/services/module/module.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-module-list',
@@ -16,7 +15,6 @@ export class ModuleListComponent implements OnInit {
   modules:Modules[] = [];
   moduleStatus:any = [];
   loading:boolean = false;
-  thumbnailUrl=environment.apiUrl+"/module/thumbnail/";
 
   constructor(private route:ActivatedRoute, private moduleService:ModuleService, private enrollmentService:EnrollmentService) { }
 

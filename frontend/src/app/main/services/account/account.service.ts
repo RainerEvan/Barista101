@@ -26,7 +26,8 @@ export class AccountService {
             role{
               id
               name
-            }           
+            }
+            profileImg          
           }
         }
       `,
@@ -46,7 +47,8 @@ export class AccountService {
             role{
               id
               name
-            }           
+            }
+            profileImg        
           }
         }
       `, 

@@ -27,6 +27,7 @@ export class RecipeRatingService {
               id
               fullname
               username
+              profileImg
             }
             rating
             body

@@ -5,7 +5,6 @@ import { Recipes } from 'src/app/main/models/recipes';
 import { ConfirmationDialogComponent } from 'src/app/main/modules/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { AuthService } from 'src/app/main/services/auth/auth.service';
 import { RecipeService } from 'src/app/main/services/recipe/recipe.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -22,7 +21,6 @@ export class RecipeDetailComponent implements OnInit {
   ingredients:string[];
   instructions:string[];
   loading:boolean = false;
-  thumbnailUrl=environment.apiUrl+"/recipe/thumbnail/";
   showDropdown:boolean = false;
   accountId = this.authService.accountValue.accountId;
 

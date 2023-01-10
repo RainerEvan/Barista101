@@ -11,10 +11,10 @@
             <span class="font-medium text-xs text-gray-400">{{notification.createdAt | date:'d MMM y, h:mm a'}}</span>
         </a>
         <ng-container *ngFor="let i of [0,1,2,3]">
-            <div *ngIf="loading" class="w-full h-24 bg-gray-200 animate-pulse"></div>
+            <div *ngIf="loading" class="w-full h-24 bg-gray-200 animate-pulse my-2"></div>
         </ng-container>
     </div>
-    <ng-container *ngIf="notifications.length == 0">
+    <ng-container *ngIf="!loading && notifications.length == 0">
         <div class="w-full h-96 flex items-center justify-center p-8">
             <span class="text-sm text-gray-400">No notifications yet</span>
         </div>

@@ -103,14 +103,16 @@ public class EnrollmentService {
         for(int i=0;i<moduleStatus.length();i++){
             JSONObject module = moduleStatus.getJSONObject(i);
             if(module.getString("moduleId").equals(moduleId.toString())){
-                module.put("done", true);
+                if(!module.getBoolean("done")){
+                    module.put("done", true);
+                    moduleStatus.put(i,module);
+                    enrollment.setModuleStatus(moduleStatus.toString());
+                    return enrollmentRepository.save(enrollment);
+                }
             }
-            moduleStatus.put(i,module);
         }
 
-        enrollment.setModuleStatus(moduleStatus.toString());
-
-        return enrollmentRepository.save(enrollment);
+        return null;
     }
 
     @Transactional

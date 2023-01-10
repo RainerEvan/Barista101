@@ -4,7 +4,7 @@
     </div>
     <div class="w-full grid grid-cols-6 gap-2 p-4 bg-white sm:grid-cols-10">
         <div class="col-span-1 flex flex-row items-start justify-center">
-            <img [src]="profileImgUrl+accountId" class="object-cover w-12 h-12 rounded-full">
+            <img [src]="account.profileImg | img" class="object-cover w-12 h-12 rounded-full">
         </div>
         <form [formGroup]="forumCommentForm" (ngSubmit)="addForumComment()" class="col-span-5 flex flex-col space-y-2 sm:col-span-9">
             <div>

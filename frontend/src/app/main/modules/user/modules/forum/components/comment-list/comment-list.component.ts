@@ -5,7 +5,6 @@ import { ForumComments } from 'src/app/main/models/forumcomments';
 import { AuthService } from 'src/app/main/services/auth/auth.service';
 import { ForumCommentService } from 'src/app/main/services/forum-comment/forum-comment.service';
 import { NotificationService } from 'src/app/main/services/notification/notification.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-comment-list',
@@ -18,8 +17,7 @@ export class CommentListComponent implements OnInit {
   isForumCommentFormSubmitted:boolean = false;
   comments:ForumComments[] = [];
   loading:boolean = false;
-  profileImgUrl=environment.apiUrl+"/account/profile-img/";
-  accountId = this.authService.accountValue.accountId;
+  account = this.authService.accountValue;
 
   constructor(private route:ActivatedRoute, private authService:AuthService,private forumCommentService:ForumCommentService, private notificationService:NotificationService, private formBuilder:FormBuilder) { }
 
@@ -33,7 +31,7 @@ export class CommentListComponent implements OnInit {
 
     this.forumCommentForm = this.formBuilder.group({
       forumId: [forumId],
-      accountId: [this.accountId],
+      accountId: [this.account.accountId],
       body: [null, [Validators.required]],
     });
   }

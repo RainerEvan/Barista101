@@ -27,6 +27,7 @@ export class ForumCommentService {
               id
               fullname
               username
+              profileImg
             }
             body
             createdAt

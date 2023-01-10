@@ -29,8 +29,8 @@ export class RecipeService {
               fullname
             }
             title
-            rating
             thumbnail
+            rating
           }
         }
       `, 
@@ -55,6 +55,7 @@ export class RecipeService {
               id
             }
             title
+            thumbnail
             rating
           }
         }
@@ -87,6 +88,7 @@ export class RecipeService {
             ingredients
             instructions
             notes
+            thumbnail
             createdAt
             rating
           }

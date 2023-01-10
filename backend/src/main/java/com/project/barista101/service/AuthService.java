@@ -38,7 +38,8 @@ public class AuthService {
                 userDetails.getAccountId(),
                 userDetails.getUsername(),
                 userDetails.getEmail(),
-                role
+                role,
+                userDetails.getProfileImg()
             );
         } catch (Exception e) {
             throw new RuntimeException("Invalid username or password!", e);

@@ -44,7 +44,7 @@ public class EnrollmentController {
         try{
             Enrollments enrollment = enrollmentService.finishModule(enrollmentId, moduleId);
 
-            return ResponseHandler.generateResponse("Enrollment has been updated successfully!", HttpStatus.OK, enrollment.getId());
+            return ResponseHandler.generateResponse("Enrollment has been updated successfully!", HttpStatus.OK, enrollment);
 
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);

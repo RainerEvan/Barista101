@@ -22,7 +22,7 @@ export class RecipeRatingListComponent implements OnInit {
   recipeRatings:RecipeRatings[] = [];
   loading:boolean = false;
   profileImgUrl=environment.apiUrl+"/account/profile-img/";
-  accountId = this.authService.accountValue.accountId;
+  account = this.authService.accountValue;
 
   constructor(private route:ActivatedRoute, private authService:AuthService, private recipeRatingService:RecipeRatingService, private notificationService:NotificationService, private formBuilder:FormBuilder) { }
 
@@ -38,7 +38,7 @@ export class RecipeRatingListComponent implements OnInit {
 
     this.recipeRatingForm = this.formBuilder.group({
       recipeId: [recipeId],
-      accountId: [this.accountId],
+      accountId: [this.account.accountId],
       rating: [0, [Validators.required]],
       body: [null, [Validators.required]],
     });
@@ -54,12 +54,12 @@ export class RecipeRatingListComponent implements OnInit {
         next:(response:RecipeRatings[])=>{
           this.recipeRatings = response;
           this.loading = false;
-          if(this.recipeRatings.some(rating => this.accountId.match(rating.author.id))){
+          if(this.recipeRatings.some(rating => this.account.accountId.match(rating.author.id))){
             this.isRecipeRated = true;
           }
         },
         error:(error:any)=>{
-            console.log(error);
+          console.log(error);
         }
       });
     }

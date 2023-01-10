@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Courses } from 'src/app/main/models/courses';
 import { CourseService } from 'src/app/main/services/course/course.service';
-import { environment } from 'src/environments/environment';
 import { Dialog } from '@angular/cdk/dialog';
 import { DescriptionDialogComponent } from 'src/app/main/modules/shared/components/description-dialog/description-dialog.component';
 import { EnrollmentService } from 'src/app/main/services/enrollment/enrollment.service';
@@ -18,7 +17,6 @@ export class CourseDetailComponent implements OnInit {
   course:Courses;
   enrollment:Enrollments;
   loading:boolean = false;
-  thumbnailUrl=environment.apiUrl+"/course/thumbnail/";
 
   constructor(public dialog:Dialog, private route:ActivatedRoute, private courseService:CourseService, private enrollmentService:EnrollmentService) { }
 

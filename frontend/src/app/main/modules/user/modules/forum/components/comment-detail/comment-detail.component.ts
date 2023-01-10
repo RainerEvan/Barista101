@@ -3,7 +3,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ForumComments } from 'src/app/main/models/forumcomments';
 import { ConfirmationDialogComponent } from 'src/app/main/modules/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { AuthService } from 'src/app/main/services/auth/auth.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-comment-detail',
@@ -17,9 +16,8 @@ export class CommentDetailComponent implements OnInit {
 
   @Input("comment") comment:ForumComments;
   @Output() commentId = new EventEmitter<string>();
-  profileImgUrl=environment.apiUrl+"/account/profile-img/";
   showDropdown:boolean = false;
-  accountId = this.authService.accountValue.accountId;
+  account = this.authService.accountValue;
 
   constructor(public dialog:Dialog, private authService:AuthService) { }
 

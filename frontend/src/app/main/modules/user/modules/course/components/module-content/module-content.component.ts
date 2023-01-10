@@ -8,7 +8,6 @@ import { AuthService } from 'src/app/main/services/auth/auth.service';
 import { EnrollmentService } from 'src/app/main/services/enrollment/enrollment.service';
 import { ModuleService } from 'src/app/main/services/module/module.service';
 import { NotificationService } from 'src/app/main/services/notification/notification.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-module-content',
@@ -22,7 +21,6 @@ export class ModuleContentComponent implements OnInit {
   currentContent:Contents;
   currentPage:number = 0;
   loading:boolean = false;
-  thumbnailUrl=environment.apiUrl+"/content/thumbnail/";
 
   constructor(public dialog:Dialog, private route:ActivatedRoute, private authService:AuthService,private moduleService:ModuleService, private enrollmentService:EnrollmentService, private notificationService:NotificationService) { }
 
@@ -64,8 +62,11 @@ export class ModuleContentComponent implements OnInit {
     }
 
     this.enrollmentService.finishModule(formData).subscribe({
-      next:()=>{
-        this.notificationService.addNotification(this.authService.accountValue.accountId,`Congratulations you have completed the <b>${this.module.title}</b> module`,JSON.stringify(notificationData));
+      next:(response:any)=>{
+        console.log(response);
+        if(response.data){
+          this.notificationService.addNotification(this.authService.accountValue.accountId,`Congratulations you have completed the <b>${this.module.title}</b> module`,JSON.stringify(notificationData));
+        }
         this.openCompleteDialog();
       },
       error:(error:any)=>{

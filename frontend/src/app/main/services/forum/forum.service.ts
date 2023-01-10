@@ -24,6 +24,7 @@ export class ForumService {
               id
               fullname
               username
+              profileImg
             }
             title
             body
@@ -46,6 +47,7 @@ export class ForumService {
               id
               fullname
               username
+              profileImg          
             }
             title
             body
@@ -71,6 +73,7 @@ export class ForumService {
               id
               fullname
               username
+              profileImg          
             }
             title
             body

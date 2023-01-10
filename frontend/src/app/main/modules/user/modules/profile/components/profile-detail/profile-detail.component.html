@@ -1,7 +1,7 @@
 <div class="container tracking-wide">
     <div class="w-full max-w-md mx-auto flex flex-col items-center space-y-4 p-5">
         <div class="w-16 h-16">
-            <img *ngIf="account" [src]="profileImgUrl+account.id" alt="Profile Image" class="object-cover w-full h-full rounded-full shadow-md">
+            <img *ngIf="account" [src]="account.profileImg | img" alt="Profile Image" class="object-cover w-full h-full rounded-full shadow-md">
             <div *ngIf="loading" class="w-full h-full bg-gray-200 rounded-full animate-pulse"></div>
         </div>
         <div class="flex flex-col items-center">

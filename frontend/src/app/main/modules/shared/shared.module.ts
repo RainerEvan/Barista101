@@ -8,6 +8,7 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
 import { ResultDialogComponent } from './components/result-dialog/result-dialog.component';
 import { BackNavigationComponent } from './components/back-navigation/back-navigation.component';
 import { LoadingDialogComponent } from './components/loading-dialog/loading-dialog.component';
+import { ImgPipe } from './pipes/img/img.pipe';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { LoadingDialogComponent } from './components/loading-dialog/loading-dial
     ResultDialogComponent,
     BackNavigationComponent,
     LoadingDialogComponent,
+    ImgPipe,
   ],
   imports: [
     CommonModule,
@@ -40,6 +42,7 @@ import { LoadingDialogComponent } from './components/loading-dialog/loading-dial
     ResultDialogComponent,
     BackNavigationComponent,
     LoadingDialogComponent,
+    ImgPipe,
   ]
 })
 export class SharedModule { }
