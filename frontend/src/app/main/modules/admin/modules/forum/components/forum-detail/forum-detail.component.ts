@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Forums } from 'src/app/main/models/forums';
 import { ConfirmationDialogComponent } from 'src/app/main/modules/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { ForumService } from 'src/app/main/services/forum/forum.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-forum-detail',
@@ -18,10 +17,9 @@ export class ForumDetailComponent implements OnInit {
 
   forum:Forums;
   loading:boolean = false;
-  profileImgUrl=environment.apiUrl+"/account/profile-img/";
   showDropdown:boolean = false;
 
-  constructor(public dialog:Dialog, private router:Router, private route:ActivatedRoute,private forumService:ForumService) { }
+  constructor(public dialog:Dialog, private router:Router, private route:ActivatedRoute, private forumService:ForumService) { }
 
   ngOnInit(): void {
     this.getForum();
@@ -51,7 +49,7 @@ export class ForumDetailComponent implements OnInit {
     this.forumService.deleteForum(forumId).subscribe({
       next:(response:any)=>{
         console.log(response);
-        this.router.navigate([".."]);
+        this.router.navigate(["./admin/forum"]);
       },
       error:(error:any)=>{
         console.log(error);

@@ -5,6 +5,7 @@ import { ForumComments } from 'src/app/main/models/forumcomments';
 import { AuthService } from 'src/app/main/services/auth/auth.service';
 import { ForumCommentService } from 'src/app/main/services/forum-comment/forum-comment.service';
 import { NotificationService } from 'src/app/main/services/notification/notification.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-comment-list',
@@ -17,6 +18,7 @@ export class CommentListComponent implements OnInit {
   isForumCommentFormSubmitted:boolean = false;
   comments:ForumComments[] = [];
   loading:boolean = false;
+  profileImgUrl = environment.apiUrl+"/account/profile-img/"
   account = this.authService.accountValue;
 
   constructor(private route:ActivatedRoute, private authService:AuthService,private forumCommentService:ForumCommentService, private notificationService:NotificationService, private formBuilder:FormBuilder) { }
@@ -71,7 +73,7 @@ export class CommentListComponent implements OnInit {
           this.isForumCommentFormSubmitted = true;
           this.generateForumCommentForm();
           this.getAllCommentsForForum();
-          this.notificationService.addNotification(response.data.author.id,`<b>${this.authService.accountValue.username}</b> has replied to your thread, check it out`,JSON.stringify(notificationData));
+          this.notificationService.addNotification(response.data.author.id,`<b>${this.account.username}</b> has replied to your thread, check it out`,JSON.stringify(notificationData));
         },
         error: (error: any) => {
           console.log(error);

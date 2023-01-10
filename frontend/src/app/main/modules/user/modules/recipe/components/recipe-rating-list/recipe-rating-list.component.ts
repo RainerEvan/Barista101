@@ -21,7 +21,7 @@ export class RecipeRatingListComponent implements OnInit {
   isRecipeRated:boolean = false;
   recipeRatings:RecipeRatings[] = [];
   loading:boolean = false;
-  profileImgUrl=environment.apiUrl+"/account/profile-img/";
+  profileImgUrl = environment.apiUrl+"/account/profile-img/"
   account = this.authService.accountValue;
 
   constructor(private route:ActivatedRoute, private authService:AuthService, private recipeRatingService:RecipeRatingService, private notificationService:NotificationService, private formBuilder:FormBuilder) { }
@@ -83,7 +83,7 @@ export class RecipeRatingListComponent implements OnInit {
           this.generateRecipeRatingForm();
           this.updateRating.emit(this.isRecipeRatingFormSubmitted);
           this.getAllRatingsForRecipe();
-          this.notificationService.addNotification(response.data.author.id,`<b>${this.authService.accountValue.username}</b> has rated your recipe, check it out`,JSON.stringify(notificationData));
+          this.notificationService.addNotification(response.data.author.id,`<b>${this.account.username}</b> has rated your recipe, check it out`,JSON.stringify(notificationData));
         },
         error: (error: any) => {
           console.log(error);

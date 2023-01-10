@@ -1,6 +1,7 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Accounts } from 'src/app/main/models/accounts';
 import { ResultDialogComponent } from 'src/app/main/modules/shared/components/result-dialog/result-dialog.component';
 import { AccountService } from 'src/app/main/services/account/account.service';
 import { AuthService } from 'src/app/main/services/auth/auth.service';
@@ -12,6 +13,7 @@ import { AuthService } from 'src/app/main/services/auth/auth.service';
 })
 export class ChangePasswordComponent implements OnInit {
 
+  account:Accounts;
   passwordForm:FormGroup;
   loading:boolean = false;
   isPasswordFormSubmitted:boolean = false;
@@ -20,6 +22,7 @@ export class ChangePasswordComponent implements OnInit {
   constructor(public dialog:Dialog, private authService:AuthService, private accountService:AccountService, private formBuilder:FormBuilder) {}
 
   ngOnInit(): void {
+    this.account = history.state;
     this.generatePasswordForm();
   }
 

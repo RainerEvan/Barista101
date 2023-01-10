@@ -6,12 +6,14 @@
             <span class="text-sm">Edit Content</span>
         </button>
     </div>
-    <div *ngIf="content" class="w-full flex flex-col space-y-3 p-6 rounded-lg bg-orange-100 my-3">
+    <div *ngIf="content" class="w-full max-w-md mx-auto rounded-lg bg-orange-100 my-3">
         <div>
-            <img *ngIf="content.thumbnail" [src]="thumbnailUrl+content.id" alt="Content Thumbnail" class="w-full h-full">
+            <img *ngIf="content.thumbnail" [src]="content.thumbnail | img" alt="Content Thumbnail" class="object-cover w-full h-96">
         </div>
-        <h1 class="font-semibold text-lg">{{content.title}}</h1>
-        <div class="text-justify" [innerHTML]="content.body"></div>
+        <div class="space-y-2 p-6">
+            <h1 class="font-semibold text-lg">{{content.title}}</h1>
+            <div class="text-justify text-sm" [innerHTML]="content.body"></div>
+        </div>
     </div>
     <div *ngIf="loading" class="w-full h-64 bg-gray-200 rounded-md animate-pulse my-3"></div>
 </div>

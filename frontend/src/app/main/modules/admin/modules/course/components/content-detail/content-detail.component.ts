@@ -15,7 +15,6 @@ export class ContentDetailComponent implements OnInit {
 
   content:Contents;
   loading:boolean = false;
-  thumbnailUrl=environment.apiUrl+"/content/thumbnail/";
 
   constructor(public dialog:Dialog, private route:ActivatedRoute,private contentService:ContentService) { }
 

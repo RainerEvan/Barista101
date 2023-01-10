@@ -6,12 +6,12 @@
             <span class="text-sm">Edit Module</span>
         </button>
     </div>
-    <div class="w-full grid grid-cols-4 items-center gap-6 my-3">
-        <div class="col-span-1">
-            <img *ngIf="module" [src]="thumbnailUrl+module.id" class="object-cover aspect-square rounded-md">
-            <div *ngIf="loading" class="aspect-square rounded-md bg-gray-200 animate-pulse"></div>
+    <div class="w-full flex items-center space-x-4 my-3">
+        <div>
+            <img *ngIf="module" [src]="module.thumbnail | img" class="object-cover w-40 h-40 rounded-md">
+            <div *ngIf="loading" class="w-40 h-40 rounded-md bg-gray-200 animate-pulse"></div>
         </div>
-        <div class="col-span-3 flex flex-col justify-center space-y-4">
+        <div class="flex flex-col justify-center space-y-4">
             <div class="block">
                 <h3 class="text-lg font-semibold">Title</h3>
                 <span *ngIf="module" class="text-sm">{{module.title}}</span>

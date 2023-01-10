@@ -1,6 +1,9 @@
+import { Dialog } from '@angular/cdk/dialog';
 import { Component, OnInit } from '@angular/core';
 import { RecipeCategories } from 'src/app/main/models/recipecategories';
+import { ConfirmationDialogComponent } from 'src/app/main/modules/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { RecipeCategoryService } from 'src/app/main/services/recipe-category/recipe-category.service';
+import { AddCategoryComponent } from '../add-category/add-category.component';
 
 @Component({
   selector: 'app-category-list',
@@ -11,9 +14,8 @@ export class CategoryListComponent implements OnInit {
 
   recipeCategories:RecipeCategories[] = [];
   loading:boolean = false;
-  selectedCategory:string = "";
 
-  constructor(private recipeCategoryService:RecipeCategoryService) { }
+  constructor(public dialog:Dialog, private recipeCategoryService:RecipeCategoryService) { }
 
   ngOnInit(): void {
     this.getAllRecipeCategories();
@@ -33,9 +35,44 @@ export class CategoryListComponent implements OnInit {
     });
   }
 
-  selectCategory(category:RecipeCategories){
-    console.log(category);
-    this.selectedCategory = category.id;
+  openAddDialog(){
+    const dialogRef = this.dialog.open(AddCategoryComponent, {
+      data:{
+        title:"Add Category",
+      }
+    });
+
+    dialogRef.closed.subscribe((success) => {
+      if(success){
+        this.getAllRecipeCategories();
+      }
+    });
   }
 
+  openDeleteDialog(categoryId:string){
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data:{
+        title:"Delete Category",
+        description:"Are you sure you want to delete this category?"
+      }
+    });
+
+    dialogRef.closed.subscribe((confirm) => {
+      if(confirm){
+        this.deleteCategory(categoryId);
+      }
+    });
+  }
+
+  deleteCategory(categoryId:string){
+    this.recipeCategoryService.deleteRecipeCategory(categoryId).subscribe({
+      next:(response:any)=>{
+        this.getAllRecipeCategories();
+        console.log(response);
+      },
+      error:(error:any)=>{
+        console.log(error);
+      }
+    });
+  }
 }

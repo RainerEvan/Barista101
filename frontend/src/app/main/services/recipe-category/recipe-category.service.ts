@@ -45,7 +45,7 @@ export class RecipeCategoryService {
       .valueChanges.pipe(map((result)=>result.data.getRecipeCategory));
   }
 
-  public addRecipeCategory(formData: FormData): Observable<any>{
+  public addRecipeCategory(formData: string): Observable<any>{
     return this.http.post(API_URL+'/add',formData);
   }
   

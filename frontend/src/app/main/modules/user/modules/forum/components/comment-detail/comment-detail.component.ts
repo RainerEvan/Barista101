@@ -17,7 +17,7 @@ export class CommentDetailComponent implements OnInit {
   @Input("comment") comment:ForumComments;
   @Output() commentId = new EventEmitter<string>();
   showDropdown:boolean = false;
-  account = this.authService.accountValue;
+  accountId = this.authService.accountValue.accountId;
 
   constructor(public dialog:Dialog, private authService:AuthService) { }
 

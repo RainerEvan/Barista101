@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { Courses } from 'src/app/main/models/courses';
 import { ConfirmationDialogComponent } from 'src/app/main/modules/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { CourseService } from 'src/app/main/services/course/course.service';
-import { environment } from 'src/environments/environment';
 import { AddCourseComponent } from '../add-course/add-course.component';
 
 @Component({
@@ -15,7 +14,6 @@ export class CourseListComponent implements OnInit {
 
   courses:Courses[] = [];
   loading:boolean = false;
-  thumbnailUrl=environment.apiUrl+"/course/thumbnail/";
 
   constructor(public dialog:Dialog, private courseService:CourseService) { }
 

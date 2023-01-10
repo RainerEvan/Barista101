@@ -8,9 +8,9 @@
     </div>
     <ul class="container flex flex-col space-y-4 py-4">
         <li *ngFor="let course of courses" class="grid grid-cols-8 border rounded-md bg-white shadow-md hover:shadow-lg hover:-translate-y-0.5">
-            <a routerLink="./{{course.id}}" class="col-span-7 flex items-center">
+            <a [routerLink]="['./',course.id]" class="col-span-7 flex items-center">
                 <div class="p-4">
-                    <img src="{{thumbnailUrl+course.id}}" alt="Course Thumbnail" class="object-cover w-40 h-32">
+                    <img [src]="course.thumbnail | img" alt="Course Thumbnail" class="object-cover w-40 h-32">
                 </div>
                 <div class="p-2 flex flex-col justify-center">
                     <span class="font-medium">{{course.title}}</span>

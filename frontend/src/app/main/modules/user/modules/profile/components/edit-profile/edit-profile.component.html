@@ -26,7 +26,7 @@
         </div>
         <div class="space-y-1">
             <label for="password" class="font-medium">Change Password</label>
-            <button type="button" [routerLink]="['../change-password']" class="relative w-full">
+            <button type="button" [routerLink]="['../change-password']" [state]="account" class="relative w-full">
                 <input type="password" readonly="true" placeholder="Enter password" value="1234567890" class="input-text cursor-pointer read-only:shadow-none read-only:border-gray-400">
                 <hero-icon name="pencil-alt" type="outline" class="absolute top-2.5 right-3 w-4 h-4 text-inherit pointer-events-none"></hero-icon>
             </button>

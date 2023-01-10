@@ -23,7 +23,6 @@ public class UserDetailsImpl implements UserDetails{
     private String email;
     @JsonIgnore
     private String password;
-    private String profileImg;
     private Collection<? extends GrantedAuthority> authorities;
 
     public static UserDetailsImpl build(Accounts account){
@@ -35,7 +34,6 @@ public class UserDetailsImpl implements UserDetails{
             account.getUsername(),
             account.getEmail(),
             account.getPassword(),
-            account.getProfileImg(),
             authorities
         );
     }

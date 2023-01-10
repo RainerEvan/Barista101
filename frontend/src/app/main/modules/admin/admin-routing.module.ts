@@ -28,6 +28,10 @@ const routes: Routes = [
         path: 'brew',
         loadChildren: () => import('./modules/brew/brew.module').then((m) => m.BrewModule),
       },
+      {
+        path: 'account',
+        loadChildren: () => import('./modules/account/account.module').then((m) => m.AccountModule),
+      },
     ]
   }
 ];
