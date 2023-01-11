@@ -1,9 +1,9 @@
 <div class="container tracking-wide flex flex-col space-y-4 p-4">
-    <a *ngFor="let module of modules;let i = index" [routerLink]="['../module/',module.id]" class="grid grid-cols-5 items-center shadow-md rounded-lg bg-white hover:shadow-lg focus:scale-95 sm:grid-cols-8">
+    <a *ngFor="let module of modules;let i = index" [routerLink]="['../module/',module.id]" class="grid grid-cols-5 items-center shadow-md rounded-lg bg-white hover:shadow-lg focus:scale-95 sm:grid-cols-7">
         <div class="col-span-1 p-2">
             <img [src]="module.thumbnail | img" alt="Module Thumbnail" class="object-cover aspect-square rounded-lg">
         </div>
-        <div class="col-span-3 p-2 sm:col-span-6">
+        <div class="col-span-3 p-2 sm:col-span-5">
             <div class="flex flex-col justify-between space-y-1">
                 <span class="font-medium text-sm sm:text-base">{{module.title}}</span>
                 <span *ngIf="moduleStatus[i]" class="italic text-xs sm:text-sm">{{moduleStatus[i].done ? 'Completed':'Click to start learning'}}</span>
@@ -16,6 +16,6 @@
         </div>
     </a>
     <ng-container *ngFor="let i of [0,1,2,3,4,5]">
-        <div *ngIf="loading" class="w-full h-14 bg-gray-200 rounded-sm animate-pulse"></div>
+        <div *ngIf="loading" class="w-full h-16 bg-gray-200 rounded-lg animate-pulse"></div>
     </ng-container>
 </div>
