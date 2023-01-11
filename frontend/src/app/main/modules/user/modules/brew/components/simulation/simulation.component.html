@@ -2,14 +2,14 @@
 <div class="container tracking-wide">
     <div class="flex flex-col items-center space-y-4 p-4">
         <div class="flex items-center justify-center py-6">
-            <span class="font-roboto text-5xl text-center tracking-wider">{{format(seconds)}}</span>
+            <span class="font-roboto text-5xl text-center tracking-wider">{{formatTime(seconds)}}</span>
         </div>
 
         <div class="relative w-full aspect-square max-w-sm focus:scale-95">
             <div class="absolute w-full aspect-square flex items-center justify-center px-16 rounded-full bg-orange-100">
                 <div class="w-full flex flex-col divide-y-2 divide-brown">
-                    <span class="w-full p-2 font-medium text-4xl text-center">{{totalWater}} gr</span>
-                    <span class="w-full p-2 text-2xl text-center">{{gr}}.{{mg}} gr</span>
+                    <span class="w-full p-2 font-medium text-4xl text-center">{{formatWater(totalWater)}} gr</span>
+                    <span class="w-full p-2 text-2xl text-center">{{formatWater(decigram)}} gr</span>
                 </div>
             </div>
             <svg class="absolute -scale-x-100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -31,7 +31,7 @@
 
         <div class="w-full max-w-md flex flex-col items-center justify-center space-y-6">
             <div class="h-14 flex items-center justify-center p-2">
-                <span class="font-medium text-center">{{currStep}}</span>
+                <span class="font-medium text-center">{{currStep ? currStep.desc:'Click Play to Start'}}</span>
             </div>
             <div class="inline-flex items-center space-x-8">
                 <button class="focus:scale-95">
